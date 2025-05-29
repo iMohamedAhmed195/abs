@@ -13,7 +13,6 @@ enum Errors {
 }
 
 Map<Errors, String> getError = {
-  Errors.ADD_SURVEY_ERROR : AppStrings.shouldChooseAllInfoForAddCar.trans
 };
 
 class ErrorCubit extends Cubit<CubitStates> {

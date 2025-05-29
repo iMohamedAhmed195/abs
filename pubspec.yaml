@@ -61,6 +61,7 @@ dependencies:
   socket_io_client:
   arabic_numbers:
   rxdart:
+  lottie:
   flutter_screenutil: ^5.9.3
   device_preview: ^1.2.0
   percent_indicator: ^4.2.5
@@ -80,7 +81,7 @@ dev_dependencies:
 flutter_launcher_icons:
   android: "ic_launcher"
   ios: true
-  image_path: "assets/images/logo.png"
+  image_path: "assets/images/logoName.png"
   min_sdk_android: 21 # android min sdk min:16, default 21
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -119,6 +120,7 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/animation/
     - assets/fonts/
     - assets/translations/
   fonts:

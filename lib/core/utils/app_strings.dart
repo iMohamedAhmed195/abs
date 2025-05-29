@@ -1,145 +1,27 @@
 class AppStrings {
 
   ///// start app
-  static const String home = 'home';
-  static const String polls = 'polls';
-  static const String orders = 'orders';
-  static const String myProfile = 'myProfile';
-  static const String welcome = 'welcome';
-  static const String atEllaithyAutoGroup = 'atEllaithyAutoGroup';
-  static const String searchForCar = 'searchForCar';
-  static const String generalServices = 'generalServices';
-  static const String addSurvey = 'addSurvey';
-  static const String orderOnSurvey = 'orderOnSurvey';
-  static const String sendMessageToYourTeam = 'sendMessageToYourTeam';
-  static const String messageSubject = 'messageSubject';
-  static const String chassisNumber = 'chassisNumber';
-  static const String messageContent = 'messageContent';
-  static const String carsDistributors = 'carsDistributors';
-  static const String details = 'details';
-  static const String responsible = 'responsible';
-  static const String from = 'from';
-  static const String call = 'call';
-  static const String to = 'to';
-  static const String buyCar = 'buyCar';
-  static const String replied = 'replied';
-  static const String myPurchases = 'myPurchases';
-  static const String carDistributors = 'carDistributors';
-  static const String inventoryCars = 'inventoryCars';
-  static const String requestedCars = 'requestedCars';
-  static const String status = 'status';
-  static const String delete = 'delete';
-  static const String searchDetails = 'searchDetails';
-  static const String teamMembers = 'teamMembers';
-  static const String sendMessage = 'sendMessage';
-  static const String serviceCenter = 'serviceCenter';
-  static const String surveyHistory = 'surveyHistory';
-  static const String newOrders = 'newOrders';
-  static const String brand = 'brand';
-  static const String tracking = 'tracking';
-  static const String orderBy = 'orderBy';
-  static const String numberOfBrand = 'numberOfBrand';
-  static const String branch = 'branch';
-  static const String addNewSurvey = 'addNewSurvey';
-  static const String addNewOrder = 'addNewOrder';
-  static const String orderCar = 'orderCar';
-  static const String searchAboutCar = 'searchAboutCar';
-  static const String distributor = 'distributor';
-  static const String branchBrand = 'branchBrand';
-  static const String orderType = 'orderType';
-  static const String priceOfReceipt = 'priceOfReceipt';
-  static const String numberOfCars = 'numberOfCars';
-  static const String companies = 'companies';
-  static const String individuals = 'individuals';
-  static const String sellingPrice = 'sellingPrice';
-  static const String procedures = 'procedures';
-  static const String category = 'category';
-  static const String selectBrand = 'selectBrand';
-  static const String model = 'model';
-  static const String available = 'available';
-  static const String notAvailable = 'notAvailable';
-  static const String saveCar = 'saveCar';
-  static const String shouldChooseAllInfoForAddCar = 'shouldChooseAllInfoForAddCar';
-  static const String contractType = 'contractType';
-  static const String paymentType = 'paymentType';
-  static const String color = 'color';
-  static const String buyingPrice = 'buyingPrice';
-  static const String expectedSellingPrice = 'expectedSellingPrice';
-  static const String exist = 'exist';
-  static const String noExist = 'noExist';
-  static const String searchForDate = 'searchForDate';
-  static const String allSurveys = 'allSurveys';
-  static const String mine = 'mine';
-  static const String more = 'more';
-  static const String orderNumber = 'orderNumber';
-  static const String personName = 'personName';
-  static const String surveyDate = 'surveyDate';
-  static const String numberSurvey = 'numberSurvey';
-  static const String surveysDetails = 'surveysDetails';
-  static const String updateSurvey = 'updateSurvey';
-  static const String update = 'update';
-  static const String updateCar = 'updateCar';
-  static const String addedCars = 'addedCars';
-  static const String carDetails = 'carDetails';
-  static const String offerDetails = 'offerDetails';
-  static const String send = 'send';
-  static const String search = 'search';
-  static const String cancel = 'cancel';
-  static const String loginToEllaithy = 'loginToEllaithy';
+  static const String uploadYourBooksTitleDetails = 'uploadYourBooksTitleDetails';
+  static const String uploadYourBooks = 'uploadYourBooks';
+  static const String createQuizTitleDetails = 'createQuizTitleDetails';
+  static const String createQuiz = 'createQuiz';
+  static const String joinOurCommunityTitleDetails = 'joinOurCommunityTitleDetails';
+  static const String joinOurCommunity = 'joinOurCommunity';
+  static const String uploadQuestionsTitleDetails = 'uploadQuestionsTitleDetails';
+  static const String uploadQuestions = 'uploadQuestions';
+  static const String letsGo = 'letsGo';
+  static const String alreadyHaveAccount = 'alreadyHaveAccount';
+  static const String startProject = 'startProject';
+  static const String login = 'login';
+  static const String welcomeBack = 'welcomeBack';
   static const String email = 'email';
   static const String password = 'password';
-  static const String login = 'login';
-  static const String forgetPassword = 'forgetPassword';
-  static const String resetPassword = 'resetPassword';
-  static const String confirmationOtp = 'confirmationOtp';
-  static const String pleaseEnterOtpSentToEmail = 'pleaseEnterOtpSentToEmail';
-  static const String confirm = 'confirm';
-  static const String confirmPassword = 'confirmPassword';
-  static const String makeNewPassword = 'makeNewPassword';
-  static const String searchAboutInventoryCar = 'searchAboutInventoryCar';
-  static const String itemDeleted = 'itemDeleted';
-  static const String profile = 'profile';
-  static const String numberOfCompletedOrder = 'numberOfCompletedOrder';
-  static const String numberOfCancelledOrder = 'numberOfCancelledOrder';
-  static const String numberOfDistributors = 'numberOfDistributors';
-  static const String numberOfInventoryCars = 'numberOfInventoryCars';
-  static const String numberOfSentOrders = 'numberOfSentOrders';
-  static const String numberOfSurveys = 'numberOfSurveys';
-  static const String carDescriptions = 'carDescriptions';
-  static const String editProfile = 'editProfile';
-  static const String changeLanguage = 'changeLanguage';
-  static const String logOut = 'logOut';
-  static const String firstName = 'firstName';
-  static const String lastName = 'lastName';
-  static const String phoneNumber = 'phoneNumber';
-  static const String saveUpdate = 'saveUpdate';
-  static const String addOrder = 'addOrder';
-  static const String ordersHistory = 'ordersHistory';
-  static const String installmentSystems = 'installmentSystems';
-  static const String completed = 'completed';
-  static const String waiting = 'waiting';
-  static const String cancelled = 'cancelled';
-  static const String reply = 'reply';
-  static const String noReply = 'noReply';
-  static const String orderDetails = 'orderDetails';
-  static const String bankOffer = 'bankOffer';
-  static const String seasonalOffers = 'seasonalOffers';
-  static const String downPayment = 'downPayment';
-  static const String interest = 'interest';
-  static const String insurance = 'insurance';
-  static const String administrativeFees = 'administrativeFees';
-  static const String inquiryType = 'inquiryType';
-  static const String issuancePeriod = 'issuancePeriod';
-
-
-
-
-
-
-
-
-
-
+  static const String forgotPassword = 'forgotPassword';
+  static const String logInThrough = 'logInThrough';
+  static const String createAccount = 'createAccount';
+  static const String dontHaveAccount = 'dontHaveAccount';
+  static const String emailFiledEmpty = 'emailFiledEmpty';
+  static const String passwordFiledEmpty = 'passwordFiledEmpty';
 
 
 

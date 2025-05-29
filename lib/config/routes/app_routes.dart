@@ -1,5 +1,9 @@
 
 import 'package:nested/nested.dart';
+import 'package:new_ilearn/features/auth/presentation/screens/login_screen.dart';
+import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
+import 'package:new_ilearn/features/splash_screen/presentation/screens/splash_screen.dart';
+import 'package:new_ilearn/features/splash_screen/presentation/screens/start_screen.dart';
 import '../../exports.dart';
 
 class RouteGenerator {
@@ -7,6 +11,18 @@ class RouteGenerator {
   static Duration pageRouteTransitionDurationGlobal = 400.milliseconds;
   static Route<T>? generateRoute<T>(RouteSettings routeSettings) {
     switch (routeSettings.name) {
+      case Routes.splashRoute:
+        return buildPageRoute<T>(
+            child: SplashScreen(), routeSettings: routeSettings);
+        case Routes.onBoardingRoute:
+        return buildPageRoute<T>(
+            child: OnBoardingScreen(), routeSettings: routeSettings);
+        case Routes.startScreenRoute:
+        return buildPageRoute<T>(
+            child: StartScreen(), routeSettings: routeSettings);
+        case Routes.loginRoute:
+        return buildPageRoute<T>(
+            child: LoginScreen(), routeSettings: routeSettings);
 
       default:
         return MaterialPageRoute(
@@ -23,10 +39,10 @@ class RouteGenerator {
 
   static Route<T> buildPageRoute<T>(
       {required Widget child,
-      AnimationType? pageRouteAnimation = AnimationType.fade,
-      Duration? duration,
-      RouteSettings? routeSettings,
-      List<SingleChildWidget>? providers}) {
+        AnimationType? pageRouteAnimation = AnimationType.fade,
+        Duration? duration,
+        RouteSettings? routeSettings,
+        List<SingleChildWidget>? providers}) {
     if (providers.isNotNullOrEmpty) {
       child = MultiBlocProvider(providers: providers!, child: child);
     }

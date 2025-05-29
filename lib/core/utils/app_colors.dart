@@ -4,7 +4,9 @@ class AppColors {
   AppColors._();
   static final AppColors _instance = AppColors._();
   factory AppColors() => _instance;
-  static const Color primaryColor = Color(0xFFFF8200);
+  static const Color primaryColor = Color(0xFF004BFE);
+  static const Color primaryColorLight = Color(0xFFC7D6FB);
+  static const LinearGradient buttonColor = const LinearGradient(colors: [Color(0xff00167D), Color(0xff0075E7)]);
   static const Color dividerGray = Color(0xFFE2E4E5);
   static const Color backgroundColor = Color(0xFFF2F3F6);
   static const Color grey = Color(0xFF7A7A7F);

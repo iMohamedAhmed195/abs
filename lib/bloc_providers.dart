@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BlocProviders {
   static final List<BlocProvider> providers = [
-    // BlocProvider<BottomNavOperationCubit>(
-    //     create: (context) => BottomNavOperationCubit()),
+    BlocProvider<BottomNavOperationCubit>(
+        create: (context) => BottomNavOperationCubit()),
 
   ];
 }

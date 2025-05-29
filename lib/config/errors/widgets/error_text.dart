@@ -16,20 +16,10 @@ class ErrorText extends StatelessWidget {
         child: showError.isTrueGetWidgetOrAnotherWidget(
           Padding(
             padding: EdgeInsetsDirectional.only(top: 5, ),
-            child: Row(
-              children: [
-                SizedBox(
-                  height: 15.h,
-                    width: 15.w,
-                    child: CustomPngImage(image: AppAssets.star,isAsset: true,)
-                ),
-                5.hs,
-                Text(
-                  text!,
-                  textAlign: TextAlign.start,
-                  style: getSemiBoldTextStyle(color: AppColors.primaryColor, fontSize: 12),
-                ),
-              ],
+            child: Text(
+              text!,
+              textAlign: TextAlign.start,
+              style: getSemiBoldTextStyle(color: AppColors.primaryColor, fontSize: 12),
             ),
           ),
           const SizedBox.shrink(),
