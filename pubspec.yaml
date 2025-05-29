@@ -71,6 +71,7 @@ dependencies:
   intl:
   nested: any
   firebase_core: any
+  dotted_border: ^3.0.1
 
 
 dev_dependencies:
