@@ -22,6 +22,17 @@ class AppStrings {
   static const String dontHaveAccount = 'dontHaveAccount';
   static const String emailFiledEmpty = 'emailFiledEmpty';
   static const String passwordFiledEmpty = 'passwordFiledEmpty';
+  static const String passwordRecovery = 'passwordRecovery';
+  static const String enterCodeWithForgetPassword = 'enterCodeWithForgetPassword';
+  static const String enterYourEmail = 'enterYourEmail';
+  static const String cancel = 'cancel';
+  static const String newPassword = 'newPassword';
+  static const String newPasswordDescription = 'newPasswordDescription';
+  static const String newPasswordHint = 'newPasswordHint';
+  static const String confirmPassword = 'confirmPassword';
+  static const String save = 'save';
+  static const String newPasswordNotMatchError = 'newPasswordNotMatchError';
+  static const String confirmPasswordNotMatchError = 'confirmPasswordNotMatchError';
 
 
 

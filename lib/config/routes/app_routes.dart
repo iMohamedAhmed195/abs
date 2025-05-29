@@ -1,6 +1,9 @@
 
 import 'package:nested/nested.dart';
+import 'package:new_ilearn/features/auth/presentation/screens/enter_otp_screen.dart';
+import 'package:new_ilearn/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/login_screen.dart';
+import 'package:new_ilearn/features/auth/presentation/screens/new_password_page.dart';
 import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/splash_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/start_screen.dart';
@@ -23,6 +26,15 @@ class RouteGenerator {
         case Routes.loginRoute:
         return buildPageRoute<T>(
             child: LoginScreen(), routeSettings: routeSettings);
+        case Routes.forgetPasswordRoute:
+        return buildPageRoute<T>(
+            child: ForgetPasswordScreen(), routeSettings: routeSettings);
+        case Routes.enterOtpRoute:
+        return buildPageRoute<T>(
+            child: EnterOtpScreen(email: (routeSettings.arguments as Map<String, dynamic>)["email"],), routeSettings: routeSettings);
+        case Routes.newPasswordRoute:
+        return buildPageRoute<T>(
+            child: NewPasswordScreen(), routeSettings: routeSettings);
 
       default:
         return MaterialPageRoute(
