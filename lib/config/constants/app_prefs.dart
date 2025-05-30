@@ -6,6 +6,7 @@ class AppPrefs {
   static String language = 'ar';
   static String? deviceToken;
   static String? profileImage;
+  static String? userId;
 
   static final SharedPreferences _preferences = ServiceLocator().getIt<SharedPreferences>();
   static const String prefsUsersKey = 'CACHED_USERS';

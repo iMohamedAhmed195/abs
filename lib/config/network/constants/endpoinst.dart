@@ -4,6 +4,7 @@ abstract class EndPoints {
   static const String profile = '${api}profile/';
   static const String user = '${api}user';
   static const String estate = '${api}estate';
+  static const String image = baseUrl;
 
 ///////////////////////////// authentication ////////////////////////////
   static const String login = '${api}login';

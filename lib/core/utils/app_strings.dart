@@ -18,6 +18,7 @@ class AppStrings {
   static const String welcomeBack = 'welcomeBack';
   static const String email = 'email';
   static const String password = 'password';
+  static const String groupName = 'groupName';
   static const String forgotPassword = 'forgotPassword';
   static const String logInThrough = 'logInThrough';
   static const String createAccount = 'createAccount';
