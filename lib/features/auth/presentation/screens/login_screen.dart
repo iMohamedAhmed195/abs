@@ -104,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   AuthenticatedIconButtonScreen(
                     showSubTitle: true,
                     subTitle: AppStrings.createAccount.trans,
-                    onClick: () => Navigator.pushReplacementNamed(context, '/Register_Screen'),
+                    onClick: () => Navigator.pushReplacementNamed(context, Routes.registerRoute),
                     title: AppStrings.dontHaveAccount.trans,
                   ),
                 ],

@@ -1,6 +1,7 @@
 
 import 'package:nested/nested.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/login_screen.dart';
+import 'package:new_ilearn/features/auth/presentation/screens/register_screen.dart';
 import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/splash_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/start_screen.dart';
@@ -22,7 +23,9 @@ class RouteGenerator {
             child: StartScreen(), routeSettings: routeSettings);
         case Routes.loginRoute:
         return buildPageRoute<T>(
-            child: LoginScreen(), routeSettings: routeSettings);
+            child: LoginScreen(), routeSettings: routeSettings);      case Routes.registerRoute:
+        return buildPageRoute<T>(
+            child: RegisterScreen(), routeSettings: routeSettings);
 
       default:
         return MaterialPageRoute(
