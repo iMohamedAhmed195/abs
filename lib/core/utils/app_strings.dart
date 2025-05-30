@@ -160,7 +160,6 @@ class AppStrings {
   static const String searchGroup = 'searchGroup';
   static const String addNewGroup = 'addNewGroup';
   static const String today = 'today';
-  static const String yesterday = 'yesterday';
   static const String previous = 'previous';
   static const String emptyMedia = 'emptyMedia';
   static const String emptyDocuments = 'emptyDocuments';
@@ -373,12 +372,6 @@ class AppStrings {
   static const String onBoarding1SubTitle = 'onBoarding1SubTitle';
   static const String onBoarding2SubTitle = 'onBoarding2SubTitle';
   static const String onBoarding3SubTitle = 'onBoarding3SubTitle';
-  class AppStrings {
-  static const String uploadYourBooksTitleDetails = 'uploadYourBooksTitleDetails';
-  static const String joinOurCommunityTitleDetails = 'joinOurCommunityTitleDetails';
-  static const String uploadQuestionsTitleDetails = 'uploadQuestionsTitleDetails';
-  static const String enterCodeWithForgetPassword = 'enterCodeWithForgetPassword';
-  static const String enterYourEmail = 'enterYourEmail';
-  static const String confirmPasswordNotMatchError = 'confirmPasswordNotMatchError';
 
+      static const String enterYourEmail = 'enterYourEmail';
   }

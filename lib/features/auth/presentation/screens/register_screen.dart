@@ -67,7 +67,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: [
             // 🎨 Decorations
             Padding(
-              padding: const EdgeInsetsDirectional.only(top: 30),
+              padding: const EdgeInsetsDirectional.only(top: 15),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Image.asset(AppAssets.bubbleRegisterLeft),

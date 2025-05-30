@@ -50,10 +50,8 @@ class AppAssets {
   static String bubbleRegisterLeft = '${PngImages.imagesPath}/bubbleRegister.png';
   static String bubbleRegisterRight = '${PngImages.imagesPath}/bubbleRegisterLight.png';
    
-  static String person = '${PngImages.imagesPath}/person.png';
-  static String bubbleForgetPassword = '${PngImages.imagesPath}/bubbleForgetPassword.png';
-  static String bubbleForgetPasswordLight =
-      '${PngImages.imagesPath}/bubbleForgetPasswordLight.png';
+
+
   static String bubbleDashBord = '${PngImages.imagesPath}/bubbleDashBord.png';
   static String bubbleDashBordLight = '${PngImages.imagesPath}/bubbleDashBordLight.png';
   static String pointIcon = '${SvgImages.svgPath}/pointIcon.svg';
