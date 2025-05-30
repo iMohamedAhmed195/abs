@@ -1,6 +1,9 @@
 
 import 'package:nested/nested.dart';
+import 'package:new_ilearn/features/auth/presentation/screens/enter_otp_screen.dart';
+import 'package:new_ilearn/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/login_screen.dart';
+import 'package:new_ilearn/features/auth/presentation/screens/new_password_page.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/register_screen.dart';
 import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/splash_screen.dart';

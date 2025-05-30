@@ -75,6 +75,7 @@
   "userName":"UserName",
   "email":"Email",
   "password":"Password",
+  "enterYourEmail":"Enter your email",
   "logInThrough":"Log in through",
   "login":"Login",
   "welcomeBack":"Welcome back again",

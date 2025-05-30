@@ -315,6 +315,7 @@ class AppStrings {
   static const String urlLaunchedSuccessfully = "urlLaunchedSuccessfully";
   static const String all = "all";
   static const String now = "now";
+  static const String yesterday = "yesterday";
   static const String since = "since";
   static const String hours = 'hours';
   static const String hoursSingle = 'hoursSingle';
@@ -325,7 +326,6 @@ class AppStrings {
   static const String noEstateAds = 'noEstateAds';
   static const String appName = "appName";
   static const String selectImageFrom = "selectImageFrom";
-
   /// **************************** error handler ************************************
   static const String badRequestError = "badRequestError";
   static const String noContent = "noContent";
@@ -362,7 +362,7 @@ class AppStrings {
   static const String allow = "allow";
   static const String serverError = 'serverError';
   static const String notifications = "notifications";
-  //////////////////////////////////
+//////////////////////////////////
   static const String selectPreferredLanguage = 'selectPreferredLanguage';
   static const String arabic = 'arabic';
   static const String english = 'english';
@@ -373,4 +373,12 @@ class AppStrings {
   static const String onBoarding1SubTitle = 'onBoarding1SubTitle';
   static const String onBoarding2SubTitle = 'onBoarding2SubTitle';
   static const String onBoarding3SubTitle = 'onBoarding3SubTitle';
-}
+  class AppStrings {
+  static const String uploadYourBooksTitleDetails = 'uploadYourBooksTitleDetails';
+  static const String joinOurCommunityTitleDetails = 'joinOurCommunityTitleDetails';
+  static const String uploadQuestionsTitleDetails = 'uploadQuestionsTitleDetails';
+  static const String enterCodeWithForgetPassword = 'enterCodeWithForgetPassword';
+  static const String enterYourEmail = 'enterYourEmail';
+  static const String confirmPasswordNotMatchError = 'confirmPasswordNotMatchError';
+
+  }

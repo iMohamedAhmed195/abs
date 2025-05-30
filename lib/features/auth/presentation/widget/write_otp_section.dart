@@ -18,40 +18,40 @@ class WriteOtpSection extends StatelessWidget {
             child: Pinput(
               length: 4,
               defaultPinTheme: PinTheme(
-                width: 50.w,
-                height: 50.h,
+                width: 70.w,
+                height: 60.h,
                 textStyle:
                     getRegularTextStyle(fontSize: 36, color: AppColors.black),
                 decoration: BoxDecoration(
-                 color: AppColors.grey.withOpacity(0.2),
+                  border: Border.all(color: AppColors.black),
                   borderRadius: BorderRadius.circular(15.r),
                 ),
               ),
               focusedPinTheme: PinTheme(
-                width: 50.w,
-                height: 50.h,
+                width: 70.w,
+                height: 60.h,
                 textStyle:
-                    getRegularTextStyle(fontSize: 20, color: AppColors.primaryColor),
+                    getRegularTextStyle(fontSize: 36, color: AppColors.primaryColor),
                 decoration: BoxDecoration(
                   border: Border.all(color: AppColors.primaryColor),
                   borderRadius: BorderRadius.circular(15.r),
                 ),
               ),
               followingPinTheme: PinTheme(
-                width: 50.w,
-                height: 50.h,
+                width: 70.w,
+                height: 60.h,
                 textStyle:
-                    getRegularTextStyle(fontSize: 20, color: AppColors.black),
+                    getRegularTextStyle(fontSize: 36, color: AppColors.black),
                 decoration: BoxDecoration(
-                 color: AppColors.grey.withOpacity(0.2),
+                  border: Border.all(color: AppColors.black),
                   borderRadius: BorderRadius.circular(15.r),
                 ),
               ),
               submittedPinTheme: PinTheme(
-                width: 50.w,
-                height: 50.h,
+                width: 70.w,
+                height: 60.h,
                 textStyle:
-                    getRegularTextStyle(fontSize: 20, color: AppColors.primaryColor),
+                    getRegularTextStyle(fontSize: 36, color: AppColors.primaryColor),
                 decoration: BoxDecoration(
                   color: AppColors.primaryColor.withOpacity(0.1),
                   border: Border.all(color: AppColors.primaryColor),

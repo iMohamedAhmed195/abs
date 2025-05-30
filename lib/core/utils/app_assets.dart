@@ -29,9 +29,12 @@ class AppAssets {
   static String bubbleLoginLeft = '${PngImages.imagesPath}/bubbleLoginLeft.png';
   static String bubbleLoginLeftLight = '${PngImages.imagesPath}/bubbleLoginLeftLight.png';
   static String bubbleLoginRight = '${PngImages.imagesPath}/bubbleLoginRight.png';
+  static String bubbleForgetPassword = '${PngImages.imagesPath}/bubbleForgetPassword.png';
+  static String bubbleForgetPasswordLight = '${PngImages.imagesPath}/bubbleForgetPasswordLight.png';
   static String google = '${PngImages.imagesPath}/google.png';
   static String facebook = '${PngImages.imagesPath}/facebook.png';
   static String twitter = '${PngImages.imagesPath}/twitter.png';
+  static String person = '${PngImages.imagesPath}/person.png';
 
   //! SVGs
   static String success = "${SvgImages.svgPath}/success.svg";

@@ -97,10 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 15.h),
+                  15.vs,
                   ButtonAnimation(status: status, onClickButton: () => login(), titleButton: AppStrings.login.trans),
                   SocialLoginSection(),
-                  SizedBox(height: 10.h),
+                  10.vs,
                   AuthenticatedIconButtonScreen(
                     showSubTitle: true,
                     subTitle: AppStrings.createAccount.trans,
@@ -158,10 +158,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void forgetPassword() {
-    getErrorFiled(true);
-    if (email.text.isNotEmpty &&
-        (email.text.endsWith('.com') && email.text.contains('@') && !email.text.contains(' '))) {
-      // BlocProvider.of<AuthBloc>(context).add(ForgetPasswordEvent(email.text));
-    }
+    Routes.forgetPasswordRoute.moveTo();
   }
 }
