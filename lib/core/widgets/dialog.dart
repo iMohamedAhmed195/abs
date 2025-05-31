@@ -1,0 +1,91 @@
+import '../../exports.dart';
+
+Future<void> dialog(
+    {required BuildContext context,
+      required String title,
+      required String subTitle,
+      required String titleButtonAccess,
+      required String titleButtonReject,
+      required Function() onClickAccessButton,
+      required Function() onClickRejectButton}) async {
+
+  await showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.33.h,
+          width: double.infinity,
+          color: Colors.transparent,
+          child: Stack(
+            children: [
+              Align(
+                alignment: AlignmentDirectional.bottomCenter,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.28.h,
+                  width: double.infinity,
+                  padding: const EdgeInsetsDirectional.symmetric(
+                      horizontal: 20, vertical: 12),
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).secondaryHeaderColor,
+                      borderRadius: BorderRadius.circular(19.r)),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.only(top: 20.h),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextWidget(
+                          textAlign: TextAlign.center,
+                          text: title,
+                          fontSizeText: 19,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        SizedBox(
+                          height: 12.h,
+                        ),
+                        TextWidget(
+                          textAlign: TextAlign.center,
+                          text: subTitle,
+                          fontSizeText: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: ButtonWidget(
+                                  title: titleButtonAccess,
+                                  onClick: onClickAccessButton,
+                                  colorButton: Colors.transparent,
+                                  colorBorder: Colors.black45,
+                                  colorTitleButton: Colors.black45,
+                                )),
+                            const SizedBox(
+                              width: 16,
+                            ),
+                            Expanded(
+                                child: ButtonWidget(
+                                    title: titleButtonReject,
+                                    onClick: onClickRejectButton))
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional.topCenter,
+                child: SvgPicture.asset(
+                  AppAssets.dialogIcon,
+                  height: MediaQuery.of(context).size.width * 0.20.h,
+                  width: MediaQuery.of(context).size.width * 0.20.w,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ));
+}

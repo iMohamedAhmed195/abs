@@ -31,8 +31,9 @@ String? _errorUserName;
 
 late String _status;
 late String _gender  ; // unClicked, clicked, success, failed
+late String _studyType  ; // unClicked, clicked, success, failed
 File? userImage;
-
+String? _countey;
 bool _isCreatedWithSocialMedia = true;
 bool _isAcceptTermsAndConditions = false;
 
@@ -48,6 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _password = TextEditingController();
     _status = 'unClicked';
     _gender = 'unClicked';
+    _studyType = 'unClicked';
   }
 
   @override
@@ -197,7 +199,83 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
 
                     const SizedBox(height: 5),
-                    selectGender,
+                    selectWidget(
+                      items: ['male', 'female'],
+                      selectedItem: _gender,
+                      onChanged: (value) {
+                        setState(() {
+                          _gender = value!;
+                        });
+                      },
+                    ),
+                      SizedBox(height: 5),selectWidget(
+                      items: ['مدرسه', 'جامعه'],
+                      selectedItem: _studyType,
+                      onChanged: (value) {
+                        setState(() {
+                          _studyType = value!;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 5),
+
+                    Container(
+                      padding: const EdgeInsetsDirectional.symmetric(
+                          horizontal: 12),
+                      width: double.infinity,
+                      height: 50,
+                      decoration: BoxDecoration(
+
+                          borderRadius: BorderRadius.circular(6),
+                          border:
+                          Border.all(color: Colors.black38, width: 1)),
+                      child: DropdownButton<String>(
+
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          alignment: AlignmentDirectional.centerStart,
+                          isExpanded: true,
+                          borderRadius: BorderRadius.circular(6),
+                          underline: const Divider(
+                            color: Colors.transparent,
+                          ),
+                          hint: TextWidget(
+                            colorText: Colors.black54,
+                            text: _countey??'اختر دوله',
+                            fontSizeText: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          items: [
+                            DropdownMenuItem<String>(
+                              onTap: () {},
+                              value: 'مصر',
+                              child: TextWidget(
+                                colorText: Colors.black54,
+                                text: AppStrings.egypt.trans,
+                                fontSizeText: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            DropdownMenuItem<String>(
+                              onTap: () {
+
+                              },
+                              value: 'السعوديه',
+                              child: TextWidget(
+                                colorText: Colors.black54,
+                                text: AppStrings.ksa.trans,
+                                fontSizeText: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            )
+                          ],
+                          onChanged: (String? val) {
+                            if (val != null) {
+                              setState(() {
+                                _countey = val;
+                              });
+                            }
+                          }),
+                    ),
 
                     // ✅ Terms Checkbox
                     TermsAgreementWidget(
@@ -234,10 +312,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     // 🔙 Already have account
                     AuthenticaedIconButtonScreen(
                       onClick:
-                          () => Navigator.pushReplacementNamed(
-                            context,
-                            '/Login_Screen',
-                          ),
+                          () {
+                            Routes.loginRoute.moveTo();
+                          },
+
                       title: AppStrings.alreadyHaveAccount.trans,
                     ),
                   ],
@@ -250,53 +328,36 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 
-  get selectGender => Container(decoration: BoxDecoration(
-
-    borderRadius: BorderRadius.circular(10),
-
-  ),
-    child: Row(
+  Widget selectWidget({
+    required List<String> items,
+    required String selectedItem,
+    required void Function(String?) onChanged,
+  }) {
+    return Row(
       children: [
-        Expanded(
-          child: Container(decoration:  BoxDecoration(
-            border:    Border.all(color: AppColors.grey,width: 1),
-            borderRadius: BorderRadius.circular(10),
-
-          ),
-            child: RadioListTile(
-              title: TextWidget(text: AppStrings.male.trans, fontSizeText: 14),
-              value: 'male',
-              groupValue: _gender, // selectedGender
-              onChanged: (value) {
-                setState(() {
-                  _gender = value.toString(); // selectedGender
-                });
-              },
+        for (var item in items)
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 4),
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.grey, width: 1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: RadioListTile<String>(
+                title: TextWidget(
+                  text: item  ,
+                  fontSizeText: 14,
+                ),
+                value: item,
+                groupValue: selectedItem,
+                onChanged: onChanged,
+              ),
             ),
           ),
-        ),
-        20.hs,
-        Expanded(
-          child: Container(decoration:  BoxDecoration(
-           border:    Border.all(color: AppColors.grey,width: 1),
-            borderRadius: BorderRadius.circular(10),
-
-          ),
-            child: RadioListTile(
-              title: TextWidget(text: AppStrings.female.trans, fontSizeText: 14),
-              value: 'female',
-              groupValue: _gender, // selectedGender
-              onChanged: (value) {
-                setState(() {
-                  _gender = value.toString(); // selectedGender
-                });
-              },
-            ),
-          ),
-        ),
       ],
-    ),
-  );
+    );
+  }
+
   // 🧪 Validation
   bool checkForms() {
     return _email.text.isNotEmpty &&
@@ -337,6 +398,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   // 🔐 Sign Up Button Logic (Frontend Only)
   void signUp() {
     if (!_isAcceptTermsAndConditions) {
+      Routes.homeScreen.moveTo();
       // showSnackBar(context: context, message: 'يجب الموافقة على سياسة الاستخدام');
       return;
     }

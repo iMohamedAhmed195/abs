@@ -138,7 +138,7 @@ class AppAssets {
   static String successTest = '${_animation}/successTest.json';
   static String successTestPomp = '${_animation}successTestPomp.json';
   static String noInternet = '${PngImages.imagesPath}/noInternet.png';
-  static String error = '${PngImages.imagesPath}error.png';
+  static String error = '${PngImages.imagesPath}/error.png';
   static String emptyFolder = '${_animation}/emptyFolder.json';
   static String emptyBooks = '${_animation}/emptyBook.json';
   static String testAnimationLoading = '${_animation}/bookAnimation.json';

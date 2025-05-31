@@ -30,6 +30,8 @@ class AppStrings {
   static const String uploadQuestionsTitleDetailes =
       'uploadQuestionsTitleDetailes';
   static const String userName = 'userName';
+  static const String egypt = 'egypt';
+  static const String ksa = 'ksa';
   static const String passwordRecovery = 'passwordRecovery';
   static const String enterCodeWithForgetPassword =
       'enterCodeWithForgetPassword';

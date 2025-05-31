@@ -1,3 +1,4 @@
+// import 'package:new_ilearn/core/models/title_icon_model.dart';
 // import 'package:new_ilearn/features/bottom_navigation/presentation/managers/bottom_nav_operation_cubit.dart';
 // import '../../../../exports.dart';
 // import '../../../../config/services/socket_service.dart';
@@ -11,6 +12,7 @@
 //   State<BottomNavigationScreens> createState() =>
 //       _BottomNavigationScreensState();
 // }
+// final List<TitleIconModel> navBar;
 //
 // class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
 //   @override

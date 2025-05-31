@@ -30,9 +30,9 @@ class ViewAll extends StatelessWidget {
             child: TextButton(
                 onPressed: onClick,
                 child: TextWidget(
-                  text: AppStrings.viewAll,
+                  text: AppStrings.viewAll.trans,
                   fontSizeText: 14,
-                  colorText: Theme.of(context).indicatorColor,
+                  colorText: AppColors.black,
                 )),
           )
         ],

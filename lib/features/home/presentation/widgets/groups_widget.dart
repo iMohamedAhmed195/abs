@@ -15,7 +15,7 @@ class ActiveGroups extends StatelessWidget {
       child: Column(
         children: [
           ViewAll(
-            title: AppStrings.activeGroups,
+            title: AppStrings.activeGroups.trans,
             onClick: () {
               // BlocProvider.of<NavigationBetweenPagesBloc>(context)
               //     .add(AddIndexPages(indexPage: 2));
@@ -43,6 +43,10 @@ class ActiveGroups extends StatelessWidget {
                                 0.07.h,
                             child: Stack(
                               children: [
+                                CircleAvatar(
+
+                                radius: 35,
+                                    backgroundImage:   Image.asset(AppAssets.person).image),
                                 // OpenContainerAnimation(
                                 //
                                 //   closedWidget: ImageUser(
@@ -79,7 +83,7 @@ class ActiveGroups extends StatelessWidget {
                             ),
                           ),
                           TextWidget(
-                            text: AppStrings.groupName,
+                            text: AppStrings.groupName.trans,
                             fontSizeText: 13,
                             maxLine: 1,
                             textOverflow: TextOverflow.ellipsis,

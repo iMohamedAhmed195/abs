@@ -73,6 +73,7 @@ dependencies:
   nested: any
   firebase_core: any
   dotted_border: ^3.0.1
+  flutter_staggered_animations: ^1.1.1
 
 
 dev_dependencies:
