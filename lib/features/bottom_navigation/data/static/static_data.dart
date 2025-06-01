@@ -8,16 +8,16 @@ import 'package:new_ilearn/features/home/presentation/screens/home_screen.dart';
 import 'package:new_ilearn/features/my_profile/presentation/my_profile_screen.dart';
 
 final List<TitleIconModel> navBarItems = [
-  TitleIconModel(
-    screens: HomeScreen(),
-  ),
 
   TitleIconModel(
     screens: FoldersScreen(),
   ),
   TitleIconModel(
     screens: GroupsScreen(),
+  ),  TitleIconModel(
+    screens: HomeScreen(),
   ),
+
   TitleIconModel(
     screens: ArchiveScreen(),
   ),

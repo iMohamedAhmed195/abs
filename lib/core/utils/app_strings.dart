@@ -11,6 +11,7 @@ class AppStrings {
   static const String uploadQuestionsTitleDetails =
       'uploadQuestionsTitleDetails';
   static const String uploadQuestions = 'uploadQuestions';
+  static const String home = 'home';
   static const String letsGo = 'letsGo';
   static const String alreadyHaveAccount = 'alreadyHaveAccount';
   static const String startProject = 'startProject';

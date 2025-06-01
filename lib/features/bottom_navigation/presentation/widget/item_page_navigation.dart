@@ -23,7 +23,10 @@ class ItemPageNavigation extends StatelessWidget {
   final Function() onClickItem;
 
   @override
+  @override
   Widget build(BuildContext context) {
+    final bool isSelected = indexPage == indexThisItem;
+
     return MaterialButton(
       minWidth: 0,
       height: 0,
@@ -34,20 +37,17 @@ class ItemPageNavigation extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SvgPicture.asset(
-            indexPage == indexThisItem
-                ? selectedItemImage
-                : unSelectedItemImage,
-            color: indexPage == indexThisItem
+            isSelected ? selectedItemImage : unSelectedItemImage,
+            color: isSelected
                 ? AppColors.primaryColor
                 : Theme.of(context).textTheme.titleLarge!.color,
           ),
-          TextWidget(
-            text: title,
-            fontSizeText: 13.sp,
-            colorText: indexPage == indexThisItem
-                ? AppColors.primaryColor
-                : Theme.of(context).textTheme.titleLarge!.color,
-          )
+          if (isSelected)
+            TextWidget(
+              text: title,
+              fontSizeText: 13.sp,
+              colorText: AppColors.primaryColor,
+            ),
         ],
       ),
     );
