@@ -6,6 +6,7 @@ import 'package:new_ilearn/features/folders/presentation/folders_screen.dart';
 import 'package:new_ilearn/features/groups/presentation/groups_screen.dart';
 import 'package:new_ilearn/features/home/presentation/screens/home_screen.dart';
 import 'package:new_ilearn/features/my_profile/presentation/my_profile_screen.dart';
+import 'package:new_ilearn/features/profile/presentation/screens/profile_page.dart';
 
 final List<TitleIconModel> navBarItems = [
 
@@ -23,7 +24,7 @@ final List<TitleIconModel> navBarItems = [
   ),
 
   TitleIconModel(
-    screens: MyProfileScreen(),
+    screens: ProfileScreen(),
   ),
 ];
 

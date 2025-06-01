@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../../exports.dart';
 
 Future<void> dialog(
@@ -88,4 +90,24 @@ Future<void> dialog(
           ),
         ),
       ));
+}
+showModelSheetWidget(BuildContext context, Widget page) async {
+  await showModalBottomSheet(
+      isScrollControlled: true,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(9), topLeft: Radius.circular(9))),
+      context: context,
+      builder: (context) {
+        return page;
+      });
+}
+String formatDate(String date) {
+  try {
+    return DateFormat('yyyy-MM-dd').format(DateTime.parse(date));
+  } catch (errorFormatDate) {
+    log('formatDate $errorFormatDate');
+    return '';
+  }
 }

@@ -8,6 +8,7 @@ import 'package:new_ilearn/features/bottom_navigation/presentation/screens/botto
 import 'package:new_ilearn/features/folders/presentation/folders_screen.dart';
 import 'package:new_ilearn/features/home/presentation/screens/home_screen.dart';
 import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
+import 'package:new_ilearn/features/profile/presentation/screens/profile_page.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/splash_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/start_screen.dart';
 import '../../exports.dart';
@@ -29,6 +30,8 @@ class RouteGenerator {
         return buildPageRoute<T>(child: RegisterScreen(), routeSettings: routeSettings);
       case Routes.bottomNavigationRoute:
         return buildPageRoute<T>(child: BottomNavigationScreens(), routeSettings: routeSettings);
+        case Routes.profileScreen:
+        return buildPageRoute<T>(child: ProfileScreen(), routeSettings: routeSettings);
 
       default:
         return MaterialPageRoute(

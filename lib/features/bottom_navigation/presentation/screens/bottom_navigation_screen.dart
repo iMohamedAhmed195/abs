@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:new_ilearn/core/models/title_icon_model.dart';
 import 'package:new_ilearn/features/bottom_navigation/presentation/managers/bottom_nav_operation_cubit.dart';
 import 'package:new_ilearn/features/bottom_navigation/presentation/widget/custom_appbar_widget.dart';
+import 'package:new_ilearn/features/home/presentation/widgets/appBar_widget.dart';
 import '../../../../exports.dart';
 import '../../../../config/services/socket_service.dart';
 import '../../data/static/static_data.dart';
@@ -37,39 +38,73 @@ class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
               context.read<BottomNavOperationCubit>().changIndex(0),
       child: BlocBuilder<BottomNavOperationCubit, int>(
         builder: (context, state) {
-          return Scaffold(
-            backgroundColor: AppColors.white,
-            appBar:
-                context.read<BottomNavOperationCubit>().index == 2
-                    ? CustomAppBar(
-                      title: AppStrings.groups.trans,
-                      leading: false,
-                      actions: [
-                        InkWell(
-                          onTap: () {},
-                          child: SvgPicture.asset(AppAssets.searchIcon),
-                        ),
-                        const SizedBox(width: 5),
-                        IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.add,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
-                        ),
-                        const SizedBox(width: 5),
-                      ],
-                    )
-                    : null,
-            body: CustomBackground(
+          return   CustomBackground(appBar:context.read<BottomNavOperationCubit>().index == 1
+                ? CustomAppBar(
+              title: AppStrings.groups.trans,
+              leading: false,
+              actions: [
+                InkWell(
+                  onTap: () {},
+                  child: SvgPicture.asset(AppAssets.searchIcon),
+                ),
+                const SizedBox(width: 5),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.add,
+                    color: Theme.of(context).iconTheme.color,
+                  ),
+                ),
+                const SizedBox(width: 5),
+              ],
+            )
+                : null ,
               showSafeArea: false,
               scaffoldKey:
                   context.read<BottomNavOperationCubit>().getNewScaffoldKey(),
               backgroundColor: AppColors.white,
-              child: navBarItems[state].screens,
-            ),
-            bottomNavigationBar: BottomBarInspiredInside(
-              chipStyle:   ChipStyle(convexBridge: true,color: AppColors.primaryColor,background: AppColors.primaryColor),
+              child: Stack(
+                children: [
+                  Visibility(
+                    visible: context.read<BottomNavOperationCubit>().index != 1,
+                    child: Align(
+                        alignment: Alignment.topRight,
+                        child: Image.asset(
+                          AppAssets.bubbleDashBordLight,
+                        )),
+                  ),
+                  Visibility(
+                    visible: context.read<BottomNavOperationCubit>().index != 1,
+                    child: Align(
+                        alignment: Alignment.topRight,
+                        child: Image.asset(AppAssets.bubbleDashBord)),
+                  ),
+                  Column(
+                    children: [
+                      Visibility(
+                        visible: context.read<BottomNavOperationCubit>().index != 4 &&
+          context.read<BottomNavOperationCubit>().index != 1,
+                        child: AppBarDashBord(
+                          image: AppAssets.person,
+                          point: 10,
+                        ),
+                      ),
+                      Expanded(
+                        child: IndexedStack(
+                          index: context.read<BottomNavOperationCubit>().index,
+                          children: navBarItems.map((item) {
+                            return item.screens;
+                          }).toList(
+                        ),
+                      ),
+                      )],
+                  ),
+                ],
+              ),
+
+
+            bottomNavRoute: BottomBarInspiredInside(duration: Duration(microseconds: 0),
+              chipStyle:   ChipStyle(convexBridge: true,color: AppColors.primaryColor,background: AppColors.primaryColor,notchSmoothness:  NotchSmoothness.softEdge       ),
               sizeInside: 40,
               itemStyle: ItemStyle.circle,
               onTap: _onItemTapped,
@@ -82,7 +117,7 @@ class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
               ),
               color: AppColors.grey,
 
-              animated: true,
+
               colorSelected: AppColors.white,
               indexSelected: state,
             ),

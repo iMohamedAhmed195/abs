@@ -8,5 +8,6 @@ class Routes {
   static const String enterOtpRoute = "/enterOtpRoute";
   static const String newPasswordRoute = "/newPasswordRoute";
   static const String bottomNavigationRoute = "/bottomNavigationRoute";
+  static const String profileScreen = "/profileScreen";
 
 }

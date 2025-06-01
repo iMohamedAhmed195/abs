@@ -139,7 +139,7 @@ class AppBarDashBord extends StatelessWidget {
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.r),
-                color: Theme.of(context).secondaryHeaderColor,
+                color: AppColors.white,
                 border: Border.all(color: Colors.black12),
               ),
               child: Row(
