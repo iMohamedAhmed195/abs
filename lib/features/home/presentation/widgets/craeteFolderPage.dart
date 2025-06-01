@@ -190,8 +190,7 @@ class _BottomSheetAddFolderState extends State<BottomSheetAddFolder> {
   void _createFolder() {
     if (_checkForms()) {
 
-      // Call your folder creation logic here
-      // Ex: context.read<FolderCubit>().createFolder(_nameFolder.text, _imageFolder);
+       // context.read<FolderCubit>().createFolder(_nameFolder.text, _imageFolder);
     }
   }
 

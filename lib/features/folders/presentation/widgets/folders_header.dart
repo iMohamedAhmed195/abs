@@ -50,7 +50,7 @@ class FoldersHeader extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: shrinkPercent > 0.95
-                    ? Text(AppStrings.folder, style: Theme.of(context).textTheme.titleLarge)
+                    ? Text(AppStrings.folder.trans, style: Theme.of(context).textTheme.titleLarge)
                     : ButtonWidget(
                   height: 40,
                   title: AppStrings.createNewFolder.trans,

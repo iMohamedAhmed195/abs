@@ -239,7 +239,7 @@ class FoldersAndBooks extends StatelessWidget {
                       },
                       icon: CircleAvatar(
                         radius: 13.r,
-                        backgroundColor: Theme.of(context).indicatorColor,
+                        backgroundColor: AppColors.primaryColor,
                         child: isBook
                             ? SvgPicture.asset(
                           AppAssets.deleteAccount,
@@ -249,7 +249,10 @@ class FoldersAndBooks extends StatelessWidget {
                         )
                             : Center(
                           child: PopupMenuButton(
-                            color: AppColors.white,
+                            color: AppColors.white,icon: const Icon(
+                              Icons.more_vert,
+                              color: AppColors.white,
+                            ),
                             onSelected: (value) {
                               if (value == 'update') {
                                 showModalBottomSheet(
@@ -274,15 +277,15 @@ class FoldersAndBooks extends StatelessWidget {
                                 dialog(
                                   context: context,
                                   title:
-                                  '${AppStrings.delete} ${isBook ? AppStrings.books : AppStrings.folder}',
+                                  '${AppStrings.delete.trans} ${isBook ? AppStrings.books : AppStrings.folder.trans}',
                                   subTitle:
-                                  '${AppStrings.doReallyWantDelete} $title',
+                                  '${AppStrings.doReallyWantDelete.trans} $title',
                                   titleButtonAccess:
                                   AppStrings
-                                      .delete,
+                                      .delete.trans,
                                   titleButtonReject:
                                   AppStrings
-                                      .cancel,
+                                      .cancel.trans,
                                   onClickAccessButton: () {
                                     Navigator.pop(context);
                                     delete();
@@ -302,7 +305,7 @@ class FoldersAndBooks extends StatelessWidget {
                                   child: TextWidget(
                                       text:
                                       AppStrings
-                                          .update,
+                                          .update.trans,
                                       fontSizeText: 15),
                                 ),
                                 PopupMenuItem(
@@ -310,7 +313,7 @@ class FoldersAndBooks extends StatelessWidget {
                                   child: TextWidget(
                                       text:
                                       AppStrings
-                                          .delete,
+                                          .delete.trans,
                                       fontSizeText: 15),
                                 ),
                               ];

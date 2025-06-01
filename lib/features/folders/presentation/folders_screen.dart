@@ -36,14 +36,14 @@ class _FoldersScreenState extends State<FoldersScreen> {
       child: Column(
         children: [
           FoldersHeader(shrinkPercent: shrinkPercent),
+
           Flexible(
             child: ListView(shrinkWrap: true,
               controller: _scrollController,
               children: [
+                10.vs,
 
-                  SizedBox(height: 16),
-                  SizedBox(  // Adjust height as needed
-                      child: FoldersGrid( )), // يمكنك استبداله بـ EmptyFoldersView()
+                  FoldersGrid( ), // يمكنك استبداله بـ EmptyFoldersView()
               ],
             ),
           ),

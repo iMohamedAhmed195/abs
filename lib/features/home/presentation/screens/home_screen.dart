@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:new_ilearn/config/extensions/extensions.dart';
 import 'package:new_ilearn/config/widgets/custom_background.dart';
 import 'package:new_ilearn/core/widgets/statistics_slide.dart';
 import 'package:new_ilearn/features/home/presentation/widgets/book_slide.dart';
@@ -41,9 +42,7 @@ class _HomeScreenState extends State<HomeScreen>  {
               StatisticsSlide(),
               ActiveGroups(),
               FolderSlide(),
-              SizedBox(
-                height: 15,
-              ),
+              15.vs,
               BookSlide()
             ],
           ),
