@@ -50,7 +50,9 @@ class FoldersGrid extends StatelessWidget {
                     image: folder["image"]!,
                     title: folder["title"]!,
                     delete: () {},
-                    onClick: () {},
+                    onClick: () {
+                      Routes.bookRoute.moveTo();
+                    },
                   ),
                 ),
               ),

@@ -26,8 +26,7 @@ class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
             showSafeArea: false,
             scaffoldKey: context.read<BottomNavOperationCubit>().getNewScaffoldKey(),
             backgroundColor: AppColors.white,
-            appBar:
-                context.read<BottomNavOperationCubit>().index == 2
+            appBar: context.read<BottomNavOperationCubit>().index == 2
                     ? CustomAppBar(
                       title: AppStrings.groups.trans,
                       leading: false,
