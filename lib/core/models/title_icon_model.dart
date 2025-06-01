@@ -1,9 +1,7 @@
-class TitleIconModel {
-  final String iconDisabled;
-  final String iconActive;
-  final String name;
-  final String icon;
+import 'package:flutter/material.dart';
 
-  TitleIconModel({required this.iconDisabled,required this.iconActive, required this.name,
-    required this.icon});
+class TitleIconModel {
+  final Widget screens;
+
+  TitleIconModel({required this.screens,});
 }

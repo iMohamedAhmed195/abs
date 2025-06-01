@@ -83,7 +83,6 @@ final Color borderSide;
       focusNode: focusNode,
       obscureText: thisPassword,
       decoration: InputDecoration(
-
           counterText: '',
           enabled: enabled,
           suffixIcon: prefixIcon,

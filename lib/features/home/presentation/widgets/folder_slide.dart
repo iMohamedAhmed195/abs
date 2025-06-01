@@ -22,7 +22,7 @@ class FolderSlide extends StatelessWidget {
           showViewAll: true,
           title: AppStrings.volumes.trans,
           onClick: () {
-Routes.foldersScreen.moveTo();
+             // Routes.foldersScreen.moveTo();
           },
         ),
         show

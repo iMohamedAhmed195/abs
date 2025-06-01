@@ -65,6 +65,7 @@ class CustomBackground extends StatelessWidget {
         bottomNavigationBar: bottomNavRoute,
         backgroundColor: backgroundColor ?? AppColors.backgroundColor,
         floatingActionButton: floatingActionButton ?? const SizedBox(),
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
         floatingActionButtonLocation: floatingDirection ?? FloatingActionButtonLocation.startFloat,
         resizeToAvoidBottomInset: true,
         appBar: appBar,
