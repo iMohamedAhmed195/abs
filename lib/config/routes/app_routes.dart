@@ -4,10 +4,11 @@ import 'package:new_ilearn/features/auth/presentation/screens/forget_password_sc
 import 'package:new_ilearn/features/auth/presentation/screens/login_screen.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/new_password_page.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/register_screen.dart';
-import 'package:new_ilearn/features/books/screens/book_screen.dart';
+import 'package:new_ilearn/features/books/presentation/screens/book_screen.dart';
 import 'package:new_ilearn/features/bottom_navigation/presentation/screens/bottom_navigation_screen.dart';
 import 'package:new_ilearn/features/folders/presentation/folders_screen.dart';
 import 'package:new_ilearn/features/home/presentation/screens/home_screen.dart';
+import 'package:new_ilearn/features/notification/presentation/notification_screen.dart';
 import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/splash_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/start_screen.dart';
@@ -32,6 +33,8 @@ class RouteGenerator {
         return buildPageRoute<T>(child: BottomNavigationScreens(), routeSettings: routeSettings);
         case Routes.bookRoute:
         return buildPageRoute<T>(child: BookScreen(), routeSettings: routeSettings);
+        case Routes.notificationRoute:
+        return buildPageRoute<T>(child: NotificationScreen(), routeSettings: routeSettings);
 
       default:
         return MaterialPageRoute(

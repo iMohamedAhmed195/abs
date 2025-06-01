@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:new_ilearn/core/widgets/text_widget.dart';
 import 'package:new_ilearn/core/utils/app_strings.dart';
 
-import '../../../exports.dart';
+import '../../../../exports.dart';
 
 class AnotherWay extends StatelessWidget {
   const AnotherWay({super.key, required this.onClick});

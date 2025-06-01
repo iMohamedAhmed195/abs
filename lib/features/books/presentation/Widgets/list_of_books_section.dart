@@ -1,6 +1,6 @@
 import 'package:new_ilearn/features/home/presentation/widgets/foldersAndBooks_widgets.dart';
 
-import '../../../exports.dart';
+import '../../../../exports.dart';
 
 class ListOfBooksSection extends StatelessWidget {
   const ListOfBooksSection({super.key, required this.isArchive});

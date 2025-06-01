@@ -1,15 +1,11 @@
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:new_ilearn/core/widgets/check_box_widget.dart';
-import 'package:new_ilearn/core/widgets/textFiled_widget.dart';
-import 'package:new_ilearn/features/books/Widgets/add_book_card_section.dart';
-import 'package:new_ilearn/features/books/Widgets/create_exam_or_start_section.dart';
-import 'package:new_ilearn/features/books/Widgets/list_of_books_section.dart';
-import 'package:new_ilearn/features/books/Widgets/select_all_books_section.dart';
-import 'package:new_ilearn/features/books/screens/add_book_bottom_sheet.dart';
+import 'package:new_ilearn/features/books/presentation/Widgets/add_book_card_section.dart';
+import 'package:new_ilearn/features/books/presentation/Widgets/create_exam_or_start_section.dart';
+import 'package:new_ilearn/features/books/presentation/Widgets/list_of_books_section.dart';
+import 'package:new_ilearn/features/books/presentation/Widgets/select_all_books_section.dart';
 import 'package:new_ilearn/features/bottom_navigation/presentation/widget/custom_appbar_widget.dart';
-import 'package:new_ilearn/features/home/presentation/widgets/foldersAndBooks_widgets.dart';
 
-import '../../../exports.dart';
+import '../../../../exports.dart';
 
 class BookScreen extends StatefulWidget {
   const BookScreen(
