@@ -1,10 +1,10 @@
-
 import 'package:nested/nested.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/enter_otp_screen.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/forget_password_screen.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/login_screen.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/new_password_page.dart';
 import 'package:new_ilearn/features/auth/presentation/screens/register_screen.dart';
+import 'package:new_ilearn/features/bottom_navigation/presentation/screens/bottom_navigation_screen.dart';
 import 'package:new_ilearn/features/folders/presentation/folders_screen.dart';
 import 'package:new_ilearn/features/home/presentation/screens/home_screen.dart';
 import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
@@ -18,46 +18,32 @@ class RouteGenerator {
   static Route<T>? generateRoute<T>(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.splashRoute:
-        return buildPageRoute<T>(
-            child: SplashScreen(), routeSettings: routeSettings);
-        case Routes.onBoardingRoute:
-        return buildPageRoute<T>(
-            child: OnBoardingScreen(), routeSettings: routeSettings);
-        case Routes.startScreenRoute:
-        return buildPageRoute<T>(
-            child: StartScreen(), routeSettings: routeSettings);
-        case Routes.loginRoute:
-        return buildPageRoute<T>(
-            child: LoginScreen(), routeSettings: routeSettings);
-
-        case Routes.registerRoute:
-        return buildPageRoute<T>(
-            child: RegisterScreen(), routeSettings: routeSettings);
-        case Routes.homeScreen:
-        return buildPageRoute<T>(
-            child: HomeScreen(), routeSettings: routeSettings);     case Routes.foldersScreen:
-        return buildPageRoute<T>(
-            child: FoldersScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(child: SplashScreen(), routeSettings: routeSettings);
+      case Routes.onBoardingRoute:
+        return buildPageRoute<T>(child: OnBoardingScreen(), routeSettings: routeSettings);
+      case Routes.startScreenRoute:
+        return buildPageRoute<T>(child: StartScreen(), routeSettings: routeSettings);
+      case Routes.loginRoute:
+        return buildPageRoute<T>(child: LoginScreen(), routeSettings: routeSettings);
+      case Routes.registerRoute:
+        return buildPageRoute<T>(child: RegisterScreen(), routeSettings: routeSettings);
+      case Routes.bottomNavigationRoute:
+        return buildPageRoute<T>(child: BottomNavigationScreens(), routeSettings: routeSettings);
 
       default:
         return MaterialPageRoute(
-          builder: (context) => Scaffold(
-            body: Center(
-              child: Text(
-                "No route defined for ${routeSettings.name}",
-              ),
-            ),
-          ),
+          builder: (context) => Scaffold(body: Center(child: Text("No route defined for ${routeSettings.name}"))),
         );
     }
   }
 
-  static Route<T> buildPageRoute<T>(
-      {required Widget child,
-        AnimationType? pageRouteAnimation = AnimationType.fade,
-        Duration? duration,
-        RouteSettings? routeSettings,
-        List<SingleChildWidget>? providers}) {
+  static Route<T> buildPageRoute<T>({
+    required Widget child,
+    AnimationType? pageRouteAnimation = AnimationType.fade,
+    Duration? duration,
+    RouteSettings? routeSettings,
+    List<SingleChildWidget>? providers,
+  }) {
     if (providers.isNotNullOrEmpty) {
       child = MultiBlocProvider(providers: providers!, child: child);
     }
@@ -66,8 +52,7 @@ class RouteGenerator {
         settings: routeSettings,
         pageBuilder: (context, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
-          return RotationTransition(
-              child: child, turns: ReverseAnimation(anim));
+          return RotationTransition(child: child, turns: ReverseAnimation(anim));
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
@@ -87,10 +72,7 @@ class RouteGenerator {
         transitionsBuilder: (c, anim, a2, child) {
           return SlideTransition(
             child: child,
-            position: Tween(
-              begin: const Offset(1.0, 0.0),
-              end: const Offset(0.0, 0.0),
-            ).animate(anim),
+            position: Tween(begin: const Offset(1.0, 0.0), end: const Offset(0.0, 0.0)).animate(anim),
           );
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
@@ -101,10 +83,7 @@ class RouteGenerator {
         pageBuilder: (context, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return SlideTransition(
-            position: Tween(
-              begin: const Offset(0.0, 1.0),
-              end: const Offset(0.0, 0.0),
-            ).animate(anim),
+            position: Tween(begin: const Offset(0.0, 1.0), end: const Offset(0.0, 0.0)).animate(anim),
             child: child,
           );
         },

@@ -1,8 +1,6 @@
 // 📦 Imports
 import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_ilearn/core/pdf_handle/get_file_cubit.dart';
 import 'package:new_ilearn/core/widgets/buttonAnimation_widget.dart';
 import 'package:new_ilearn/core/widgets/form_widget.dart';
@@ -398,7 +396,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   // 🔐 Sign Up Button Logic (Frontend Only)
   void signUp() {
     if (!_isAcceptTermsAndConditions) {
-      Routes.homeScreen.moveTo();
+      Routes.bottomNavigationRoute.moveTo();
       // showSnackBar(context: context, message: 'يجب الموافقة على سياسة الاستخدام');
       return;
     }
