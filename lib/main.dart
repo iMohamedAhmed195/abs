@@ -2,6 +2,7 @@ import 'package:new_ilearn/custom_easy_localization.dart';
 import 'package:new_ilearn/i_learn_app.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:new_ilearn/config/services/firebase_service.dart';
+import 'config/shared_pereferences.dart' show ShApp;
 import 'exports.dart';
 import 'firebase_options.dart';
 import 'global_bloc_observer.dart';
@@ -17,7 +18,7 @@ Future get init async {
   Bloc.observer = GlobalBlocObserver();
   HttpOverrides.global = MyHttpOverrides();
   await ServiceLocator().init;
-
+ await ShApp().getInstance();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseService().init;
   // SocketService().connect;

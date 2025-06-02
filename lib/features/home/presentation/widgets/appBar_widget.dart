@@ -8,6 +8,7 @@ import 'package:new_ilearn/core/utils/app_colors.dart';
 import 'package:new_ilearn/core/utils/app_strings.dart';
 import 'package:new_ilearn/core/widgets/imageUser_widget.dart';
 import 'package:new_ilearn/core/widgets/text_widget.dart';
+import 'package:new_ilearn/features/bottom_navigation/presentation/managers/bottom_nav_operation_cubit.dart';
 
 import '../../../../exports.dart';
 
@@ -31,6 +32,7 @@ class AppBarDashBord extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
+                      context.read<BottomNavOperationCubit>().changIndex(4) ;
                       // BlocProvider.of<NavigationBetweenPagesBloc>(context).add(
                       //     AddIndexPages(
                       //         indexPage: 4, typeButtonWithProfile: 0));
@@ -100,11 +102,7 @@ class AppBarDashBord extends StatelessWidget {
                   SizedBox(width: 11.w),
                   InkWell(
                     onTap: () {
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(
-                      //       builder: (context) => const SettingScreen(),
-                      //     ));
+                  Routes.settingScreen.moveTo();
                     },
                     child: Container(
                       height: 35,

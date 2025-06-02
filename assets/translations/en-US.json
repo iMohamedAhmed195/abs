@@ -352,9 +352,10 @@
 
   "termsSection11Title": "11. Contact & Support",
   "termsSection11Content": "For inquiries or technical support, contact us at:\nEmail: ilearnai.38@gmail.com",
-
+  "memberId": "رقم العضو",
   "iAgreeTo": "I agree to the ",
   "ksa": "Saudi Arabia",
-  "egypt": "Egypt","groupName": "Group Name"
+  "egypt": "Egypt",
+  "groupName": "Group Name"
 
 }

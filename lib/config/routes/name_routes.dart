@@ -11,5 +11,9 @@ class Routes {
   static const String bookRoute = "/bookRoute";
   static const String notificationRoute = "/notificationRoute";
   static const String profileScreen = "/profileScreen";
+  static const String settingScreen = "/settingScreen";
+  static const String termsOfServiceScreen = "/termsOfServiceScreen";
+  static const String aboutAppScreen = "/aboutAppScreen";
+  static const String privacyPolicyScreen = "/privacyPolicyScreen";
 
 }

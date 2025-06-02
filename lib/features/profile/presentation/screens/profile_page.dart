@@ -103,9 +103,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildTabButtons() {
     return Row(
       children: [
-        _buildTabButton(0, AppStrings.profile),
+        _buildTabButton(0, AppStrings.profile.trans),
         const SizedBox(width: 8),
-        _buildTabButton(1, AppStrings.statistics),
+        _buildTabButton(1, AppStrings.statistics.trans),
       ],
     );
   }

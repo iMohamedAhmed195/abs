@@ -23,43 +23,43 @@ class InformationPage extends StatelessWidget {
         ProfileInformation(
           onTap: () => _updateProfile(context),
           valueOfTitle: phoneNumber,
-          title: AppStrings.phone,
+          title: AppStrings.phone.trans,
         ),
         ProfileInformation(
           onTap: () => _updateProfile(context),
           valueOfTitle: _getGenderType(type: gender),
-          title: AppStrings.gender,
+          title: AppStrings.gender.trans,
         ),
         ProfileInformation(
           onTap: () => _updateProfile(context),
           valueOfTitle: formatDate(birthDate),
-          title: AppStrings.dateOfBirth,
+          title: AppStrings.dateOfBirth.trans,
         ),
         ProfileInformation(
           valueOfTitle: email,
-          title: AppStrings.email,
+          title: AppStrings.email.trans,
         ),
         ProfileInformation(
           valueOfTitle: memberId,
-          title: AppStrings.memberId,
+          title: AppStrings.memberId.trans,
         ),
         const SizedBox(height: 32),
         ButtonWidget(
-          title: AppStrings.updateProfile,
+          title: AppStrings.updateProfile.trans,
           onClick: () => _updateProfile(context),
         ),
         const SizedBox(height: 16),
         ButtonWidget(
           colorButton: const Color(0xffFEECEB),
           colorTitleButton: const Color(0xffF6695E),
-          title: AppStrings.logOut,
+          title: AppStrings.logOut.trans,
           onClick: () async {
             await dialog(
               context: context,
-              title: AppStrings.logOut,
-              subTitle: AppStrings.logOutDescription,
-              titleButtonAccess: AppStrings.exit,
-              titleButtonReject: AppStrings.cancel,
+              title: AppStrings.logOut.trans,
+              subTitle: AppStrings.logOutDescription.trans,
+              titleButtonAccess: AppStrings.exit.trans,
+              titleButtonReject: AppStrings.cancel.trans,
               onClickAccessButton: () {
                 // مكان لتسجيل الخروج لاحقًا
               },
@@ -86,9 +86,9 @@ class InformationPage extends StatelessWidget {
   static String _getGenderType({required String type}) {
     switch (type) {
       case 'male':
-        return AppStrings.male;
+        return AppStrings.male.trans;
       case 'female':
-        return AppStrings.female;
+        return AppStrings.female.trans;
       default:
         return '';
     }

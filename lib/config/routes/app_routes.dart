@@ -11,8 +11,12 @@ import 'package:new_ilearn/features/home/presentation/screens/home_screen.dart';
 import 'package:new_ilearn/features/notification/presentation/notification_screen.dart';
 import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:new_ilearn/features/profile/presentation/screens/profile_page.dart';
+import 'package:new_ilearn/features/settings/presentation/screens/setting_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/splash_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/start_screen.dart';
+import 'package:new_ilearn/features/tearmes_and_condetions/presentation/aboutApp_page.dart';
+import 'package:new_ilearn/features/tearmes_and_condetions/presentation/privacyPolicyPage.dart';
+import 'package:new_ilearn/features/tearmes_and_condetions/presentation/serviceTerms_page.dart';
 import '../../exports.dart';
 
 class RouteGenerator {
@@ -38,6 +42,14 @@ class RouteGenerator {
         return buildPageRoute<T>(child: NotificationScreen(), routeSettings: routeSettings);
         case Routes.profileScreen:
         return buildPageRoute<T>(child: ProfileScreen(), routeSettings: routeSettings);
+  case Routes.settingScreen:
+        return buildPageRoute<T>(child: SettingScreen(), routeSettings: routeSettings);
+ case Routes.termsOfServiceScreen:
+        return buildPageRoute<T>(child: TermsOfServiceScreen(), routeSettings: routeSettings);
+case Routes.aboutAppScreen:
+        return buildPageRoute<T>(child: AboutAppScreen(), routeSettings: routeSettings);
+case Routes.privacyPolicyScreen:
+        return buildPageRoute<T>(child: PrivacyPolicyScreen(), routeSettings: routeSettings);
 
       default:
         return MaterialPageRoute(

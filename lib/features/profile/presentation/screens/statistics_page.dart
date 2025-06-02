@@ -52,18 +52,18 @@ class _StatisticsPageState extends State<StatisticsPage>   {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   StatisticsTap(
-                    title: AppStrings.points,
-                    icon: AppAssets.pointStatistics,
+                    title: AppStrings.points.trans,
+                    icon: AppAssets.pointStatistics.trans,
                     numberOfStatistic: formatNumber.format(double.parse(
                        "50")),
                   ),
                   StatisticsTap(
-                    title: AppStrings.uploadedBooks,
+                    title: AppStrings.uploadedBooks.trans,
                     icon: AppAssets.bookStatistics,
                     numberOfStatistic:"10",
                   ),
                   StatisticsTap(
-                    title: AppStrings.recordSuccess,
+                    title: AppStrings.recordSuccess.trans,
                     icon: AppAssets.testStatistics,
                     numberOfStatistic: "445",
                   ),
@@ -82,7 +82,7 @@ class _StatisticsPageState extends State<StatisticsPage>   {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextWidget(
-              text: AppStrings.theGoal,
+              text: AppStrings.theGoal.trans,
               fontSizeText: 20,
               fontWeight: FontWeight.bold,
             ),
@@ -102,7 +102,7 @@ class _StatisticsPageState extends State<StatisticsPage>   {
           ],
         ),
         TextWidget(
-          text: AppStrings.numberBooks,
+          text: AppStrings.numberBooks.trans,
           fontSizeText: 15,
           colorText: Theme.of(context).textTheme.titleMedium!.color,
         ),
@@ -121,7 +121,7 @@ class _StatisticsPageState extends State<StatisticsPage>   {
               });
             }
           },
-          title: '$goalBook ${AppStrings.books} ',
+          title: '$goalBook ${AppStrings.books.trans} ',
           remove: () {
             if (goalBook > 1) {
               setState(() {
@@ -131,7 +131,7 @@ class _StatisticsPageState extends State<StatisticsPage>   {
           },
         ),
         TextWidget(
-          text: AppStrings.numberTests,
+          text: AppStrings.numberTests.trans,
           fontSizeText: 15,
           colorText: Theme.of(context).textTheme.titleMedium!.color,
         ),
@@ -150,7 +150,7 @@ class _StatisticsPageState extends State<StatisticsPage>   {
               });
             }
           },
-          title: '$goalQuiz ${AppStrings.test} ',
+          title: '$goalQuiz ${AppStrings.test.trans} ',
           remove: () {
             if (goalQuiz > 1) {
               setState(() {
@@ -166,7 +166,7 @@ class _StatisticsPageState extends State<StatisticsPage>   {
           contentPadding: EdgeInsetsDirectional.zero,
           leading: SvgPicture.asset(AppAssets.reports),
           title: TextWidget(
-            text: AppStrings.reports,
+            text: AppStrings.reports.trans,
             fontSizeText: 24,
             fontWeight: FontWeight.bold,
           ),
@@ -187,21 +187,21 @@ class _StatisticsPageState extends State<StatisticsPage>   {
                 colorButton: changeColorWithTypeFiltterButton(0),
                 height: 38,
                 colorTitleButton: changeColorWithTypeTitleButton(0),
-                title: AppStrings.daily,
+                title: AppStrings.daily.trans,
                 onClick: () => selectFiltterType(0)),
             ButtonWidget(
                 width: 80,
                 colorButton: changeColorWithTypeFiltterButton(1),
                 height: 38,
                 colorTitleButton: changeColorWithTypeTitleButton(1),
-                title: AppStrings.weekly,
+                title: AppStrings.weekly.trans,
                 onClick: () => selectFiltterType(1)),
             ButtonWidget(
                 width: 80,
                 colorButton: changeColorWithTypeFiltterButton(2),
                 height: 38,
                 colorTitleButton: changeColorWithTypeTitleButton(2),
-                title: AppStrings.monthly,
+                title: AppStrings.monthly.trans,
                 onClick: () => selectFiltterType(2)),
           ],
         ),
@@ -211,31 +211,31 @@ class _StatisticsPageState extends State<StatisticsPage>   {
         StatisticReport(
           percent:
           0.9, //state.statisticsWithReport!.getExcitementPoinPercent,
-          title: AppStrings.performanceRate,
+          title: AppStrings.performanceRate.trans,
           colorCircle: Colors.green,
           onClick: () {},
-          subTitle: AppStrings.completedTests,
+          subTitle: AppStrings.completedTests.trans,
           titlePercent:
           '${   0.8}%',
         ),
         StatisticReport(
           percent:
           0.5,
-          title: AppStrings.uploadedBooks,
+          title: AppStrings.uploadedBooks.trans,
           colorCircle: Colors.orange,
           onClick: () {},
           subTitle:
-          AppStrings.booksUploadedToApplication,
+          AppStrings.booksUploadedToApplication.trans,
           titlePercent:
           '${105}%',
         ),
         StatisticReport(
           percent: 0.7,
-          title: AppStrings.points,
+          title: AppStrings.points.trans,
           colorCircle: AppColors.primaryColor,
           onClick: () {},
           subTitle:
-          AppStrings.enthusiasmPointsEarned,
+          AppStrings.enthusiasmPointsEarned.trans,
           titlePercent:
           '${formatNumber.format(double.parse("475"))}%',
         ),

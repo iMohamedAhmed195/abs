@@ -45,7 +45,7 @@ class FolderSlide extends StatelessWidget {
                   show  =! show;
                 },
                 heightImage: 90.h,
-                image: AppAssets.error,
+                image:    "https://i.pinimg.com/736x/6a/88/da/6a88da6a2e370f7ee0aca2719fc3e4b8.jpg",
                 title: AppStrings.egypt.trans,
               );
             },
