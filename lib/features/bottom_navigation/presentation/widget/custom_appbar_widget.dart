@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_ilearn/core/widgets/text_widget.dart';
 
+import '../../../../exports.dart';
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
@@ -36,7 +38,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       automaticallyImplyLeading: false,
       actions: actions,
       elevation: 0,
-      backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+      backgroundColor: AppColors.white,
       title: titleWidget ??
           TextWidget(
             text: title,

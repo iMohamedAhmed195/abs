@@ -9,6 +9,8 @@ import 'package:new_ilearn/core/utils/app_strings.dart';
 import 'package:new_ilearn/core/widgets/imageUser_widget.dart';
 import 'package:new_ilearn/core/widgets/text_widget.dart';
 
+import '../../../../exports.dart';
+
 class AppBarDashBord extends StatelessWidget {
   const AppBarDashBord({super.key, required this.image, required this.point});
 
@@ -74,8 +76,8 @@ class AppBarDashBord extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      // Navigator.pushNamed(context, '/Notification_Screen');
-                    },
+                        Routes.notificationRoute.moveTo();
+                      },
                     child: Badge(
                       isLabelVisible: 5 != 0,
                       backgroundColor: Colors.red,
