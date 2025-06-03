@@ -13,6 +13,7 @@ enum Errors {
 }
 
 Map<Errors, String> getError = {
+  Errors.OTP_ERROR: AppStrings.otpCodeError.trans,
 };
 
 class ErrorCubit extends Cubit<CubitStates> {

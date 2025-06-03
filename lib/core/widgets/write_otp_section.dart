@@ -7,7 +7,7 @@ import '../../../../exports.dart';
 
 class WriteOtpSection extends StatelessWidget {
   const WriteOtpSection({super.key, required this.onValueChanged});
-  final Function({required int otpNumber }) onValueChanged;
+  final Function({required String otpNumber }) onValueChanged;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,8 +59,11 @@ class WriteOtpSection extends StatelessWidget {
                 ),
               ),
               onCompleted: (value) {
-                onValueChanged.call(otpNumber: int.parse(value));
+                onValueChanged.call(otpNumber: value);
                 log(value);
+              },
+              onChanged: (value) {
+                removeError(context, Errors.OTP_ERROR);
               },
             ),
           ),
