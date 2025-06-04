@@ -6,6 +6,8 @@ import 'package:new_ilearn/features/auth/presentation/screens/new_password_page.
 import 'package:new_ilearn/features/auth/presentation/screens/register_screen.dart';
 import 'package:new_ilearn/features/books/presentation/screens/book_screen.dart';
 import 'package:new_ilearn/features/bottom_navigation/presentation/screens/bottom_navigation_screen.dart';
+import 'package:new_ilearn/features/home/presentation/managers/groups_chat_cubit.dart';
+import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
 import 'package:new_ilearn/features/notification/presentation/notification_screen.dart';
 import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:new_ilearn/features/profile/presentation/screens/profile_page.dart';
@@ -16,6 +18,7 @@ import 'package:new_ilearn/features/tearmes_and_condetions/presentation/aboutApp
 import 'package:new_ilearn/features/tearmes_and_condetions/presentation/privacyPolicyPage.dart';
 import 'package:new_ilearn/features/tearmes_and_condetions/presentation/serviceTerms_page.dart';
 import '../../exports.dart';
+import '../../features/home/presentation/managers/folders_cubit.dart';
 
 class RouteGenerator {
   AnimationType? pageRouteAnimationGlobal;
@@ -23,48 +26,105 @@ class RouteGenerator {
   static Route<T>? generateRoute<T>(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.splashRoute:
-        return buildPageRoute<T>(child: SplashScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(
+          child: SplashScreen(),
+          routeSettings: routeSettings,
+        );
       case Routes.onBoardingRoute:
-        return buildPageRoute<T>(child: OnBoardingScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(
+          child: OnBoardingScreen(),
+          routeSettings: routeSettings,
+        );
       case Routes.startScreenRoute:
-        return buildPageRoute<T>(child: StartScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(
+          child: StartScreen(),
+          routeSettings: routeSettings,
+        );
       case Routes.loginRoute:
-        return buildPageRoute<T>(child: LoginScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(
+          child: LoginScreen(),
+          routeSettings: routeSettings,
+        );
       case Routes.registerRoute:
-        return buildPageRoute<T>(child: RegisterScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(
+          child: RegisterScreen(),
+          routeSettings: routeSettings,
+        );
       case Routes.bottomNavigationRoute:
-        return buildPageRoute<T>(child: BottomNavigationScreens(), routeSettings: routeSettings);
+        return buildPageRoute<T>(
+          providers: [
+
+          ],
+
+          child: BottomNavigationScreens(),
+          routeSettings: routeSettings,
+        );
       case Routes.bookRoute:
-        return buildPageRoute<T>(child: BookScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(
+          child: BookScreen(),
+          routeSettings: routeSettings,
+        );
       case Routes.notificationRoute:
-        return buildPageRoute<T>(child: NotificationScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(
+          child: NotificationScreen(),
+          routeSettings: routeSettings,
+        );
       case Routes.forgetPasswordRoute:
-        return buildPageRoute<T>(child: ForgetPasswordScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(
+          child: ForgetPasswordScreen(),
+          routeSettings: routeSettings,
+        );
       case Routes.newPasswordRoute:
         return buildPageRoute<T>(
-          child: NewPasswordScreen(email: (routeSettings.arguments as Map<String, dynamic>)["email"]),
+          child: NewPasswordScreen(
+            email: (routeSettings.arguments as Map<String, dynamic>)["email"],
+          ),
           routeSettings: routeSettings,
         );
       case Routes.enterOtpRoute:
         return buildPageRoute<T>(
-          child: EnterOtpScreen(email: (routeSettings.arguments as Map<String, dynamic>)["email"]),
+          child: EnterOtpScreen(
+            email: (routeSettings.arguments as Map<String, dynamic>)["email"],
+          ),
           routeSettings: routeSettings,
-          providers: [BlocProvider<ErrorCubit>(create: (context) => ErrorCubit())],
+          providers: [
+            BlocProvider<ErrorCubit>(create: (context) => ErrorCubit()),
+          ],
         );
-        case Routes.profileScreen:
-        return buildPageRoute<T>(child: ProfileScreen(), routeSettings: routeSettings);
-  case Routes.settingScreen:
-        return buildPageRoute<T>(child: SettingScreen(), routeSettings: routeSettings);
- case Routes.termsOfServiceScreen:
-        return buildPageRoute<T>(child: TermsOfServiceScreen(), routeSettings: routeSettings);
-case Routes.aboutAppScreen:
-        return buildPageRoute<T>(child: AboutAppScreen(), routeSettings: routeSettings);
-case Routes.privacyPolicyScreen:
-        return buildPageRoute<T>(child: PrivacyPolicyScreen(), routeSettings: routeSettings);
+      case Routes.profileScreen:
+        return buildPageRoute<T>(
+          child: ProfileScreen(),
+          routeSettings: routeSettings,
+        );
+      case Routes.settingScreen:
+        return buildPageRoute<T>(
+          child: SettingScreen(),
+          routeSettings: routeSettings,
+        );
+      case Routes.termsOfServiceScreen:
+        return buildPageRoute<T>(
+          child: TermsOfServiceScreen(),
+          routeSettings: routeSettings,
+        );
+      case Routes.aboutAppScreen:
+        return buildPageRoute<T>(
+          child: AboutAppScreen(),
+          routeSettings: routeSettings,
+        );
+      case Routes.privacyPolicyScreen:
+        return buildPageRoute<T>(
+          child: PrivacyPolicyScreen(),
+          routeSettings: routeSettings,
+        );
 
       default:
         return MaterialPageRoute(
-          builder: (context) => Scaffold(body: Center(child: Text("No route defined for ${routeSettings.name}"))),
+          builder:
+              (context) => Scaffold(
+                body: Center(
+                  child: Text("No route defined for ${routeSettings.name}"),
+                ),
+              ),
         );
     }
   }
@@ -84,7 +144,10 @@ case Routes.privacyPolicyScreen:
         settings: routeSettings,
         pageBuilder: (context, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
-          return RotationTransition(child: child, turns: ReverseAnimation(anim));
+          return RotationTransition(
+            child: child,
+            turns: ReverseAnimation(anim),
+          );
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
@@ -104,7 +167,10 @@ case Routes.privacyPolicyScreen:
         transitionsBuilder: (c, anim, a2, child) {
           return SlideTransition(
             child: child,
-            position: Tween(begin: const Offset(1.0, 0.0), end: const Offset(0.0, 0.0)).animate(anim),
+            position: Tween(
+              begin: const Offset(1.0, 0.0),
+              end: const Offset(0.0, 0.0),
+            ).animate(anim),
           );
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
@@ -115,7 +181,10 @@ case Routes.privacyPolicyScreen:
         pageBuilder: (context, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return SlideTransition(
-            position: Tween(begin: const Offset(0.0, 1.0), end: const Offset(0.0, 0.0)).animate(anim),
+            position: Tween(
+              begin: const Offset(0.0, 1.0),
+              end: const Offset(0.0, 0.0),
+            ).animate(anim),
             child: child,
           );
         },

@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen>  {
     // TODO: implement initState
     super.initState();
 
+
   }
 
   @override
@@ -66,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen>  {
                   ),
                 ),
                 StatisticsSlide(),
-                ActiveGroups(),
+                GroupsBlocBuilder(),
                 FolderSlide(),
                 SizedBox(
                   height: 15,

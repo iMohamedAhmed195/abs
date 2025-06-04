@@ -4,8 +4,12 @@ import 'package:new_ilearn/features/archive_screen/presentation/archive_screen.d
 import 'package:new_ilearn/features/bottom_navigation/data/models/title_icon_model.dart';
 import 'package:new_ilearn/features/folders/presentation/folders_screen.dart';
 import 'package:new_ilearn/features/groups/presentation/groups_screen.dart';
+import 'package:new_ilearn/features/home/presentation/managers/groups_chat_cubit.dart';
+import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
 import 'package:new_ilearn/features/home/presentation/screens/home_screen.dart';
- import 'package:new_ilearn/features/profile/presentation/screens/profile_page.dart';
+import 'package:new_ilearn/features/profile/presentation/screens/profile_page.dart';
+
+import '../../../home/presentation/managers/folders_cubit.dart';
 
 final List<TitleIconModel> navBarItems = [
 
@@ -14,8 +18,27 @@ final List<TitleIconModel> navBarItems = [
   ),
   TitleIconModel(
     screens: GroupsScreen(),
-  ),  TitleIconModel(
-    screens: HomeScreen(),
+  ), TitleIconModel(
+    screens: MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create:
+              (context) =>
+          FoldersCubit(useCase: ServiceLocator.instance.getIt())..getGroups(),
+        ),
+        BlocProvider(
+          create:
+              (context) =>
+          GroupsChatCubit(useCase: ServiceLocator.instance.getIt())..getGroups(),
+        ),
+        BlocProvider(
+          create:
+              (context) =>
+          StatisticsCubit(useCase: ServiceLocator.instance.getIt())..getStatistics(),
+        ),
+      ],
+      child: HomeScreen(),
+    ),
   ),
 
   TitleIconModel(

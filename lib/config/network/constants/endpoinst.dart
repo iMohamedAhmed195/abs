@@ -1,34 +1,38 @@
 abstract class EndPoints {
-  static const String baseUrl = 'http://179.61.219.156:3000/${api}/v1/'; //base url
-  // static const String baseUrl = 'https://new_ilearn.seniorcode.co'; //base url
-  static const String api = '/api/';
+   // static const String baseUrl = 'https://new_ilearn.seniorcode.co'; //base url
+  static const String baseUrl = 'http://179.61.219.156:3000'; //base url
+  static const String api = '/api/v1/';
   static const String profile = '${api}profile/';
   static const String user = '${api}user';
   static const String estate = '${api}estate';
   static const String image = baseUrl;
 
 ///////////////////////////// authentication ////////////////////////////
-  static const String login = 'auth/signin';
-  static const String loginWithGoogle = 'auth/google';
-  static const String loginWithFacebook = 'auth/facebook';
-  static const String logout = 'auth/signout';
-  static const String register = 'register';
-  static const String verify = 'auth/verifyResetCode';
-  static const String reSend = 'resend-code';
-  static const String changePhone = 'change-phone';
-  static const String getBrokers = 'users';
-  static const String brokers = 'select/roles';
-  static const String verifyForgetPassword = 'auth/verifyResetCode';
-  static const String forgetPassword = 'auth/forgotPassword';
-  static const String resetPassword = 'auth/resetPassword';
-  static const String userLogout = 'logout';
-  static const String notification = 'user/notification';
-  static const String unReadNotification = 'user/notification/unread-count';
-  static const String readNotifications = 'user/notification/read';
-  static const String confirmationCode = 'send_sms';
+  static const String login = '${api}auth/signin';
+  static const String loginWithGoogle = '${api}auth/google';
+  static const String loginWithFacebook = '${api}auth/facebook';
+  static const String logout = '${api}auth/signout';
+  static const String register = '${api}register';
+  static const String verify = '${api}auth/verifyResetCode';
+  static const String reSend = '${api}resend-code';
+  static const String changePhone = '${api}change-phone';
+  static const String getBrokers = '${api}users';
+  static const String brokers = '${api}select/roles';
+  static const String verifyForgetPassword = '${api}auth/verifyResetCode';
+  static const String forgetPassword = '${api}auth/forgotPassword';
+  static const String resetPassword = '${api}auth/resetPassword';
+  static const String userLogout = '${api}logout';
+  static const String notification = '${api}user/notification';
+  static const String unReadNotification = '${api}user/notification/unread-count';
+  static const String readNotifications = '${api}user/notification/read';
+  static const String confirmationCode = '${api}send_sms';
 ///////////////////////////// home ////////////////////////////
-  static const String home = 'dashbaord';
-  static const String config = 'select/configuration';
+  static const String folders = '${api}home';
+  static const String statistics = '${api}statistics/home';
+  static const String groupsChat = '${api}groupschat';
+
+  static const String config = '${api}select/configuration';
+  static const String home = '${api}home';
 
   static const String estateAd = '${api}estate/ad';
   static const String estateRequest = '${api}estate/request';

@@ -97,39 +97,26 @@ class _CreateExamOrStartSectionState extends State<CreateExamOrStartSection> {
                       color: AppColors.primaryColor, size: 30)
                       : null,
                   onClick: () async {
-                    // if (bookSelected.length > 1) {
-                    //   setState(() {
-                    //     _loadingButton = true;
-                    //     type = 'test';
-                    //   });
-                    //   if (await _checkLocalPath(bookSelected)) {
-                    //     BlocProvider.of<BooksBloc>(context)
-                    //         .add(AddBooksToMergeEvent(bookSelected
-                    //             .map(
-                    //               (e) => e.localPath!,
-                    //             )
-                    //             .toList()));
-                    //   }
-                    // }
-                    // else {
-                    //   showModalBottomSheet(
-                    //     shape: const RoundedRectangleBorder(
-                    //         borderRadius: BorderRadius.only(
-                    //             topLeft: Radius.circular(9),
-                    //             topRight: Radius.circular(9))),
-                    //     useSafeArea: true,
-                    //     backgroundColor:
-                    //         Theme.of(context).scaffoldBackgroundColor,
-                    //     isScrollControlled: true,
-                    //     context: context,
-                    //     builder: (context) => SingleChildScrollView(
-                    //       physics: const NeverScrollableScrollPhysics(),
-                    //       child: TestSettingPage(
-                    //         book: bookSelected,
-                    //       ),
-                    //     ),
-                    //   );
-                    // }
+
+
+                      showModalBottomSheet(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(9),
+                                topRight: Radius.circular(9))),
+                        useSafeArea: true,
+                        backgroundColor:
+                            Theme.of(context).scaffoldBackgroundColor,
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (context) => SingleChildScrollView(
+                          physics: const NeverScrollableScrollPhysics(),
+                          child: TestSettingPage(
+
+                          ),
+                        ),
+                      );
+
                   }),
             ),
           ],
@@ -137,4 +124,17 @@ class _CreateExamOrStartSectionState extends State<CreateExamOrStartSection> {
       ),
     );
   }
+}
+
+class TestSettingPage extends StatefulWidget {
+  TestSettingPage({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    throw UnimplementedError();
+  }
+
+
+
 }

@@ -396,7 +396,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   // 🔐 Sign Up Button Logic (Frontend Only)
   void signUp() {
     if (!_isAcceptTermsAndConditions) {
-      Routes.bottomNavigationRoute.moveTo();
+      Routes. bottomNavigationRoute.moveTo();
       // showSnackBar(context: context, message: 'يجب الموافقة على سياسة الاستخدام');
       return;
     }

@@ -5,6 +5,18 @@ import 'package:new_ilearn/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:new_ilearn/features/auth/domain/repositories/auth_repo.dart';
 import 'package:new_ilearn/features/auth/domain/usecase/auth_use_case.dart';
 import 'package:new_ilearn/features/auth/presentation/managers/auth_cubit.dart';
+import 'package:new_ilearn/features/home/data/date_sources/folders_remote_date_source.dart';
+import 'package:new_ilearn/features/home/data/date_sources/groups_chat_remote_date_source.dart';
+import 'package:new_ilearn/features/home/data/date_sources/statistics_remote_date_source.dart';
+import 'package:new_ilearn/features/home/data/repo_imp/folders_repo_imp.dart';
+import 'package:new_ilearn/features/home/data/repo_imp/groups_chat_repo_imp.dart';
+import 'package:new_ilearn/features/home/data/repo_imp/statistics_repo_imp.dart';
+import 'package:new_ilearn/features/home/domain/repos/folders_repo.dart';
+import 'package:new_ilearn/features/home/domain/repos/groups_chat_repo.dart';
+import 'package:new_ilearn/features/home/domain/repos/statistics_repo.dart';
+import 'package:new_ilearn/features/home/domain/use_cases/get_folders_use_case.dart';
+import 'package:new_ilearn/features/home/domain/use_cases/get_groups_chat_use_case.dart';
+import 'package:new_ilearn/features/home/domain/use_cases/get_statistics_use_case.dart';
 
 import 'exports.dart';
 class ServiceLocator {
@@ -22,6 +34,9 @@ class ServiceLocator {
     registerNetwork;
     registerPermission;
     registerAuthDependencies;
+    registerHomeFolders;
+    registerHomeGroupChats;
+    registerHomeStatistics;
   }
 
   get registerNetwork {
@@ -48,6 +63,23 @@ class ServiceLocator {
             () => AuthRepoImpl(authLocalDataSource: getIt(), authRemoteDataSource: getIt()));
     getIt.registerLazySingleton<AuthUseCase>(() => AuthUseCase(authRepo: getIt()));
     getIt.registerLazySingleton<AuthCubit>(() => AuthCubit(authUseCase: getIt()));
+  }
+  get registerHomeStatistics {
+    getIt.registerLazySingleton<StatisticsRemoteDateSource>(() => StatisticsRemoteDateSourceImpl(dioConsumer: getIt()));
+     getIt.registerLazySingleton<StatisticsRepo>(
+            () => StatisticsRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<GetStatisticsUseCase>(() => GetStatisticsUseCase(repo: getIt()));
+   }
+  get registerHomeGroupChats {
+    getIt.registerLazySingleton<GroupsChatRemoteDateSource>(() => GroupsChatRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<GroupsChatRepo>(
+            () => GroupsChatRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<GetGroupsChatUseCase>(() => GetGroupsChatUseCase(repo: getIt()));
+  }  get registerHomeFolders{
+    getIt.registerLazySingleton<FoldersRemoteDataSource>(() => FoldersRemoteDataSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<FoldersRepo>(
+            () => FoldersRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<GetFoldersUseCase>(() => GetFoldersUseCase(repo: getIt()));
   }
 
 }

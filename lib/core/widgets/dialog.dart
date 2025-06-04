@@ -1,5 +1,8 @@
 import 'dart:developer';
 
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lottie/lottie.dart';
+
 import '../../exports.dart';
 
 Future<void> dialog(
@@ -110,4 +113,59 @@ String formatDate(String date) {
     log('formatDate $errorFormatDate');
     return '';
   }
+}
+Future<void> loadingSystem(BuildContext context) async {
+  showDialog(
+    useSafeArea: false,
+    barrierDismissible: false,
+    context: context,
+    builder: (context) => WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      // child: Stack(
+      //   children: [
+      //     Center(
+      //         child: Container(
+      //       decoration: const BoxDecoration(
+      //           color: Colors.white, shape: BoxShape.circle),
+      //       child: Lottie.asset(images.loading,
+      //           fit: BoxFit.cover, height: 50.h, width: 50.w),
+      //     )),
+      //     Center(
+      //       child: SizedBox(
+      //         height: 50.h,
+      //         width: 50.w,
+      //         child: CircularProgressIndicator(
+      //           strokeWidth: 1.5,
+      //           color: primaryColor,
+      //         ),
+      //       ),
+      //     )
+      //   ],
+      // ),
+      child: Center(
+        child: Lottie.asset(AppAssets.loading,
+            height: MediaQuery.of(context).size.height * 0.4.h,
+            width: MediaQuery.of(context).size.width * 0.4.w),
+      ),
+    ),
+  );
+}
+void showSnackBar({
+  required BuildContext context,
+  required String message,
+  required visibleMessage,
+  ToastGravity gravity = ToastGravity.BOTTOM,
+  int durationSeconds = 3,
+}) {
+  Fluttertoast.showToast(
+    msg: message,
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: gravity,
+    backgroundColor: visibleMessage ? Colors.green : Colors.red,
+    textColor: Colors.white,
+    fontSize: 14.0,
+    timeInSecForIosWeb: durationSeconds,
+  );
 }

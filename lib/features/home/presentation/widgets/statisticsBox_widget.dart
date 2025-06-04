@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
  import 'package:new_ilearn/core/utils/app_assets.dart';
 import 'package:new_ilearn/core/utils/app_strings.dart';
+import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
 
 import '../../../../exports.dart';
 import 'circleStatistics.dart';
@@ -26,9 +27,14 @@ class StatisticsBox extends StatelessWidget {
       AppStrings.ther.trans,
       AppStrings.fri.trans
     ];
-    final images = AppAssets;
 
-    return Container(
+
+    return BlocConsumer<StatisticsCubit, CubitStates>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    return state is LoadedState ? Container(
       padding: const EdgeInsetsDirectional.symmetric(
           horizontal: 21, vertical: 13),
       margin: const EdgeInsetsDirectional.only(top: 29, bottom: 16),
@@ -101,6 +107,8 @@ class StatisticsBox extends StatelessWidget {
           )
         ],
       ),
-    );
+    ):const Center(child: CircularProgressIndicator(),);
+  },
+);
   }
 }
