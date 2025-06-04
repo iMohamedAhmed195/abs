@@ -17,12 +17,12 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
-<!--        <meta-data-->
-<!--            android:name="com.facebook.sdk.ApplicationId"-->
-<!--            android:value="@string/facebook_app_id" />-->
-<!--        <meta-data-->
-<!--            android:name="com.facebook.sdk.ClientToken"-->
-<!--            android:value="@string/facebook_client_token" />-->
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token"/>
         <!-- إعداد FileProvider للتطبيق -->
 <!--        <provider-->
 <!--            android:name="androidx.core.content.FileProvider"-->

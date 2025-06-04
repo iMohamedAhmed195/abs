@@ -51,8 +51,20 @@ class _LoginScreenState extends State<LoginScreen> {
           setState(() {
 
           });
-        }else if (state is FailedState){
+        }
+        else if (state is FailedState){
           status = 'failed';
+          Future.delayed(Duration(seconds: 1), () {
+            status = 'unClicked';
+            setState(() {
+            });
+          });
+          setState(() {
+
+          });
+        }
+        else if (state is LoadingState){
+          status = 'clicked';
           setState(() {
 
           });

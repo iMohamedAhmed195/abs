@@ -13,17 +13,14 @@ import '../../../../exports.dart';
 
 abstract class AuthRemoteDataSource {
   Future<ResponseModel> login({required LoginRequestModel loginRequestModel});
+  Future<ResponseModel> loginWithGoogle({required String token});
+  Future<ResponseModel> loginWithFace({required String token});
   Future<ResponseModel> logout();
-  Future<ResponseModel> register(
-      {required RegisterRequestModel registerRequestModel});
-  Future<ResponseModel> verify(
-      {required VerifyRequestModel verifyRequestModel});
-  Future<ResponseModel> forgetPassword(
-      {required EnterEmailRequestModel enterEmailRequestModel});
-  Future<ResponseModel> verifyForgetPassword(
-      {required VerifyRequestModel verifyRequestModel});
-  Future<ResponseModel> resetPassword(
-      {required ResetPasswordRequestModel resetPasswordRequestModel});
+  Future<ResponseModel> register({required RegisterRequestModel registerRequestModel});
+  Future<ResponseModel> verify({required VerifyRequestModel verifyRequestModel});
+  Future<ResponseModel> forgetPassword({required EnterEmailRequestModel enterEmailRequestModel});
+  Future<ResponseModel> verifyForgetPassword({required VerifyRequestModel verifyRequestModel});
+  Future<ResponseModel> resetPassword({required ResetPasswordRequestModel resetPasswordRequestModel});
   Future<ResponseModel> reSendCode({required ReSendRequestModel resendRequestModel});
   Future<ResponseModel> editProfile({required UserModel userEdit});
 
@@ -31,70 +28,74 @@ abstract class AuthRemoteDataSource {
   // Future<ResponseModel> changeNumber({required EnterEmailRequestModel EnterEmailRequestModel});
 }
 
-class AuthRemoteDataSourceImpl extends RemoteExecuteImpl
-    implements AuthRemoteDataSource {
+class AuthRemoteDataSourceImpl extends RemoteExecuteImpl implements AuthRemoteDataSource {
   AuthRemoteDataSourceImpl({required super.dioConsumer});
   @override
-  Future<ResponseModel> login({required LoginRequestModel loginRequestModel}) =>
-      addData(
-          endPoint: EndPoints.login,
-          data: loginRequestModel.toJson(),
-          getFromJsonFunction: AuthResponseModel.fromJson);
+  Future<ResponseModel> login({required LoginRequestModel loginRequestModel}) => addData(
+    endPoint: EndPoints.login,
+    data: loginRequestModel.toJson(),
+    getFromJsonFunction: AuthResponseModel.fromJson,
+  );
   @override
-  Future<ResponseModel> logout() => addData(
-      endPoint: EndPoints.logout,
-      getFromJsonFunction: LogoutResponseModel.fromJson);
+  Future<ResponseModel> loginWithGoogle({required String token}) => addData(
+    endPoint: EndPoints.loginWithGoogle,
+    data: {"token": token},
+    getFromJsonFunction: AuthResponseModel.fromJson,
+  );
   @override
-  Future<ResponseModel> register(
-          {required RegisterRequestModel registerRequestModel}) =>
-      addData(
-          endPoint: EndPoints.register,
-          data: registerRequestModel.toJson(),
-          isFormData: true,
-          getFromJsonFunction: RegisterResponseModel.fromJson);
+  Future<ResponseModel> loginWithFace({required String token}) => addData(
+    endPoint: EndPoints.loginWithFacebook,
+    data: {"token": token},
+    getFromJsonFunction: AuthResponseModel.fromJson,
+  );
+  @override
+  Future<ResponseModel> logout() =>
+      addData(endPoint: EndPoints.logout, getFromJsonFunction: LogoutResponseModel.fromJson);
+  @override
+  Future<ResponseModel> register({required RegisterRequestModel registerRequestModel}) => addData(
+    endPoint: EndPoints.register,
+    data: registerRequestModel.toJson(),
+    isFormData: true,
+    getFromJsonFunction: RegisterResponseModel.fromJson,
+  );
 
   @override
-  Future<ResponseModel> verify(
-          {required VerifyRequestModel verifyRequestModel}) =>
-      addData(
-          endPoint: EndPoints.verify,
-          data: verifyRequestModel.toJson(),
-          getFromJsonFunction: AuthResponseModel.fromJson);
+  Future<ResponseModel> verify({required VerifyRequestModel verifyRequestModel}) => addData(
+    endPoint: EndPoints.verify,
+    data: verifyRequestModel.toJson(),
+    getFromJsonFunction: AuthResponseModel.fromJson,
+  );
   @override
-  Future<ResponseModel> forgetPassword(
-          {required EnterEmailRequestModel
-          enterEmailRequestModel}) =>
-      addData(
-          endPoint: EndPoints.forgetPassword,
-          data: enterEmailRequestModel.toJson(),
-          getFromJsonFunction: ForgetPasswordResponseModel.fromJson);
+  Future<ResponseModel> forgetPassword({required EnterEmailRequestModel enterEmailRequestModel}) => addData(
+    endPoint: EndPoints.forgetPassword,
+    data: enterEmailRequestModel.toJson(),
+    getFromJsonFunction: ForgetPasswordResponseModel.fromJson,
+  );
   @override
-  Future<ResponseModel> verifyForgetPassword(
-          {required VerifyRequestModel verifyRequestModel}) =>
-      addData(
-          endPoint: EndPoints.verifyForgetPassword,
-          data: verifyRequestModel.toJson(),
-          getFromJsonFunction: AuthResponseModel.fromJson);
+  Future<ResponseModel> verifyForgetPassword({required VerifyRequestModel verifyRequestModel}) => addData(
+    endPoint: EndPoints.verifyForgetPassword,
+    data: verifyRequestModel.toJson(),
+    getFromJsonFunction: AuthResponseModel.fromJson,
+  );
   @override
-  Future<ResponseModel> resetPassword(
-          {required ResetPasswordRequestModel resetPasswordRequestModel}) =>
-      updateData(
-          endPoint: EndPoints.resetPassword,
-          data: resetPasswordRequestModel.toJson(),
-          getFromJsonFunction: ResponseModel.fromJson);
+  Future<ResponseModel> resetPassword({required ResetPasswordRequestModel resetPasswordRequestModel}) => updateData(
+    endPoint: EndPoints.resetPassword,
+    data: resetPasswordRequestModel.toJson(),
+    getFromJsonFunction: ResponseModel.fromJson,
+  );
   @override
-  Future<ResponseModel> reSendCode(
-          {required ReSendRequestModel resendRequestModel}) =>
-      addData(
-          endPoint: EndPoints.reSend,
-          data: resendRequestModel.toJson(),
-          getFromJsonFunction: RegisterResponseModel.fromJson);
+  Future<ResponseModel> reSendCode({required ReSendRequestModel resendRequestModel}) => addData(
+    endPoint: EndPoints.reSend,
+    data: resendRequestModel.toJson(),
+    getFromJsonFunction: RegisterResponseModel.fromJson,
+  );
   @override
-  Future<ResponseModel> editProfile({required UserModel userEdit}) =>updateData(
-      endPoint: "${EndPoints.user}/${userEdit.id}",
-      data: userEdit.toJson(),
-      isFormData: true,
-      getFromJsonFunction: AuthResponseModel.fromJson);
+  Future<ResponseModel> editProfile({required UserModel userEdit}) => updateData(
+    endPoint: "${EndPoints.user}/${userEdit.id}",
+    data: userEdit.toJson(),
+    isFormData: true,
+    getFromJsonFunction: AuthResponseModel.fromJson,
+  );
 
   // @override
   // Future<ResponseModel> deleteAccount({required int accountId}) => remoteExecute(

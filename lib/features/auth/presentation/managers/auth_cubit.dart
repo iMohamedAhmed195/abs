@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:new_ilearn/config/constants/app_prefs.dart';
 import 'package:new_ilearn/config/local_notification/local_notification.dart';
+import 'package:new_ilearn/core/models/api_response.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/enter_phone_number_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/login_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/register_request_model.dart';
@@ -10,6 +13,8 @@ import 'package:new_ilearn/features/auth/data/model/response_model/auth_response
 import 'package:new_ilearn/features/auth/data/model/response_model/forget_password_response_model.dart';
 import 'package:new_ilearn/features/auth/data/model/response_model/register_response_model.dart';
 import 'package:new_ilearn/features/auth/domain/usecase/auth_use_case.dart';
+import 'package:new_ilearn/features/auth/presentation/managers/social_auth/facebook_auth.dart';
+import 'package:new_ilearn/features/auth/presentation/managers/social_auth/google_auth.dart';
 import 'package:new_ilearn/features/bottom_navigation/presentation/managers/bottom_nav_operation_cubit.dart';
 
 import '../../../../exports.dart';
@@ -25,10 +30,47 @@ class AuthCubit extends Cubit<CubitStates> {
       authUseCase.login(loginRequestModel: loginRequestModel),
       onSuccess: (UserData? data) async {
         userData = data!;
-        print("country code a7a");
         getBlocData<BottomNavOperationCubit>().changIndex(0);
         emit(LoadedState<UserData>(data: data));
         // Routes.bottomNavRoute.moveToCurrrentRouteAndRemoveAll;
+      },
+    );
+  }
+  loginWithGoogle() async {
+    ApiResponse token = await GoogleAuth().authWithGoogle();
+    await managerExecute<UserData?>(
+      authUseCase.loginWithGoogle(token:token.message),
+      onSuccess: (UserData? data) async {
+        userData = data!;
+        log('userData.token.toString()${userData!.token.toString()}');
+        getBlocData<BottomNavOperationCubit>().changIndex(0);
+        emit(LoadedState<UserData>(data: data));
+        // Routes.bottomNavRoute.moveToCurrrentRouteAndRemoveAll;
+      },
+      onFail: (message) {
+        emit(FailedState(message: message));
+      },
+      onStart: () {
+        emit(LoadingState());
+      },
+    );
+  }
+  loginWithFace() async {
+    ApiResponse token = await FaceBookAuth().authWithFaceBook();
+    await managerExecute<UserData?>(
+      authUseCase.loginWithFace(token:token.message),
+      onSuccess: (UserData? data) async {
+        userData = data!;
+        log('userData.token.toString()${userData!.token.toString()}');
+        getBlocData<BottomNavOperationCubit>().changIndex(0);
+        emit(LoadedState<UserData>(data: data));
+        // Routes.bottomNavRoute.moveToCurrrentRouteAndRemoveAll;
+      },
+      onFail: (message) {
+        emit(FailedState(message: message));
+      },
+      onStart: () {
+        emit(LoadingState());
       },
     );
   }

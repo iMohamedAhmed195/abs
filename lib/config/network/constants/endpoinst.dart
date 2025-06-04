@@ -9,6 +9,8 @@ abstract class EndPoints {
 
 ///////////////////////////// authentication ////////////////////////////
   static const String login = 'auth/signin';
+  static const String loginWithGoogle = 'auth/google';
+  static const String loginWithFacebook = 'auth/facebook';
   static const String logout = 'auth/signout';
   static const String register = 'register';
   static const String verify = 'auth/verifyResetCode';

@@ -1,0 +1,122 @@
+{
+  "project_info": {
+    "project_number": "151673872234",
+    "project_id": "ilearnai-4b650",
+    "storage_bucket": "ilearnai-4b650.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151673872234:android:98714999d3a25c22574f13",
+        "android_client_info": {
+          "package_name": "com.codFlex.iLearnAi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151673872234-c9sjbk63ivr0f7krqvajmh05bsj3gs8p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codFlex.iLearnAi",
+            "certificate_hash": "c2d98867dbc7f3d853102659dab5b272188f178d"
+          }
+        },
+        {
+          "client_id": "151673872234-g9hm4n53j5gur025g0udvf87b9eil06h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codFlex.iLearnAi",
+            "certificate_hash": "08ad7093bd1346d577d3559d1a19efaef5b3ccf6"
+          }
+        },
+        {
+          "client_id": "151673872234-scu95bqsdn1hmiqdogs0i4216osngljb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT6P-oaXR4s2Iil9I1luEPyZbiT3xpTXc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151673872234-scu95bqsdn1hmiqdogs0i4216osngljb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "151673872234-d7e4e8i9agnoofhe4ujjh7f0q0j35bbh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.codFlex.iLearnAi"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151673872234:android:813db346ac5d8cb8574f13",
+        "android_client_info": {
+          "package_name": "com.epicTech.iLearnAi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151673872234-bog0opktcufbj8muanffurjundup2kol.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicTech.iLearnAi",
+            "certificate_hash": "a5ea7f866010be60637fd30f366c3be56ed4ea3b"
+          }
+        },
+        {
+          "client_id": "151673872234-f529l1o95n4vk1viblihp3og0r4pm6fj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicTech.iLearnAi",
+            "certificate_hash": "d0a6c6f67511cb4ee4c5cba6caa28c5a9fe4ee79"
+          }
+        },
+        {
+          "client_id": "151673872234-hdmr81vi0nl3p07elp97u36prg9ffarc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.epicTech.iLearnAi",
+            "certificate_hash": "c88b6a9e297cb38383fd8f15bede6be26f628b5a"
+          }
+        },
+        {
+          "client_id": "151673872234-scu95bqsdn1hmiqdogs0i4216osngljb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT6P-oaXR4s2Iil9I1luEPyZbiT3xpTXc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151673872234-scu95bqsdn1hmiqdogs0i4216osngljb.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "151673872234-d7e4e8i9agnoofhe4ujjh7f0q0j35bbh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.codFlex.iLearnAi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

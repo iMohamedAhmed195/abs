@@ -21,6 +21,16 @@ class AuthRepoImpl extends AuthRepo {
       executeImpl<UserData>(() => authRemoteDataSource.login(loginRequestModel: loginRequestModel),
           localWrite: (data) => authLocalDataSource.cacheUser(user: data..user?.fcm = loginRequestModel.deviceToken));
   @override
+  Future<Either<Failure, ResponseModel>> loginWithGoogle({required String token}) =>
+      executeImpl<UserData>(() => authRemoteDataSource.loginWithGoogle(token: token),
+          localWrite: (data) => authLocalDataSource.cacheUser(user: data..user?.fcm = 'loginRequestModel.deviceToken')
+      );
+  @override
+  Future<Either<Failure, ResponseModel>> loginWithFace({required String token}) =>
+      executeImpl<UserData>(() => authRemoteDataSource.loginWithFace(token: token),
+          localWrite: (data) => authLocalDataSource.cacheUser(user: data..user?.fcm = 'loginRequestModel.deviceToken')
+      );
+  @override
   Future<Either<Failure, ResponseModel>> logout() => executeImpl<Null>(
         () => authRemoteDataSource.logout(),
         localWrite: (data) => authLocalDataSource.clearUser(),

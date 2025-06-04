@@ -10,6 +10,8 @@ import '../../data/model/request_model/edit_model.dart';
 
 abstract class AuthRepo {
   Future<Either<Failure, ResponseModel>> login({required LoginRequestModel loginRequestModel});
+  Future<Either<Failure, ResponseModel>> loginWithGoogle({required String token});
+  Future<Either<Failure, ResponseModel>> loginWithFace({required String token});
   Future<Either<Failure, ResponseModel>> logout();
   Future<Either<Failure, ResponseModel>> register({required RegisterRequestModel registerRequestModel});
   Future<Either<Failure, ResponseModel>> verify({required VerifyRequestModel verifyRequestModel});

@@ -14,34 +14,29 @@ class AuthUseCase {
   AuthRepo authRepo;
   AuthUseCase({required this.authRepo});
 
-  Future<Either<Failure, ResponseModel>> login(
-          {required LoginRequestModel loginRequestModel}) async =>
+  Future<Either<Failure, ResponseModel>> login({required LoginRequestModel loginRequestModel}) async =>
       authRepo.login(loginRequestModel: loginRequestModel);
+  Future<Either<Failure, ResponseModel>> loginWithGoogle({required String token}) async =>
+      authRepo.loginWithGoogle(token: token);
+  Future<Either<Failure, ResponseModel>> loginWithFace({required String token}) async =>
+      authRepo.loginWithFace(token: token);
   Future<Either<Failure, ResponseModel>> logout() async => authRepo.logout();
-  Future<Either<Failure, ResponseModel>> register(
-          {required RegisterRequestModel registerRequestModel}) async =>
+  Future<Either<Failure, ResponseModel>> register({required RegisterRequestModel registerRequestModel}) async =>
       authRepo.register(registerRequestModel: registerRequestModel);
-  Future<Either<Failure, ResponseModel>> verify(
-          {required VerifyRequestModel verifyRequestModel}) async =>
+  Future<Either<Failure, ResponseModel>> verify({required VerifyRequestModel verifyRequestModel}) async =>
       authRepo.verify(verifyRequestModel: verifyRequestModel);
-  Future<Either<Failure, ResponseModel>> forgetPassword(
-          {required EnterEmailRequestModel
-          enterEmailRequestModel}) async =>
-      authRepo.forgetPassword(
-          enterEmailRequestModel: enterEmailRequestModel);
-  Future<Either<Failure, ResponseModel>> verifyForgetPassword(
-          {required VerifyRequestModel verifyRequestModel}) async =>
+  Future<Either<Failure, ResponseModel>> forgetPassword({
+    required EnterEmailRequestModel enterEmailRequestModel,
+  }) async => authRepo.forgetPassword(enterEmailRequestModel: enterEmailRequestModel);
+  Future<Either<Failure, ResponseModel>> verifyForgetPassword({required VerifyRequestModel verifyRequestModel}) async =>
       authRepo.verifyForgetPassword(verifyRequestModel: verifyRequestModel);
-  Future<Either<Failure, ResponseModel>> resetPassword(
-          {required ResetPasswordRequestModel
-              resetPasswordRequestModel}) async =>
-      authRepo.resetPassword(
-          resetPasswordRequestModel: resetPasswordRequestModel);
-  Future<Either<Failure, ResponseModel>> reSendCode(
-          {required ReSendRequestModel resendRequestModel}) async =>
+  Future<Either<Failure, ResponseModel>> resetPassword({
+    required ResetPasswordRequestModel resetPasswordRequestModel,
+  }) async => authRepo.resetPassword(resetPasswordRequestModel: resetPasswordRequestModel);
+  Future<Either<Failure, ResponseModel>> reSendCode({required ReSendRequestModel resendRequestModel}) async =>
       authRepo.reSendCode(resendRequestModel: resendRequestModel);
   Future<Either<Failure, ResponseModel>> editProfile({required UserModel userEdit}) =>
-      authRepo.editProfile(userEdit:userEdit);
+      authRepo.editProfile(userEdit: userEdit);
   // Future<Either<Failure, ResponseModel>> changeNumber(
   //         {required EnterEmailRequestModel
   //             EnterEmailRequestModel}) async =>
