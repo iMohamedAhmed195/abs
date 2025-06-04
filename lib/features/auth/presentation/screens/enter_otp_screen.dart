@@ -1,5 +1,7 @@
 import 'package:new_ilearn/core/widgets/imageUser_widget.dart';
 import 'package:new_ilearn/core/widgets/write_otp_section.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/verify_request_model.dart';
+import 'package:new_ilearn/features/auth/presentation/managers/auth_cubit.dart';
 import '../../../../exports.dart';
 
 class EnterOtpScreen extends StatefulWidget {
@@ -10,13 +12,17 @@ class EnterOtpScreen extends StatefulWidget {
 }
 
 class _EnterOtpScreenState extends State<EnterOtpScreen> {
-
+  String otp = '';
   @override
   void initState() {
+    otp='';
     super.initState();
 
   }
-
+dispose() {
+    otp = '';
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return CustomBackground(
@@ -71,14 +77,32 @@ class _EnterOtpScreenState extends State<EnterOtpScreen> {
                       ),
                     ),
                     const SizedBox(height: 9),
-                    WriteOtpSection(onValueChanged: ({required int otpNumber}) {  },),
+                    WriteOtpSection(onValueChanged: ({required String otpNumber}) {
+                      this.otp = otpNumber;
+                    },),
+                    15.vs,
+                    Padding(
+                      padding:  EdgeInsets.symmetric(horizontal:16.w),
+                      child: Align(
+                        alignment: AlignmentDirectional.center,
+                        child: CubitErrorWidget(errorType:Errors.OTP_ERROR)
+                      ),
+                    ),
                     Spacer(),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.85,
                       child: ButtonWidget(
                         title: AppStrings.next.trans,
                         onClick: (){
-                          Routes.newPasswordRoute.moveTo();
+                          checkStringError(context, otp, Errors.OTP_ERROR);
+                          if(dontHaveErrors(context)){
+                            context.read<AuthCubit>().verify(
+                                verifyRequestModel: VerifyRequestModel(
+                                    email: widget.email,
+                                    verifyCode: otp,)
+                                , email: widget.email
+                            );
+                          }
                         },
                       ),
                     ),

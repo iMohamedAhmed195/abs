@@ -1,4 +1,4 @@
-package com.example.new_ilearn
+package com.epicTech.iLearnAi
 
 import io.flutter.embedding.android.FlutterActivity
 

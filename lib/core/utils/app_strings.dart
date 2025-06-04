@@ -175,6 +175,12 @@ class AppStrings {
   static const String middle = 'middle';
   static const String difficult = 'difficult';
   static const String image = 'image';
+  static const String waitingForLogin = 'waitingForLogin';
+  static const String waitingForLogout = 'waitingForLogout';
+  static const String waitingForRegistration = 'waitingForRegistration';
+  static const String verificationAccount = 'verificationAccount';
+  static const String sendAgain = 'sendAgain';
+  static const String waitingForEditProfile = 'waitingForEditProfile';
   static const String voiceMessage = 'voiceMessage';
   static const String file = 'file';
   static const String newGroupHasBeenCreated = 'newGroupHasBeenCreated';

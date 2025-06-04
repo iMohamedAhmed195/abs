@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.new_ilearn"
+    namespace = "com.epicTech.iLearnAi"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973" // updated as required by plugins
 
@@ -21,7 +21,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.new_ilearn"
+        applicationId = "com.epicTech.iLearnAi"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode

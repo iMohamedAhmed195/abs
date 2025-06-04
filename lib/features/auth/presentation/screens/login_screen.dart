@@ -1,11 +1,13 @@
 import 'package:new_ilearn/core/widgets/buttonAnimation_widget.dart';
 import 'package:new_ilearn/core/widgets/buttonIcon_widget.dart';
 import 'package:new_ilearn/core/widgets/form_widget.dart';
-import 'package:new_ilearn/features/auth/presentation/widget/AuthenticationThrough_widget.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/login_request_model.dart';
+import 'package:new_ilearn/features/auth/presentation/managers/auth_cubit.dart';
 import 'package:new_ilearn/features/auth/presentation/widget/login_header_back_ground_section.dart';
 import 'package:new_ilearn/features/auth/presentation/widget/login_title_header_section.dart';
 import 'package:new_ilearn/features/auth/presentation/widget/social_login_section.dart';
 import '../../../../exports.dart';
+import '../../data/model/response_model/auth_response_model.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -14,11 +16,9 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-
-
 class _LoginScreenState extends State<LoginScreen> {
-   TextEditingController email=TextEditingController();
-   TextEditingController password= TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
   String? _errorEmail;
   String? _errorPassword;
   late String status; //unClicked  clicked  success  failed
@@ -42,75 +42,108 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomBackground(
-      showSafeArea: false,
-      child: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            LoginHeaderBackGroundSection(),
-            Padding(
-              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  LoginTitleHeaderSection(),
-                  FormAuthentication(
-                    errorFiled: _errorEmail,
-                    textInputType: TextInputType.emailAddress,
-                    textEditingController: email,
-                    title: AppStrings.email.trans,
-                    hint: AppStrings.email.trans,
-                  ),
-                  FormAuthentication(
-                    suffixIcon: IconButton(
-                      onPressed: () {
-                        if (password.text.isNotEmpty) {
-                          setState(() {
-                            passwordForm = !passwordForm;
-                          });
-                        }
-                      },
-                      icon: Icon(passwordForm ? Icons.visibility_off_rounded : Icons.visibility_rounded),
-                      color: Theme.of(context).indicatorColor,
+    return BlocListener<AuthCubit, CubitStates>(
+      listener: (BuildContext context, state) {
+        print('a7a 1');
+        if (state is LoadedState<UserData>){
+          print('a7a 2');
+          status = 'success';
+          setState(() {
+
+          });
+        }
+        else if (state is FailedState){
+          status = 'failed';
+          Future.delayed(Duration(seconds: 1), () {
+            status = 'unClicked';
+            setState(() {
+            });
+          });
+          setState(() {
+
+          });
+        }
+        else if (state is LoadingState){
+          status = 'clicked';
+          setState(() {
+
+          });
+        }
+      },
+      child: CustomBackground(
+        showSafeArea: false,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              LoginHeaderBackGroundSection(),
+              Padding(
+                padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    LoginTitleHeaderSection(),
+                    FormAuthentication(
+                      errorFiled: _errorEmail,
+                      textInputType: TextInputType.emailAddress,
+                      textEditingController: email,
+                      title: AppStrings.email.trans,
+                      hint: AppStrings.email.trans,
                     ),
-                    errorFiled: _errorPassword,
-                    marginBottom: 8,
-                    passwordForm: passwordForm,
-                    textInputType: TextInputType.text,
-                    textEditingController: password,
-                    title: AppStrings.password.trans,
-                    hint: AppStrings.password.trans,
-                    textInputAction: TextInputAction.done,
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional.topEnd,
-                    child: TextButton(
-                      onPressed: () {
-                        forgetPassword();
-                      },
-                      child: TextWidget(
-                        text: AppStrings.forgotPassword.trans,
-                        fontSizeText: 16,
-                        colorText: Theme.of(context).textTheme.titleMedium!.color,
+                    FormAuthentication(
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          if (password.text.isNotEmpty) {
+                            setState(() {
+                              passwordForm = !passwordForm;
+                            });
+                          }
+                        },
+                        icon: Icon(passwordForm ? Icons.visibility_off_rounded : Icons.visibility_rounded),
+                        color: Theme.of(context).indicatorColor,
+                      ),
+                      errorFiled: _errorPassword,
+                      marginBottom: 8,
+                      passwordForm: passwordForm,
+                      textInputType: TextInputType.text,
+                      textEditingController: password,
+                      title: AppStrings.password.trans,
+                      hint: AppStrings.password.trans,
+                      textInputAction: TextInputAction.done,
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional.topEnd,
+                      child: TextButton(
+                        onPressed: () {
+                          Routes.forgetPasswordRoute.moveTo();
+                        },
+                        child: TextWidget(
+                          text: AppStrings.forgotPassword.trans,
+                          fontSizeText: 16,
+                          colorText: Theme.of(context).textTheme.titleMedium!.color,
+                        ),
                       ),
                     ),
-                  ),
-                  15.vs,
-                  ButtonAnimation(status: status, onClickButton: () => login(), titleButton: AppStrings.login.trans),
-                  SocialLoginSection(),
-                  10.vs,
-                  AuthenticatedIconButtonScreen(
-                    showSubTitle: true,
-                    subTitle: AppStrings.createAccount.trans,
-                    onClick: () => Navigator.pushReplacementNamed(context, Routes.registerRoute),
-                    title: AppStrings.dontHaveAccount.trans,
-                  ),
-                ],
+                    15.vs,
+                    ButtonAnimation(
+                        status: status,
+                        onClickButton: () => login(),
+                        titleButton: AppStrings.login.trans
+                    ),
+                    SocialLoginSection(),
+                    10.vs,
+                    AuthenticatedIconButtonScreen(
+                      showSubTitle: true,
+                      subTitle: AppStrings.createAccount.trans,
+                      onClick: () => Navigator.pushReplacementNamed(context, Routes.registerRoute),
+                      title: AppStrings.dontHaveAccount.trans,
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -152,12 +185,14 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         status = 'clicked'; // clicked button
       });
-      // BlocProvider.of<AuthBloc>(context)
-      //     .add(SignInEvent(email.text, password.text));
+      BlocProvider.of<AuthCubit>(context).login(
+        loginRequestModel:  LoginRequestModel(
+            email: email.text,
+            password: password.text,
+          ),
+      );
+
     }
   }
 
-  void forgetPassword() {
-    Routes.forgetPasswordRoute.moveTo();
-  }
 }

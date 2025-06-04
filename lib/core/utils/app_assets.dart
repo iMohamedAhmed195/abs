@@ -37,6 +37,7 @@ class AppAssets {
   static String person = '${PngImages.imagesPath}/person.png';
 
   //! SVGs
+  static String greenSuccess = "${SvgImages.svgPath}/green_success.svg";
   static String success = "${SvgImages.svgPath}/success.svg";
   static String failure = "${SvgImages.svgPath}/failure.svg";
 
@@ -156,7 +157,7 @@ class AppAssets {
   static String sendIcon = '${SvgImages.svgPath}/sendIcon.svg';
   static String copyIcon = '${SvgImages.svgPath}/copyIcon.svg';
   static String saveIcon = '${SvgImages.svgPath}/saveIcon.svg';
-  static String snackBarTop = '${SvgImages.svgPath}/success.svg';
+  static String snackBarTop = '${SvgImages.svgPath}/green_success.svg';
   static String snackBarTopError = '${SvgImages.svgPath}/errorSnackBar.svg';
   static String greenBubbles = '${SvgImages.svgPath}/greenBubbles.svg';
   static String redBubbles = '${SvgImages.svgPath}/redBubbles.svg';

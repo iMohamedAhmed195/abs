@@ -6,8 +6,6 @@ import 'package:new_ilearn/features/auth/presentation/screens/new_password_page.
 import 'package:new_ilearn/features/auth/presentation/screens/register_screen.dart';
 import 'package:new_ilearn/features/books/presentation/screens/book_screen.dart';
 import 'package:new_ilearn/features/bottom_navigation/presentation/screens/bottom_navigation_screen.dart';
-import 'package:new_ilearn/features/folders/presentation/folders_screen.dart';
-import 'package:new_ilearn/features/home/presentation/screens/home_screen.dart';
 import 'package:new_ilearn/features/notification/presentation/notification_screen.dart';
 import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:new_ilearn/features/profile/presentation/screens/profile_page.dart';
@@ -36,10 +34,23 @@ class RouteGenerator {
         return buildPageRoute<T>(child: RegisterScreen(), routeSettings: routeSettings);
       case Routes.bottomNavigationRoute:
         return buildPageRoute<T>(child: BottomNavigationScreens(), routeSettings: routeSettings);
-        case Routes.bookRoute:
+      case Routes.bookRoute:
         return buildPageRoute<T>(child: BookScreen(), routeSettings: routeSettings);
-        case Routes.notificationRoute:
+      case Routes.notificationRoute:
         return buildPageRoute<T>(child: NotificationScreen(), routeSettings: routeSettings);
+      case Routes.forgetPasswordRoute:
+        return buildPageRoute<T>(child: ForgetPasswordScreen(), routeSettings: routeSettings);
+      case Routes.newPasswordRoute:
+        return buildPageRoute<T>(
+          child: NewPasswordScreen(email: (routeSettings.arguments as Map<String, dynamic>)["email"]),
+          routeSettings: routeSettings,
+        );
+      case Routes.enterOtpRoute:
+        return buildPageRoute<T>(
+          child: EnterOtpScreen(email: (routeSettings.arguments as Map<String, dynamic>)["email"]),
+          routeSettings: routeSettings,
+          providers: [BlocProvider<ErrorCubit>(create: (context) => ErrorCubit())],
+        );
         case Routes.profileScreen:
         return buildPageRoute<T>(child: ProfileScreen(), routeSettings: routeSettings);
   case Routes.settingScreen:

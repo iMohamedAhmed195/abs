@@ -1,11 +1,13 @@
 import 'package:new_ilearn/core/widgets/form_widget.dart';
 import 'package:new_ilearn/core/widgets/imageUser_widget.dart';
 import 'package:new_ilearn/core/widgets/textFiled_widget.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/reset_password_request_model.dart';
+import 'package:new_ilearn/features/auth/presentation/managers/auth_cubit.dart';
 import '../../../../exports.dart';
 
 class NewPasswordScreen extends StatefulWidget {
-  const NewPasswordScreen({super.key,});
-
+  const NewPasswordScreen({super.key, required this.email,});
+  final String email;
   @override
   State<NewPasswordScreen> createState() => _NewPasswordScreenState();
 }
@@ -164,148 +166,6 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
         },
       ),
     );
-
-      CustomBackground(
-      showSafeArea: false,
-      child: Padding(
-        padding: const EdgeInsetsDirectional.symmetric(horizontal: 20),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(),
-              ImageUser(
-                image: AppAssets.person,
-              ),
-              TextWidget(
-                text: AppStrings.newPassword.trans,
-                fontSizeText: 21,
-                fontWeight: FontWeight.bold,
-              ),
-              const SizedBox(
-                height: 9,
-              ),
-              TextWidget(
-                textAlign: TextAlign.center,
-                text: AppStrings.newPasswordDescription.trans,
-                fontSizeText: 19,
-                fontWeight: FontWeight.w300,
-              ),
-              const SizedBox(
-                height: 39,
-              ),
-              FormAuthentication(
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    if (_newPassword.text.isNotEmpty) {
-                      setState(() {
-                        passwordForm = !passwordForm;
-                      });
-                    }
-                  },
-                  icon: Icon(passwordForm ? Icons.visibility_off_rounded : Icons.visibility_rounded),
-                  color: Theme.of(context).indicatorColor,
-                ),
-                errorFiled: _errorPassword,
-                marginBottom: 8,
-                passwordForm: passwordForm,
-                textInputType: TextInputType.text,
-                textEditingController: _newPassword,
-                title: AppStrings.password.trans,
-                hint: AppStrings.password.trans,
-                textInputAction: TextInputAction.done,
-              ),
-              // TextFiledWidget(
-              //     suffixIcon: IconButton(
-              //       onPressed: () {
-              //         if (_newPassword.text.isNotEmpty) {
-              //           setState(() {
-              //             showNewPasswordForm = !showNewPasswordForm;
-              //           });
-              //         }
-              //       },
-              //       icon: Icon(showNewPasswordForm
-              //           ? Icons.visibility_off_rounded
-              //           : Icons.visibility_rounded),
-              //       color: Theme.of(context).indicatorColor,
-              //     ),
-              //     error: _errorPassword,
-              //     nonBorder: false,
-              //     borderSide: Colors.transparent,
-              //     thisPassword: showNewPasswordForm,
-              //     textAlign: TextAlign.center,
-              //     hintText: AppStrings.newPasswordHint.trans,
-              //     fillColor: AppColors.lightSplashColor,
-              //     type: TextInputType.text,
-              //     textEditingController: _newPassword),
-              const SizedBox(
-                height: 10,
-              ),
-              FormAuthentication(
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    if (_confirmPassword.text.isNotEmpty) {
-                      setState(() {
-                        confirmPasswordForm = !confirmPasswordForm;
-                      });
-                    }
-                  },
-                  icon: Icon(confirmPasswordForm ? Icons.visibility_off_rounded : Icons.visibility_rounded),
-                  color: Theme.of(context).indicatorColor,
-                ),
-                errorFiled: _errorPassword,
-                marginBottom: 8,
-                passwordForm: confirmPasswordForm,
-                textInputType: TextInputType.text,
-                textEditingController: _confirmPassword,
-                title: AppStrings.confirmPassword.trans,
-                hint: AppStrings.confirmPassword.trans,
-                textInputAction: TextInputAction.done,
-              ),
-              // TextFiledWidget(
-              //     suffixIcon: IconButton(
-              //       onPressed: () {
-              //         if (_confirmPassword.text.isNotEmpty) {
-              //           setState(() {
-              //             showConfirmPasswordForm = !showConfirmPasswordForm;
-              //           });
-              //         }
-              //       },
-              //       icon: Icon(showConfirmPasswordForm
-              //           ? Icons.visibility_off_rounded
-              //           : Icons.visibility_rounded),
-              //       color: Theme.of(context).indicatorColor,
-              //     ),
-              //     error: _errorConfirmPassword,
-              //     nonBorder: false,
-              //     borderSide: Colors.transparent,
-              //     thisPassword: showConfirmPasswordForm,
-              //     textAlign: TextAlign.center,
-              //     hintText: AppStrings.confirmPassword.trans,
-              //     fillColor: AppColors.lightSplashColor,
-              //     type: TextInputType.text,
-              //     textEditingController: _confirmPassword),
-              const Spacer(),
-              Column(
-                children: [
-                  ButtonWidget(
-                      title: AppStrings.save.trans,
-                      onClick: () => saveNewPassword()),
-                  TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: TextWidget(
-                        text: AppStrings.cancel.trans,
-                        fontSizeText: 15,
-                        fontWeight: FontWeight.w300,
-                      )),
-                ],
-              ),
-              const Spacer(),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 
   bool checkForms() {
@@ -334,9 +194,12 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
   saveNewPassword() {
     errorForms();
     if (checkForms()) {
-      Routes.loginRoute.moveTo();
-      // BlocProvider.of<AuthBloc>(context)
-      //     .add(ResetPasswordEvent(widget.email, _newPassword.text));
+     context.read<AuthCubit>().resetPassword(
+       resetPasswordRequestModel: ResetPasswordRequestModel(
+         email:widget.email,
+         password:_newPassword.text,
+       ),
+     );
     }
   }
 }

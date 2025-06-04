@@ -1,5 +1,7 @@
 import 'package:new_ilearn/core/widgets/imageUser_widget.dart';
 import 'package:new_ilearn/core/widgets/textFiled_widget.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/enter_phone_number_request_model.dart';
+import 'package:new_ilearn/features/auth/presentation/managers/auth_cubit.dart';
 import '../../../../exports.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
@@ -129,9 +131,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   void login() {
     getErrorFiled(false);
     if (checkForms()) {
-      Routes.enterOtpRoute.moveToWithArgs({
-        'email': emailController.text
-      });
+     context.read<AuthCubit>().forgetPassword(enterEmailRequestModel: EnterEmailRequestModel(email: emailController.text));
     }
   }
   // bool checkEnterCode() {

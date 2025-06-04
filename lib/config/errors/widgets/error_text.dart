@@ -19,7 +19,7 @@ class ErrorText extends StatelessWidget {
             child: Text(
               text!,
               textAlign: TextAlign.start,
-              style: getSemiBoldTextStyle(color: AppColors.primaryColor, fontSize: 12),
+              style: getSemiBoldTextStyle(color: AppColors.red, fontSize: 12),
             ),
           ),
           const SizedBox.shrink(),
