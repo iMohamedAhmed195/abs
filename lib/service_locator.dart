@@ -5,6 +5,12 @@ import 'package:new_ilearn/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:new_ilearn/features/auth/domain/repositories/auth_repo.dart';
 import 'package:new_ilearn/features/auth/domain/usecase/auth_use_case.dart';
 import 'package:new_ilearn/features/auth/presentation/managers/auth_cubit.dart';
+import 'package:new_ilearn/features/splash_screen/data/data_sources/get_config_local_data_source.dart';
+import 'package:new_ilearn/features/splash_screen/data/data_sources/get_config_remote_data_source.dart';
+import 'package:new_ilearn/features/splash_screen/data/repositories/get_config_repo_impl.dart';
+import 'package:new_ilearn/features/splash_screen/domain/repositories/get_config_repo.dart';
+import 'package:new_ilearn/features/splash_screen/domain/use_cases/get_config_use_case.dart';
+import 'package:new_ilearn/features/splash_screen/presentation/manager/get_configration_cubit.dart';
 
 import 'exports.dart';
 class ServiceLocator {
@@ -22,6 +28,7 @@ class ServiceLocator {
     registerNetwork;
     registerPermission;
     registerAuthDependencies;
+    registerConfig;
   }
 
   get registerNetwork {
@@ -44,10 +51,16 @@ class ServiceLocator {
   get registerAuthDependencies {
     getIt.registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSourceImpl(cache: getIt()));
     getIt.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(dioConsumer: getIt()));
-    getIt.registerLazySingleton<AuthRepo>(
-            () => AuthRepoImpl(authLocalDataSource: getIt(), authRemoteDataSource: getIt()));
+    getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(authLocalDataSource: getIt(), authRemoteDataSource: getIt()));
     getIt.registerLazySingleton<AuthUseCase>(() => AuthUseCase(authRepo: getIt()));
     getIt.registerLazySingleton<AuthCubit>(() => AuthCubit(authUseCase: getIt()));
+  }
+  get registerConfig {
+    getIt.registerLazySingleton<GetConfigurationLocalDataSource>(() => GetConfigurationLocalDataSourceImpl(cache: getIt()));
+    getIt.registerLazySingleton<GetConfigRemoteDataSource>(() => GetConfigRemoteDataSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<GetConfigRepo>(() =>GetConfigRepoImpl(getConfigLocalDataSource: getIt(), getConfigRemoteDataSource: getIt()));
+    getIt.registerLazySingleton<GetConfigUseCase>(() => GetConfigUseCase(getConfigRepo: getIt()));
+    getIt.registerLazySingleton<ConfigurationCubit>(() => ConfigurationCubit(getConfigUseCase: getIt()));
   }
 
 }

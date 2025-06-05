@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:lottie/lottie.dart';
+import 'package:new_ilearn/features/splash_screen/presentation/manager/get_configration_cubit.dart';
 
 import '../../../../exports.dart';
 
@@ -73,20 +74,24 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomBackground(
-      showSafeArea: false,
-        child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  end: AlignmentDirectional.topStart,
-                  begin: AlignmentDirectional.bottomEnd,
-                  colors: [Color(0xff00167D), Color(0xff0075E7)])),
-          // child: Center(
-          //   child: Image.asset(AppAssets.splashLogo,),
-          // ),
-        )
+    return BlocBuilder<ConfigurationCubit, CubitStates>(
+      builder: (BuildContext context, state) {
+        return CustomBackground(
+            showSafeArea: false,
+            child: Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                      end: AlignmentDirectional.topStart,
+                      begin: AlignmentDirectional.bottomEnd,
+                      colors: [Color(0xff00167D), Color(0xff0075E7)])),
+              // child: Center(
+              //   child: Image.asset(AppAssets.splashLogo,),
+              // ),
+            )
+        );
+      },
     );
   }
 }

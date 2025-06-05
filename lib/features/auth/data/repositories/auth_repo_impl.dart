@@ -5,7 +5,8 @@ import 'package:new_ilearn/features/auth/data/model/request_model/login_request_
 import 'package:new_ilearn/features/auth/data/model/request_model/register_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/resend_code_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/reset_password_request_model.dart';
-import 'package:new_ilearn/features/auth/data/model/request_model/verify_request_model.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/verify_email_request_model.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/verify_forget_password_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/response_model/auth_response_model.dart';
 import 'package:new_ilearn/features/auth/domain/repositories/auth_repo.dart';
 import '../../../../config/constants/app_prefs.dart';
@@ -41,7 +42,7 @@ class AuthRepoImpl extends AuthRepo {
   );
 
   @override
-  Future<Either<Failure, ResponseModel>> verify({required VerifyRequestModel verifyRequestModel}) => executeImpl(
+  Future<Either<Failure, ResponseModel>> verify({required VerifyEmailRequestModel verifyRequestModel}) => executeImpl(
         () => authRemoteDataSource.verify(verifyRequestModel: verifyRequestModel),
       );
   @override
@@ -51,7 +52,7 @@ class AuthRepoImpl extends AuthRepo {
       );
 
   @override
-  Future<Either<Failure, ResponseModel>> verifyForgetPassword({required VerifyRequestModel verifyRequestModel}) => executeImpl(
+  Future<Either<Failure, ResponseModel>> verifyForgetPassword({required VerifyForgetPasswordRequestModel verifyRequestModel}) => executeImpl(
         () => authRemoteDataSource.verifyForgetPassword(verifyRequestModel: verifyRequestModel),
       );
 

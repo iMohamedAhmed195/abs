@@ -18,7 +18,10 @@ class RouteGenerator {
   static Route<T>? generateRoute<T>(RouteSettings routeSettings) {
     switch (routeSettings.name) {
       case Routes.splashRoute:
-        return buildPageRoute<T>(child: SplashScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(
+            child: SplashScreen(),
+            routeSettings: routeSettings,
+        );
       case Routes.onBoardingRoute:
         return buildPageRoute<T>(child: OnBoardingScreen(), routeSettings: routeSettings);
       case Routes.startScreenRoute:
@@ -26,7 +29,7 @@ class RouteGenerator {
       case Routes.loginRoute:
         return buildPageRoute<T>(child: LoginScreen(), routeSettings: routeSettings);
       case Routes.registerRoute:
-        return buildPageRoute<T>(child: RegisterScreen(), routeSettings: routeSettings);
+        return buildPageRoute<T>(child: RegisterScreen(), routeSettings: routeSettings,providers: [BlocProvider<ErrorCubit>(create: (context) => ErrorCubit())]);
       case Routes.bottomNavigationRoute:
         return buildPageRoute<T>(child: BottomNavigationScreens(), routeSettings: routeSettings);
       case Routes.bookRoute:
@@ -42,7 +45,10 @@ class RouteGenerator {
         );
       case Routes.enterOtpRoute:
         return buildPageRoute<T>(
-          child: EnterOtpScreen(email: (routeSettings.arguments as Map<String, dynamic>)["email"]),
+          child: EnterOtpScreen(
+              email: (routeSettings.arguments as Map<String, dynamic>)["email"],
+            isFromForgetPassword: (routeSettings.arguments as Map<String, dynamic>)["isFromForgetPassword"],
+          ),
           routeSettings: routeSettings,
           providers: [BlocProvider<ErrorCubit>(create: (context) => ErrorCubit())],
         );

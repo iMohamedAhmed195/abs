@@ -1,12 +1,13 @@
 import 'package:new_ilearn/core/widgets/imageUser_widget.dart';
 import 'package:new_ilearn/core/widgets/write_otp_section.dart';
-import 'package:new_ilearn/features/auth/data/model/request_model/verify_request_model.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/verify_forget_password_request_model.dart';
 import 'package:new_ilearn/features/auth/presentation/managers/auth_cubit.dart';
 import '../../../../exports.dart';
 
 class EnterOtpScreen extends StatefulWidget {
-  const EnterOtpScreen({super.key, required this.email});
+  const EnterOtpScreen({super.key, required this.email, required this.isFromForgetPassword});
   final String email;
+  final bool isFromForgetPassword;
   @override
   State<EnterOtpScreen> createState() => _EnterOtpScreenState();
 }
@@ -96,8 +97,8 @@ dispose() {
                         onClick: (){
                           checkStringError(context, otp, Errors.OTP_ERROR);
                           if(dontHaveErrors(context)){
-                            context.read<AuthCubit>().verify(
-                                verifyRequestModel: VerifyRequestModel(
+                            context.read<AuthCubit>().verifyForgetPassword(
+                                verifyRequestModel: VerifyForgetPasswordRequestModel(
                                     email: widget.email,
                                     verifyCode: otp,)
                                 , email: widget.email

@@ -4,7 +4,8 @@ import 'package:new_ilearn/features/auth/data/model/request_model/login_request_
 import 'package:new_ilearn/features/auth/data/model/request_model/register_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/resend_code_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/reset_password_request_model.dart';
-import 'package:new_ilearn/features/auth/data/model/request_model/verify_request_model.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/verify_email_request_model.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/verify_forget_password_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/response_model/auth_response_model.dart';
 import 'package:new_ilearn/features/auth/data/model/response_model/forget_password_response_model.dart';
 import 'package:new_ilearn/features/auth/data/model/response_model/logout_response_model.dart';
@@ -17,9 +18,9 @@ abstract class AuthRemoteDataSource {
   Future<ResponseModel> loginWithFace({required String token});
   Future<ResponseModel> logout();
   Future<ResponseModel> register({required RegisterRequestModel registerRequestModel});
-  Future<ResponseModel> verify({required VerifyRequestModel verifyRequestModel});
+  Future<ResponseModel> verify({required VerifyEmailRequestModel verifyRequestModel});
   Future<ResponseModel> forgetPassword({required EnterEmailRequestModel enterEmailRequestModel});
-  Future<ResponseModel> verifyForgetPassword({required VerifyRequestModel verifyRequestModel});
+  Future<ResponseModel> verifyForgetPassword({required VerifyForgetPasswordRequestModel verifyRequestModel});
   Future<ResponseModel> resetPassword({required ResetPasswordRequestModel resetPasswordRequestModel});
   Future<ResponseModel> reSendCode({required ReSendRequestModel resendRequestModel});
   Future<ResponseModel> editProfile({required UserModel userEdit});
@@ -56,11 +57,11 @@ class AuthRemoteDataSourceImpl extends RemoteExecuteImpl implements AuthRemoteDa
     endPoint: EndPoints.register,
     data: registerRequestModel.toJson(),
     isFormData: true,
-    getFromJsonFunction: RegisterResponseModel.fromJson,
+    getFromJsonFunction: ResponseModel.fromJson,
   );
 
   @override
-  Future<ResponseModel> verify({required VerifyRequestModel verifyRequestModel}) => addData(
+  Future<ResponseModel> verify({required VerifyEmailRequestModel verifyRequestModel}) => addData(
     endPoint: EndPoints.verify,
     data: verifyRequestModel.toJson(),
     getFromJsonFunction: AuthResponseModel.fromJson,
@@ -72,7 +73,7 @@ class AuthRemoteDataSourceImpl extends RemoteExecuteImpl implements AuthRemoteDa
     getFromJsonFunction: ForgetPasswordResponseModel.fromJson,
   );
   @override
-  Future<ResponseModel> verifyForgetPassword({required VerifyRequestModel verifyRequestModel}) => addData(
+  Future<ResponseModel> verifyForgetPassword({required VerifyForgetPasswordRequestModel verifyRequestModel}) => addData(
     endPoint: EndPoints.verifyForgetPassword,
     data: verifyRequestModel.toJson(),
     getFromJsonFunction: AuthResponseModel.fromJson,

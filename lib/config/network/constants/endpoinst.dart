@@ -12,8 +12,8 @@ abstract class EndPoints {
   static const String loginWithGoogle = 'auth/google';
   static const String loginWithFacebook = 'auth/facebook';
   static const String logout = 'auth/signout';
-  static const String register = 'register';
-  static const String verify = 'auth/verifyResetCode';
+  static const String register = 'auth/signup';
+  static const String verify = 'auth/verify-email';
   static const String reSend = 'resend-code';
   static const String changePhone = 'change-phone';
   static const String getBrokers = 'users';
@@ -28,7 +28,7 @@ abstract class EndPoints {
   static const String confirmationCode = 'send_sms';
 ///////////////////////////// home ////////////////////////////
   static const String home = 'dashbaord';
-  static const String config = 'select/configuration';
+  static const String config = 'country';
 
   static const String estateAd = '${api}estate/ad';
   static const String estateRequest = '${api}estate/request';

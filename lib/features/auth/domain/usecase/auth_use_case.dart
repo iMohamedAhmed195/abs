@@ -1,3 +1,4 @@
+import 'package:new_ilearn/features/auth/data/model/request_model/verify_email_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/response_model/auth_response_model.dart';
 import 'package:new_ilearn/features/auth/domain/repositories/auth_repo.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/enter_phone_number_request_model.dart';
@@ -5,7 +6,7 @@ import 'package:new_ilearn/features/auth/data/model/request_model/login_request_
 import 'package:new_ilearn/features/auth/data/model/request_model/register_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/resend_code_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/reset_password_request_model.dart';
-import 'package:new_ilearn/features/auth/data/model/request_model/verify_request_model.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/verify_forget_password_request_model.dart';
 
 import '../../../../exports.dart';
 import '../../data/model/request_model/edit_model.dart';
@@ -23,12 +24,12 @@ class AuthUseCase {
   Future<Either<Failure, ResponseModel>> logout() async => authRepo.logout();
   Future<Either<Failure, ResponseModel>> register({required RegisterRequestModel registerRequestModel}) async =>
       authRepo.register(registerRequestModel: registerRequestModel);
-  Future<Either<Failure, ResponseModel>> verify({required VerifyRequestModel verifyRequestModel}) async =>
+  Future<Either<Failure, ResponseModel>> verify({required VerifyEmailRequestModel verifyRequestModel}) async =>
       authRepo.verify(verifyRequestModel: verifyRequestModel);
   Future<Either<Failure, ResponseModel>> forgetPassword({
     required EnterEmailRequestModel enterEmailRequestModel,
   }) async => authRepo.forgetPassword(enterEmailRequestModel: enterEmailRequestModel);
-  Future<Either<Failure, ResponseModel>> verifyForgetPassword({required VerifyRequestModel verifyRequestModel}) async =>
+  Future<Either<Failure, ResponseModel>> verifyForgetPassword({required VerifyForgetPasswordRequestModel verifyRequestModel}) async =>
       authRepo.verifyForgetPassword(verifyRequestModel: verifyRequestModel);
   Future<Either<Failure, ResponseModel>> resetPassword({
     required ResetPasswordRequestModel resetPasswordRequestModel,

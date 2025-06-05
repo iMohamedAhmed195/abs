@@ -5,7 +5,6 @@ class AuthResponseModel extends ResponseModel {
       super.status,
       super.message,
       super.data,});
-
   AuthResponseModel.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
