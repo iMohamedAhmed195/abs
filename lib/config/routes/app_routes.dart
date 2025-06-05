@@ -27,6 +27,10 @@ class RouteGenerator {
     switch (routeSettings.name) {
       case Routes.splashRoute:
         return buildPageRoute<T>(
+            child: SplashScreen(),
+            routeSettings: routeSettings,
+        );
+        return buildPageRoute<T>(
           child: SplashScreen(),
           routeSettings: routeSettings,
         );
@@ -46,6 +50,7 @@ class RouteGenerator {
           routeSettings: routeSettings,
         );
       case Routes.registerRoute:
+        return buildPageRoute<T>(child: RegisterScreen(), routeSettings: routeSettings,providers: [BlocProvider<ErrorCubit>(create: (context) => ErrorCubit())]);
         return buildPageRoute<T>(
           child: RegisterScreen(),
           routeSettings: routeSettings,
@@ -109,6 +114,10 @@ class RouteGenerator {
       case Routes.aboutAppScreen:
         return buildPageRoute<T>(
           child: AboutAppScreen(),
+          child: EnterOtpScreen(
+              email: (routeSettings.arguments as Map<String, dynamic>)["email"],
+            isFromForgetPassword: (routeSettings.arguments as Map<String, dynamic>)["isFromForgetPassword"],
+          ),
           routeSettings: routeSettings,
         );
       case Routes.privacyPolicyScreen:
@@ -144,10 +153,7 @@ class RouteGenerator {
         settings: routeSettings,
         pageBuilder: (context, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
-          return RotationTransition(
-            child: child,
-            turns: ReverseAnimation(anim),
-          );
+          return RotationTransition(child: child, turns: ReverseAnimation(anim));
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
       );
@@ -167,10 +173,7 @@ class RouteGenerator {
         transitionsBuilder: (c, anim, a2, child) {
           return SlideTransition(
             child: child,
-            position: Tween(
-              begin: const Offset(1.0, 0.0),
-              end: const Offset(0.0, 0.0),
-            ).animate(anim),
+            position: Tween(begin: const Offset(1.0, 0.0), end: const Offset(0.0, 0.0)).animate(anim),
           );
         },
         transitionDuration: duration ?? pageRouteTransitionDurationGlobal,
@@ -181,10 +184,7 @@ class RouteGenerator {
         pageBuilder: (context, a1, a2) => child,
         transitionsBuilder: (c, anim, a2, child) {
           return SlideTransition(
-            position: Tween(
-              begin: const Offset(0.0, 1.0),
-              end: const Offset(0.0, 0.0),
-            ).animate(anim),
+            position: Tween(begin: const Offset(0.0, 1.0), end: const Offset(0.0, 0.0)).animate(anim),
             child: child,
           );
         },

@@ -1,28 +1,31 @@
 class RegisterRequestModel {
-  String? name;
+  String? username;
   String? email;
-  String? phone;
+  String? image;
   String? password;
-  String? passwordConfirmation;
   String? countryCode;
+  String? gender;
+  String? learningStage;
 
   RegisterRequestModel({
-    this.phone,
+    this.image,
     this.password,
     this.email,
-    this.name,
-    this.passwordConfirmation,
+    this.username,
     this.countryCode,
+    this.gender,
+    this.learningStage,
   });
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['country_code'] = countryCode;
-    map['phone_number'] = phone;
+    map['image'] = image;
     map['password'] = password;
-    map['password_confirmation'] = passwordConfirmation;
     map['email'] = email;
-    map['name'] = name;
+    map['username'] = username;
+    map['gender'] = gender;
+    map['learningStage'] = learningStage;
     return map;
   }
 }

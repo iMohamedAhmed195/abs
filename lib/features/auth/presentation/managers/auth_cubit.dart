@@ -8,7 +8,8 @@ import 'package:new_ilearn/features/auth/data/model/request_model/login_request_
 import 'package:new_ilearn/features/auth/data/model/request_model/register_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/resend_code_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/request_model/reset_password_request_model.dart';
-import 'package:new_ilearn/features/auth/data/model/request_model/verify_request_model.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/verify_email_request_model.dart';
+import 'package:new_ilearn/features/auth/data/model/request_model/verify_forget_password_request_model.dart';
 import 'package:new_ilearn/features/auth/data/model/response_model/auth_response_model.dart';
 import 'package:new_ilearn/features/auth/data/model/response_model/forget_password_response_model.dart';
 import 'package:new_ilearn/features/auth/data/model/response_model/register_response_model.dart';
@@ -36,6 +37,7 @@ class AuthCubit extends Cubit<CubitStates> {
       },
     );
   }
+
   loginWithGoogle() async {
     ApiResponse token = await GoogleAuth().authWithGoogle();
     await managerExecute<UserData?>(
@@ -55,6 +57,7 @@ class AuthCubit extends Cubit<CubitStates> {
       },
     );
   }
+
   loginWithFace() async {
     ApiResponse token = await FaceBookAuth().authWithFaceBook();
     await managerExecute<UserData?>(
@@ -88,33 +91,27 @@ class AuthCubit extends Cubit<CubitStates> {
           emit(LoadedState(data: null));
         },
       );
+
   register({required RegisterRequestModel registerRequestModel}) async {
-    await executeWithDialog<UserDataModel>(
+    await executeWithDialog(
       either: authUseCase.register(registerRequestModel: registerRequestModel),
       startingMessage: AppStrings.waitingForRegistration.trans,
-      onSuccess: (UserDataModel? data) async {
-        checkNotificationPermissionAndDoOperation(
-          getContext,
-          onSuccess: () {
-            NotificationsService().showSimpleNotification(
-              title: AppStrings.verificationAccount.trans,
-              description: data!.verificationCode.toString(),
-            );
-          },
-        );
-        Routes.enterOtpRoute.moveToAndRemoveCurrent(args: {
-          "phone": registerRequestModel.phone,
-          "countryCode": registerRequestModel.countryCode,
-          "userId": data!.user!.id!,
-          "isForgetPassword": false,
+      onSuccess: (data) async {
+        emit(LoadedState(data: data ?? 'asd'));
+        Routes.enterOtpRoute.moveToWithArgs({
+          "email": registerRequestModel.email,
+          "isFromForgetPassword": false
         });
       },
+      onError: (message) {
+        emit(FailedState(message: message));
+      }
     );
   }
 
-  verify({required VerifyRequestModel verifyRequestModel, required String email}) async {
+  verifyForgetPassword({required VerifyForgetPasswordRequestModel verifyRequestModel, required String email}) async {
     await executeWithDialog(
-      either: authUseCase.verify(
+      either: authUseCase.verifyForgetPassword(
         verifyRequestModel: verifyRequestModel,
       ),
       startingMessage: AppStrings.verificationAccount.trans,
@@ -127,6 +124,18 @@ class AuthCubit extends Cubit<CubitStates> {
         // isForgetPassword
         //     ? Routes.resetPasswordRoute.moveTo()
         //     : Routes.bottomNavRoute.moveToCurrrentRouteAndRemoveAll;
+      },
+    );
+  }
+
+  verifyEmail({required VerifyEmailRequestModel verifyRequestModel, required String email}) async {
+    await executeWithDialog(
+      either: authUseCase.verify(
+        verifyRequestModel: verifyRequestModel,
+      ),
+      startingMessage: AppStrings.verificationAccount.trans,
+      onSuccess: (data) async {
+        Routes.loginRoute.moveTo();
       },
     );
   }
@@ -148,9 +157,7 @@ class AuthCubit extends Cubit<CubitStates> {
     );
   }
 
-  forgetPassword({
-    required EnterEmailRequestModel enterEmailRequestModel,
-  }) async {
+  forgetPassword({required EnterEmailRequestModel enterEmailRequestModel,}) async {
     await executeWithDialog<ForgetPasswordDataModel>(
       either: authUseCase.forgetPassword(
           enterEmailRequestModel: enterEmailRequestModel),
@@ -166,12 +173,11 @@ class AuthCubit extends Cubit<CubitStates> {
         // );
         Routes.enterOtpRoute.moveToAndRemoveCurrent(args: {
           "email": enterEmailRequestModel.email,
+          "isFromForgetPassword":true,
         });
       },
     );
   }
-
-
 
   resetPassword({required ResetPasswordRequestModel resetPasswordRequestModel}) async {
     await executeWithDialog(

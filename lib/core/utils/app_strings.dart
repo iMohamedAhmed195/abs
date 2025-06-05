@@ -15,6 +15,10 @@ class AppStrings {
   static const String letsGo = 'letsGo';
   static const String alreadyHaveAccount = 'alreadyHaveAccount';
   static const String startProject = 'startProject';
+  static const String pleaseSelectCountry = 'pleaseSelectCountry';
+  static const String pleaseSelectGender = 'pleaseSelectGender';
+  static const String pleaseSelectLearningStage = 'pleaseSelectLearningStage';
+  static const String pleaseAcceptTerms = 'pleaseAcceptTerms';
   static const String login = 'login';
   static const String welcomeBack = 'welcomeBack';
   static const String email = 'email';
@@ -96,6 +100,7 @@ class AppStrings {
   static const String folder = 'folder';
   static const String groups = 'groups';
   static const String archiveItem = 'archiveItem';
+  static const String education = 'education';
   static const String account = 'account';
   static const String addNewBook = 'addNewBook';
   static const String add = 'add';

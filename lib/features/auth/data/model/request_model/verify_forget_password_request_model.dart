@@ -1,10 +1,10 @@
-class VerifyRequestModel {
+class VerifyForgetPasswordRequestModel {
   String email;
   String verifyCode;
   //
   // String? deviceToken;
 
-  VerifyRequestModel({required this.email, required this.verifyCode,});
+  VerifyForgetPasswordRequestModel({required this.email, required this.verifyCode,});
 
   Map<String, dynamic> toJson() => {
     "email": email,

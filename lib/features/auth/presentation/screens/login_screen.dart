@@ -44,15 +44,11 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocListener<AuthCubit, CubitStates>(
       listener: (BuildContext context, state) {
-        print('a7a 1');
         if (state is LoadedState<UserData>){
-          print('a7a 2');
           status = 'success';
           setState(() {
-            Routes.bottomNavigationRoute.moveTo();
-
-
           });
+          Routes.bottomNavigationRoute.moveToCurrrentRouteAndRemoveAll;
         }
         else if (state is FailedState){
           status = 'failed';
