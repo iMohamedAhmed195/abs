@@ -1,33 +1,33 @@
 import '../../../../exports.dart';
 
-class FoldersResponseModel extends ResponseModel {
-  FoldersResponseModel({
+class HomeFoldersResponseModel extends ResponseModel {
+  HomeFoldersResponseModel({
       super.status, 
       super.message, 
       super.data,});
 
-  FoldersResponseModel.fromJson(dynamic json) {
+  HomeFoldersResponseModel.fromJson(dynamic json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? FoldersDataModel.fromJson(json['data']) : null;
+    data = json['data'] != null ? HomeFoldersDataModel.fromJson(json['data']) : null;
   }
    
 }
 
-class FoldersDataModel {
-  FoldersDataModel({
+class HomeFoldersDataModel {
+  HomeFoldersDataModel({
       this.categories, 
       this.books,});
 
-  FoldersDataModel.fromJson(dynamic json) {
+  HomeFoldersDataModel.fromJson(dynamic json) {
     categories = json['categories'] != null ? Categories.fromJson(json['categories']) : null;
     books = json['books'] != null ? Books.fromJson(json['books']) : null;
   }
   Categories? categories;
   Books? books;
-FoldersDataModel copyWith({  Categories? categories,
+HomeFoldersDataModel copyWith({  Categories? categories,
   Books? books,
-}) => FoldersDataModel(  categories: categories ?? this.categories,
+}) => HomeFoldersDataModel(  categories: categories ?? this.categories,
   books: books ?? this.books,
 );
   Map<String, dynamic> toJson() {

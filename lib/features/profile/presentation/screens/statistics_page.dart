@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
  import 'package:flutter_svg/svg.dart';
  
 import 'package:intl/intl.dart';
+import 'package:new_ilearn/features/home/data/models/statistics_model.dart';
 import 'package:new_ilearn/features/home/presentation/widgets/statisticsBox_widget.dart';
 import 'package:new_ilearn/features/profile/presentation/widgets/goalWidget.dart';
 import 'package:new_ilearn/features/profile/presentation/widgets/statisticReport_widget.dart';
@@ -11,9 +12,10 @@ import 'package:new_ilearn/features/profile/presentation/widgets/statisticsTap_w
 import '../../../../exports.dart';
 
 class StatisticsPage extends StatefulWidget {
-  const StatisticsPage({super.key, required this.isScroled});
+  const StatisticsPage({super.key, required this.isScroled,required this.statisticsData});
 
   final bool isScroled;
+  final StatisticsDataModel statisticsData;
 
   @override
   State<StatisticsPage> createState() => _StatisticsPageState();
@@ -54,25 +56,30 @@ class _StatisticsPageState extends State<StatisticsPage>   {
                   StatisticsTap(
                     title: AppStrings.points.trans,
                     icon: AppAssets.pointStatistics.trans,
-                    numberOfStatistic: formatNumber.format(double.parse(
-                       "50")),
+                    numberOfStatistic: formatNumber.format(double.parse( widget.statisticsData.getExcitementPoin
+                        .toString()
+                       )),
                   ),
                   StatisticsTap(
                     title: AppStrings.uploadedBooks.trans,
                     icon: AppAssets.bookStatistics,
-                    numberOfStatistic:"10",
+                    numberOfStatistic: widget.statisticsData
+                        .booksPercentage!.booksCount
+                        .toString(),
                   ),
                   StatisticsTap(
                     title: AppStrings.recordSuccess.trans,
                     icon: AppAssets.testStatistics,
-                    numberOfStatistic: "445",
+                      numberOfStatistic: widget.statisticsData
+                          .examsPercentage!.examsCount
+                          .toString()
                   ),
                 ],
               ),
               const SizedBox(
                 height: 16,
               ),
-              const StatisticsBox(),
+                StatisticsBox(),
               const SizedBox(
                 height: 10,
               ),
@@ -210,34 +217,34 @@ class _StatisticsPageState extends State<StatisticsPage>   {
         ),
         StatisticReport(
           percent:
-          0.9, //state.statisticsWithReport!.getExcitementPoinPercent,
-          title: AppStrings.performanceRate.trans,
+           widget.statisticsData.examsPercentage!.percentage!,
+          title: AppStrings.performanceRate,
           colorCircle: Colors.green,
           onClick: () {},
-          subTitle: AppStrings.completedTests.trans,
+          subTitle: AppStrings.completedTests,
           titlePercent:
-          '${   0.8}%',
+          '${ widget.statisticsData.examsPercentage!.percentage.toString()}%',
         ),
         StatisticReport(
           percent:
-          0.5,
-          title: AppStrings.uploadedBooks.trans,
+           widget.statisticsData.booksPercentage!.percentage!,
+          title: AppStrings.uploadedBooks,
           colorCircle: Colors.orange,
           onClick: () {},
           subTitle:
-          AppStrings.booksUploadedToApplication.trans,
+          AppStrings.booksUploadedToApplication,
           titlePercent:
-          '${105}%',
+          '${ widget.statisticsData.booksPercentage!.percentage.toString()}%',
         ),
         StatisticReport(
-          percent: 0.7,
-          title: AppStrings.points.trans,
+          percent:  double.parse(widget.statisticsData.getExcitementPoin.toString()),
+          title: AppStrings.points,
           colorCircle: AppColors.primaryColor,
           onClick: () {},
           subTitle:
-          AppStrings.enthusiasmPointsEarned.trans,
+          AppStrings.enthusiasmPointsEarned,
           titlePercent:
-          '${formatNumber.format(double.parse("475"))}%',
+          '${formatNumber.format(double.parse( widget.statisticsData.getExcitementPoin.toString()))}%',
         ),
       ],
     );

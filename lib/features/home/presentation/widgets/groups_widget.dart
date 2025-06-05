@@ -2,6 +2,7 @@
 
 
 import 'package:new_ilearn/config/widgets/status_message.dart';
+import 'package:new_ilearn/core/widgets/imageUser_widget.dart';
 import 'package:new_ilearn/core/widgets/openContainerAnimation_widget.dart';
 import 'package:new_ilearn/core/widgets/viewAll_widget.dart';
 import 'package:new_ilearn/features/home/presentation/managers/groups_chat_cubit.dart';
@@ -12,7 +13,7 @@ import '../../data/models/groups_chat_model.dart';
 class ActiveGroups extends StatelessWidget {
   const ActiveGroups({super.key, required this.active, required this.activeGroups});
  final bool active ;
- final List<Items> activeGroups;
+ final GroupsDataChatModel activeGroups;
   @override
   Widget build(BuildContext context) {
     return Visibility(
@@ -32,7 +33,7 @@ class ActiveGroups extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               padding:
               const EdgeInsetsDirectional.symmetric(horizontal: 16),
-              itemCount: 1,
+              itemCount: activeGroups.items!.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
                 return SizedBox(
@@ -48,27 +49,26 @@ class ActiveGroups extends StatelessWidget {
                                 0.07.h,
                             child: Stack(
                               children: [
-                                CircleAvatar(
-
-                                radius: 35,
-                                    backgroundImage:   Image.asset(AppAssets.person).image),
+                                // CircleAvatar(
+                                //
+                                // radius: 35,
+                                //     backgroundImage:   Image.asset(AppAssets.person).image),
                                 OpenContainerAnimation(
 
                                   closedWidget: ImageUser(
-                                    image: state
-                                        .listActiveGroups[index].imageUrl,
+                                    image: "${EndPoints.image}${activeGroups.items?[index].fullImageUrl}" ??'',
                                     height: 65.h,
                                     width: 65.w,
                                     margin: 9,
                                   ),
-                                  openWidget: ChatScreen(
-                                    chatBackgroundColor: state
-                                        .listActiveGroups[index]
-                                        .backgroundColor,
-                                    typeChat: 'group',
-                                    chatGroup:
-                                        state.listActiveGroups[index],
-                                  ),
+
+                                  // ChatScreen(
+                                  //   chatBackgroundColor:activeGroups[index]
+                                  //       .backgroundColor,
+                                  //   typeChat: 'group',
+                                  //   chatGroup:
+                                  //   activeGroups[index],
+                                  // ),
                                 ),
                                 Align(
                                   alignment:
@@ -88,7 +88,7 @@ class ActiveGroups extends StatelessWidget {
                             ),
                           ),
                           TextWidget(
-                            text: activeGroups[index].name.toString(),
+                            text: activeGroups.items![index].name.toString(),
                             fontSizeText: 13,
                             maxLine: 1,
                             textOverflow: TextOverflow.ellipsis,
@@ -113,7 +113,8 @@ class GroupsBlocBuilder extends StatelessWidget {
   create: (context) => GroupsChatCubit(useCase: ServiceLocator.instance.getIt())..getGroups(),
   child: BlocBuilder<GroupsChatCubit, CubitStates>(
   builder: (context, state) {
-    return state is LoadedState ? ActiveGroups(activeGroups:state.data,active: state.data.isNotEmpty,):state is FailedState? Center(child: StatusMessage(text: state.message, padding: EdgeInsetsDirectional.only(bottom: 60.h), iconData: Icons.error)):const Center(child: CircularProgressIndicator(),);
+
+    return state is LoadedState ? ActiveGroups(activeGroups:state.data,active: state.data.items!.isNotEmpty?true:false,):state is FailedState? Center(child: StatusMessage(text: state.message, padding: EdgeInsetsDirectional.only(bottom: 60.h), iconData: Icons.error)):const Center(child: CircularProgressIndicator(),);
   },
 ),
 );

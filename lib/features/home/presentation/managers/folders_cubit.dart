@@ -1,16 +1,17 @@
 
+import 'package:new_ilearn/features/home/data/models/home_folders_model.dart';
 import 'package:new_ilearn/features/home/domain/use_cases/get_folders_use_case.dart';
 
 import '../../../../exports.dart';
 
 class FoldersCubit extends Cubit<CubitStates> {
-  final GetFoldersUseCase useCase;
+  final GetHomeFoldersUseCase useCase;
   FoldersCubit({required this.useCase})
       : super(LoadingState());
 
 
   getGroups() =>
-      managerExecute(
+      managerExecute<HomeFoldersDataModel>(
 
    useCase.getFolders(),
 

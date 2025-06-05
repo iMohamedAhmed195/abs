@@ -1,5 +1,5 @@
 
-import 'package:new_ilearn/features/home/data/models/folders_model.dart';
+import 'package:new_ilearn/features/home/data/models/home_folders_model.dart';
 
 import '../../../../exports.dart';
 
@@ -10,6 +10,6 @@ class FoldersRemoteDataSourceImpl extends  RemoteExecuteImpl  implements Folders
   FoldersRemoteDataSourceImpl({required super.dioConsumer});
 
   @override
-  Future<ResponseModel> getFolders() =>getData(endPoint: EndPoints.folders , getFromJsonFunction: FoldersResponseModel.fromJson);
+  Future<ResponseModel> getFolders() =>getData(endPoint: EndPoints.homeFolders , getFromJsonFunction: HomeFoldersResponseModel.fromJson);
   
 }

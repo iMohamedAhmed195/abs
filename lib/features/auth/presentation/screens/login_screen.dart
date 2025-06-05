@@ -49,6 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
           print('a7a 2');
           status = 'success';
           setState(() {
+            Routes.bottomNavigationRoute.moveTo();
+
 
           });
         }

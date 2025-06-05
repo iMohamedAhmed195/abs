@@ -45,7 +45,7 @@ class AuthCubit extends Cubit<CubitStates> {
         log('userData.token.toString()${userData!.token.toString()}');
         getBlocData<BottomNavOperationCubit>().changIndex(0);
         emit(LoadedState<UserData>(data: data));
-        // Routes.bottomNavRoute.moveToCurrrentRouteAndRemoveAll;
+        Routes.bottomNavigationRoute.moveToCurrrentRouteAndRemoveAll;
       },
       onFail: (message) {
         emit(FailedState(message: message));

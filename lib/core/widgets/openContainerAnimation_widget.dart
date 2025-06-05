@@ -5,16 +5,16 @@ import 'package:animations/animations.dart';
 
 class OpenContainerAnimation extends StatelessWidget {
   const OpenContainerAnimation(
-      {super.key, required this.closedWidget, required this.openWidget});
+      {super.key, required this.closedWidget });
 
   final Widget closedWidget;
-  final Widget openWidget;
+
 
   @override
   Widget build(BuildContext context) {
     return OpenContainer(
       closedBuilder: (context, action) => closedWidget,
-      openBuilder: (context, action) => openWidget,
+      openBuilder: (context, action) => const Center(),
       closedColor: Colors.transparent,
       transitionDuration: const Duration(milliseconds: 600),
       openColor: AppColors.primaryColor.withOpacity(0.20),

@@ -5,6 +5,26 @@ import 'package:new_ilearn/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:new_ilearn/features/auth/domain/repositories/auth_repo.dart';
 import 'package:new_ilearn/features/auth/domain/usecase/auth_use_case.dart';
 import 'package:new_ilearn/features/auth/presentation/managers/auth_cubit.dart';
+import 'package:new_ilearn/features/folders/data/data_sources/add_folders_remote_date_source.dart';
+import 'package:new_ilearn/features/folders/data/data_sources/delete_folder_by_id_remote_date_source.dart';
+import 'package:new_ilearn/features/folders/data/data_sources/get_folder_by_id_remote_date_source.dart';
+import 'package:new_ilearn/features/folders/data/data_sources/get_folders_remote_date_source.dart';
+import 'package:new_ilearn/features/folders/data/data_sources/update_folders_remote_date_source.dart';
+import 'package:new_ilearn/features/folders/data/repo_imp/add_folders_repo_imp.dart';
+import 'package:new_ilearn/features/folders/data/repo_imp/delete_folder_by_id_repo_imp.dart';
+import 'package:new_ilearn/features/folders/data/repo_imp/get_folder_by_id_repo_imp.dart';
+import 'package:new_ilearn/features/folders/data/repo_imp/get_folders_repo_imp.dart';
+import 'package:new_ilearn/features/folders/data/repo_imp/update_folders_repo_imp.dart';
+import 'package:new_ilearn/features/folders/domain/repos/add_folders_repo.dart';
+import 'package:new_ilearn/features/folders/domain/repos/delete_folders_by_id_repo.dart';
+import 'package:new_ilearn/features/folders/domain/repos/get_folders_by_id_repo.dart';
+import 'package:new_ilearn/features/folders/domain/repos/get_folders_repo.dart';
+import 'package:new_ilearn/features/folders/domain/repos/update_folders_repo.dart';
+import 'package:new_ilearn/features/folders/domain/use_cases/add_folders_use_case.dart';
+import 'package:new_ilearn/features/folders/domain/use_cases/delete_folder_by_id_use_case.dart';
+import 'package:new_ilearn/features/folders/domain/use_cases/get_folder_by_id_use_case.dart';
+import 'package:new_ilearn/features/folders/domain/use_cases/get_folders_use_case.dart';
+import 'package:new_ilearn/features/folders/domain/use_cases/update_folders_use_case.dart';
 import 'package:new_ilearn/features/home/data/date_sources/folders_remote_date_source.dart';
 import 'package:new_ilearn/features/home/data/date_sources/groups_chat_remote_date_source.dart';
 import 'package:new_ilearn/features/home/data/date_sources/statistics_remote_date_source.dart';
@@ -37,6 +57,11 @@ class ServiceLocator {
     registerHomeFolders;
     registerHomeGroupChats;
     registerHomeStatistics;
+    registerDeleteFolderFeatures;
+    registerUpdateFolderFeatures;
+    registerGetFolderByIdFeatures;
+    registerGetFoldersFeatures;
+    registerAddFoldersFeatures;
   }
 
   get registerNetwork {
@@ -75,11 +100,40 @@ class ServiceLocator {
     getIt.registerLazySingleton<GroupsChatRepo>(
             () => GroupsChatRepoImp(remoteDataSource: getIt(),  ));
     getIt.registerLazySingleton<GetGroupsChatUseCase>(() => GetGroupsChatUseCase(repo: getIt()));
-  }  get registerHomeFolders{
+  }
+  get registerHomeFolders{
     getIt.registerLazySingleton<FoldersRemoteDataSource>(() => FoldersRemoteDataSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<FoldersRepo>(
             () => FoldersRepoImp(remoteDataSource: getIt(),  ));
-    getIt.registerLazySingleton<GetFoldersUseCase>(() => GetFoldersUseCase(repo: getIt()));
+    getIt.registerLazySingleton<GetHomeFoldersUseCase>(() => GetHomeFoldersUseCase(repo: getIt()));
   }
-
+  get registerAddFoldersFeatures {
+    getIt.registerLazySingleton<AddFoldersRemoteDateSource>(() => AddFoldersRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<AddFoldersRepo>(
+            () => AddFoldersRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<AddFoldersUseCase>(() => AddFoldersUseCase(repo: getIt()));
+  }
+  get registerGetFoldersFeatures {
+    getIt.registerLazySingleton<GetFoldersRemoteDataSource>(() => GetFoldersRemoteDataSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<GetFoldersRepo>(
+            () => GetFoldersRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<GetFoldersUseCase>(() => GetFoldersUseCase(repo: getIt()));
+  }  get registerGetFolderByIdFeatures {
+    getIt.registerLazySingleton<GetFolderByIdRemoteDateSource>(() => GetFolderByIdRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<GetFoldersByIdRepo>(
+            () =>GetFolderByIdRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<GetFolderByIdUseCase>(() => GetFolderByIdUseCase(repo: getIt()));
+  }
+  get registerUpdateFolderFeatures {
+    getIt.registerLazySingleton<UpdateFoldersRemoteDateSource>(() => UpdateFoldersRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<UpdateFoldersRepo>(
+            () =>UpdateFoldersRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<UpdateFoldersUseCase>(() => UpdateFoldersUseCase(repo: getIt()));
+  }
+  get registerDeleteFolderFeatures {
+    getIt.registerLazySingleton<DeleteFolderByIdRemoteDateSource>(() => DeleteFolderByIdRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<DeleteFoldersByIdRepo>(
+            () =>DeleteFolderByIdRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<DeleteFolderByIdUseCase>(() => DeleteFolderByIdUseCase(repo: getIt()));
+  }
 }

@@ -5,21 +5,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_ilearn/core/utils/app_assets.dart';
 import 'package:new_ilearn/core/utils/app_strings.dart';
 import 'package:new_ilearn/core/widgets/viewAll_widget.dart';
+import 'package:new_ilearn/features/home/data/models/home_folders_model.dart';
 import 'package:new_ilearn/features/home/presentation/widgets/foldersAndBooks_widgets.dart';
 
 import '../../../../exports.dart';
 
 class FolderSlide extends StatelessWidget {
     FolderSlide({
-    super.key,
+    super.key,required this.folders,
   });
   bool show = true;
+  final List<Items> folders;
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ViewAll(
-          showViewAll: true,
+          showViewAll: folders.length > 4,
           title: AppStrings.volumes.trans,
           onClick: () {
              // Routes.foldersScreen.moveTo();
@@ -33,11 +35,11 @@ class FolderSlide extends StatelessWidget {
                 vertical: 10, horizontal: 16),
             physics: const BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
-            itemCount: 10,
+            itemCount: folders.length,
             itemBuilder: (context, index) {
               return FoldersAndBooks(
                 width: MediaQuery.of(context).size.width * 0.32.w,
-                idFolder: "${index + 1}",
+                idFolder: "${folders[index].id}",
                 isBook: false,
                 isShowDeleteButton: false,
                 delete: () {},
@@ -45,8 +47,8 @@ class FolderSlide extends StatelessWidget {
                   show  =! show;
                 },
                 heightImage: 90.h,
-                image:    "https://i.pinimg.com/736x/6a/88/da/6a88da6a2e370f7ee0aca2719fc3e4b8.jpg",
-                title: AppStrings.egypt.trans,
+                image:   folders[index].imageUrl?? AppAssets.folderImage,
+                title: folders[index].name!,
               );
             },
           ),

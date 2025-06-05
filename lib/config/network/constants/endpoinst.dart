@@ -27,7 +27,8 @@ abstract class EndPoints {
   static const String readNotifications = '${api}user/notification/read';
   static const String confirmationCode = '${api}send_sms';
 ///////////////////////////// home ////////////////////////////
-  static const String folders = '${api}home';
+  static const String homeFolders = '${api}home';
+  static const String folders = '${api}categories';
   static const String statistics = '${api}statistics/home';
   static const String groupsChat = '${api}groupschat';
 

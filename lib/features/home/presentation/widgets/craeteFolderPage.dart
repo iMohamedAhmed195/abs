@@ -2,16 +2,18 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:new_ilearn/core/pdf_handle/get_file_cubit.dart';
 import 'package:new_ilearn/core/widgets/form_widget.dart';
 import 'package:new_ilearn/core/widgets/imageCash_widget.dart';
+import 'package:new_ilearn/features/folders/data/models/folders_model.dart';
+import 'package:new_ilearn/features/folders/presentation/managers/add_folders_cubit.dart';
 
 import '../../../../exports.dart';
 
-class BottomSheetAddFolder extends StatefulWidget {
+class BottomSheetAddFolder extends StatelessWidget {
   const BottomSheetAddFolder({
     super.key,
     this.folderImage,
@@ -26,10 +28,41 @@ class BottomSheetAddFolder extends StatefulWidget {
   final String? idFolder;
 
   @override
-  State<BottomSheetAddFolder> createState() => _BottomSheetAddFolderState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) =>
+          AddFoldersCubit(useCase: ServiceLocator.instance.getIt()),
+      child: _BottomSheetAddFolderBody(
+        folderImage: folderImage,
+        folderName: folderName,
+        update: update,
+        idFolder: idFolder,
+      ),
+    );
+  }
 }
 
-class _BottomSheetAddFolderState extends State<BottomSheetAddFolder> {
+class _BottomSheetAddFolderBody extends StatefulWidget {
+  const _BottomSheetAddFolderBody({
+    super.key,
+    this.folderImage,
+    this.folderName,
+    required this.update,
+    this.idFolder,
+  });
+
+  final String? folderName;
+  final String? folderImage;
+  final bool update;
+  final String? idFolder;
+
+  @override
+  State<_BottomSheetAddFolderBody> createState() =>
+      _BottomSheetAddFolderBodyState();
+}
+
+class _BottomSheetAddFolderBodyState
+    extends State<_BottomSheetAddFolderBody> {
   File? _imageFolder;
   String? _errorNameFolder;
   String? _errorImageFolder;
@@ -50,7 +83,8 @@ class _BottomSheetAddFolderState extends State<BottomSheetAddFolder> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+      padding:
+      EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -126,7 +160,8 @@ class _BottomSheetAddFolderState extends State<BottomSheetAddFolder> {
             title: AppStrings.folderName.trans,
           ),
           TextWidget(
-            text: '${AppStrings.imageGlory.trans} (${AppStrings.optional.trans})',
+            text:
+            '${AppStrings.imageGlory.trans} (${AppStrings.optional.trans})',
             fontSizeText: 14,
           ),
           const SizedBox(height: 8),
@@ -177,7 +212,8 @@ class _BottomSheetAddFolderState extends State<BottomSheetAddFolder> {
   }
 
   void _selectImageFolder() async {
-    final pickedFile = await ImagePicker().pickImage(source: ImageSource.gallery);
+    final pickedFile =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
         _imageFolder = File(pickedFile.path);
@@ -189,8 +225,13 @@ class _BottomSheetAddFolderState extends State<BottomSheetAddFolder> {
 
   void _createFolder() {
     if (_checkForms()) {
-
-       // context.read<FolderCubit>().createFolder(_nameFolder.text, _imageFolder);
+      context.read<AddFoldersCubit>().addFolders(
+        newFoldersModel: NewFoldersModel(
+          name: _nameFolder.text,
+          image: _imageFolder,
+        ),
+      );
+      pop();
     }
   }
 
@@ -199,7 +240,8 @@ class _BottomSheetAddFolderState extends State<BottomSheetAddFolder> {
       _errorNameFolder = _nameFolder.text.isEmpty
           ? AppStrings.thisFieldRequired.trans
           : null;
-      // _errorImageFolder = _imageFolder == null ? AppStrings.thisFieldRequired.trans : null;
+      _errorImageFolder =
+      _imageFolder == null ? AppStrings.thisFieldRequired.trans : null;
     });
 
     return _errorNameFolder == null;

@@ -1,5 +1,5 @@
-
-
+import 'package:new_ilearn/features/books/presentation/Widgets/listBook_shimmer.dart';
+import 'package:new_ilearn/features/folders/presentation/managers/get_folders_cubit.dart';
 import 'package:new_ilearn/features/folders/presentation/widgets/folders_grid.dart';
 import 'package:new_ilearn/features/folders/presentation/widgets/folders_header.dart';
 
@@ -43,7 +43,11 @@ class _FoldersScreenState extends State<FoldersScreen> {
               children: [
                 10.vs,
 
-                  FoldersGrid( ), // يمكنك استبداله بـ EmptyFoldersView()
+                BlocBuilder<GetFoldersCubit, CubitStates>(
+                  builder: (context, state) {
+                    return state is LoadedState ? FoldersGrid(folders: state.data.items,) : ListBookShimmer();
+                  },
+                ), // يمكنك استبداله بـ EmptyFoldersView()
               ],
             ),
           ),

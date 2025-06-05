@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
  import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:new_ilearn/core/widgets/viewAll_widget.dart';
+import 'package:new_ilearn/features/home/data/models/home_folders_model.dart';
 import 'package:new_ilearn/features/home/presentation/widgets/foldersAndBooks_widgets.dart';
 
 import '../../../../exports.dart';
 
 class BookSlide extends StatelessWidget {
   const BookSlide({
-    super.key,
+    super.key, required this.books,
   });
+  final List<Items> books;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class BookSlide extends StatelessWidget {
       child: Column(
         children: [
           ViewAll(
-            showViewAll: true,
+            showViewAll: books.length > 4,
             title: AppStrings.books.trans,
             onClick: (){},
           ),
@@ -30,7 +32,7 @@ class BookSlide extends StatelessWidget {
                   vertical: 10, horizontal: 16),
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
-              itemCount:  10,
+              itemCount:  books .length,
               itemBuilder: (context, index) {
                 return FoldersAndBooks(
                   isBook: true,
@@ -43,12 +45,12 @@ class BookSlide extends StatelessWidget {
                   },
                   onClick: () {},
                   showButton: true,
-                  bookId: "3",
+                  bookId: books[index].id ,
                   heightImage: 90.h,
-                  image: AppAssets.InfoIcon,
-                  title: "title",
-                  fileUrl: "https://example.com/file.pdf",
-                  path: "https://example.com/file.pdf",
+                  image:  books[index].imageUrl,
+                  title: books[index].name??'',
+                  fileUrl: books[index].fileUrl??'',
+                  path: books[index].localPath??'',
                 );
               },
             ),

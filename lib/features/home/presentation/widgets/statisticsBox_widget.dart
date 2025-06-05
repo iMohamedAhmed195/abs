@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:new_ilearn/config/widgets/status_message.dart';
  import 'package:new_ilearn/core/utils/app_assets.dart';
 import 'package:new_ilearn/core/utils/app_strings.dart';
+import 'package:new_ilearn/features/home/data/models/statistics_model.dart';
 import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
+import 'package:new_ilearn/features/profile/presentation/widgets/statisticReport_shimmer.dart';
 
 import '../../../../exports.dart';
 import 'circleStatistics.dart';
@@ -18,15 +21,7 @@ class StatisticsBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final list = [
-      AppStrings.satr.trans,
-      AppStrings.sun.trans,
-      AppStrings.mon.trans,
-      AppStrings.tus.trans,
-      AppStrings.wedn.trans,
-      AppStrings.ther.trans,
-      AppStrings.fri.trans
-    ];
+
 
 
     return BlocConsumer<StatisticsCubit, CubitStates>(
@@ -34,7 +29,38 @@ class StatisticsBox extends StatelessWidget {
     // TODO: implement listener
   },
   builder: (context, state) {
-    return state is LoadedState ? Container(
+    return state is LoadedState ?StatisticsSection(statisticsData: state.data,):state is FailedState? Builder(
+      builder: (context) {
+        print('Error: ${state.message}');
+        return Center(child: StatusMessage(text: state.message, padding: EdgeInsetsDirectional.only(bottom: 60.h), iconData: Icons.error));
+      }
+    ): Center(child: StatisticReportShimmer(),);
+  },
+);
+  }
+}
+class StatisticsSection extends StatefulWidget {
+  const StatisticsSection({super.key, this.statisticsData});
+final StatisticsDataModel? statisticsData;
+  @override
+  State<StatisticsSection> createState() => _StatisticsSectionState();
+}
+
+class _StatisticsSectionState extends State<StatisticsSection> {
+  final list = [
+    AppStrings.satr.trans,
+    AppStrings.sun.trans,
+    AppStrings.mon.trans,
+    AppStrings.tus.trans,
+    AppStrings.wedn.trans,
+    AppStrings.ther.trans,
+    AppStrings.fri.trans
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+
+    return  Container(
       padding: const EdgeInsetsDirectional.symmetric(
           horizontal: 21, vertical: 13),
       margin: const EdgeInsetsDirectional.only(top: 29, bottom: 16),
@@ -52,7 +78,7 @@ class StatisticsBox extends StatelessWidget {
                   CircleStatistics(
                     animation: true,
                     radius: 26,
-                    percent: 0.6,
+                    percent:widget. statisticsData!.weekPercentageData!.percentage!,
                     //5 / 100.0,
                     title:
                     '${0.6}%',
@@ -107,8 +133,6 @@ class StatisticsBox extends StatelessWidget {
           )
         ],
       ),
-    ):const Center(child: CircularProgressIndicator(),);
-  },
-);
+    );
   }
 }

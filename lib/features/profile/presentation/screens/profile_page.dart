@@ -6,14 +6,16 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:new_ilearn/core/models/user_model.dart';
 import 'package:new_ilearn/core/utils/app_assets.dart';
 import 'package:new_ilearn/core/widgets/imageUser_widget.dart';
+import 'package:new_ilearn/features/home/data/models/statistics_model.dart';
+import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
 import 'package:new_ilearn/features/profile/presentation/screens/information_page.dart';
 import 'package:new_ilearn/features/profile/presentation/screens/statistics_page.dart';
+import 'package:new_ilearn/features/profile/presentation/widgets/statisticReport_shimmer.dart';
 import '../../../../exports.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
-
-  @override
+  const ProfileScreen({super.key, });
+   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
@@ -63,7 +65,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
                 selectedTabIndex == 0
                     ?   InformationPage( ) // غير مرتبط ببيانات backend
-                    : StatisticsPage(isScroled: _isCollapsed),
+                    : BlocProvider(
+  create: (context) => StatisticsCubit(useCase: ServiceLocator.instance.getIt())..getStatistics(),
+  child: BlocBuilder<StatisticsCubit, CubitStates >(
+  builder: (context, state) {
+    return state is LoadedState<StatisticsDataModel > ? StatisticsPage(isScroled: _isCollapsed,statisticsData:state.data):state is LoadingState?const Center(child: StatisticReportShimmer()):state is FailedState?Center(child: Text(state.message)):const SizedBox();
+  },
+),
+),
               ],
             ),
           )

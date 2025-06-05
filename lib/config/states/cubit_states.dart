@@ -20,6 +20,6 @@ class FailedState extends InitialState {
 }
 
 class LoadedState<T> extends InitialState {
-  final T data;
+  final T   data;
   LoadedState({required this.data});
 }

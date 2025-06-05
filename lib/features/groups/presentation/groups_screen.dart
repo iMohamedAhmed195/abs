@@ -33,22 +33,8 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomBackground(
-      child: Column(
-        children: [
-          FoldersHeader(shrinkPercent: shrinkPercent),
-          Flexible(
-            child: ListView(shrinkWrap: true,
-              controller: _scrollController,
-              children: [
+      child: Container(child: TextWidget(text: "Archive", fontSizeText: 20.sp, colorText: AppColors.primaryColor,),),
 
-                  SizedBox(height: 16),
-                  SizedBox(  // Adjust height as needed
-                      child: FoldersGrid( )), // يمكنك استبداله بـ EmptyFoldersView()
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

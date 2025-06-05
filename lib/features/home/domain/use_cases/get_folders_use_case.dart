@@ -1,10 +1,10 @@
-import 'package:new_ilearn/features/home/data/repo_imp/folders_repo_imp.dart';
+ import 'package:new_ilearn/features/home/domain/repos/folders_repo.dart';
 
 import '../../../../exports.dart';
 
-class GetFoldersUseCase {
-  final FoldersRepoImp repo;
-  GetFoldersUseCase({required this.repo});
+class GetHomeFoldersUseCase {
+  final FoldersRepo repo;
+  GetHomeFoldersUseCase({required this.repo});
 
   Future<Either<Failure, ResponseModel>> getFolders()  => repo.getFolders();
 }

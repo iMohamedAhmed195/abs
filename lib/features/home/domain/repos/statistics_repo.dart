@@ -1,4 +1,4 @@
-import 'package:new_ilearn/features/home/data/models/folders_model.dart';
+import 'package:new_ilearn/features/home/data/models/home_folders_model.dart';
 
 import '../../../../exports.dart';
 

@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:new_ilearn/features/folders/data/models/folders_model.dart';
+import 'package:new_ilearn/features/home/data/models/home_folders_model.dart';
 import 'package:new_ilearn/features/home/presentation/widgets/foldersAndBooks_widgets.dart';
 
 import '../../../../exports.dart';
 
 class FoldersGrid extends StatelessWidget {
-  const FoldersGrid({super.key,  });
-
+  const FoldersGrid({super.key, required this.folders,  });
+final List<Folders> folders;
   @override
   Widget build(BuildContext context) {
-    final mockFolders = List.generate(10, (index) => {
-      "id": "$index",
-      "title": "${AppStrings.egypt.trans} $index",
-      "image": AppAssets.logo
-    });
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +25,7 @@ class FoldersGrid extends StatelessWidget {
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          itemCount: mockFolders.length,
+          itemCount: folders.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 1 / 0.99,
@@ -36,19 +33,19 @@ class FoldersGrid extends StatelessWidget {
             crossAxisSpacing: 8,
           ),
           itemBuilder: (context, index) {
-            final folder = mockFolders[index];
+            final folder = folders[index];
             return AnimationConfiguration.staggeredGrid(
               position: index,
               duration: const Duration(milliseconds: 400),
-              columnCount: 9,
+              columnCount: folders.length,
               child: ScaleAnimation(
                 child: FadeInAnimation(
                   child: FoldersAndBooks(
-                    idFolder: folder["id"]!,
+                    idFolder: folder.id!,
                     isBook: false,
                     radius: 16,
-                    image: folder["image"]!,
-                    title: folder["title"]!,
+                    image: folder.fullImageUrl!,
+                    title: folder.name!,
                     delete: () {},
                     onClick: () {
                       Routes.bookRoute.moveTo();
