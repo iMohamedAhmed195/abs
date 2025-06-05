@@ -87,7 +87,7 @@ abstract class RemoteExecuteImpl extends RemoteExecuteAbstract {
     required data,
   }) =>
       remoteExecute(
-        request: dioConsumer.postRequest(
+        request: dioConsumer.putRequest(
             path: endPoint, body: data, isFormData: isFormData),
         fromJsonFunction: getFromJsonFunction,
       );

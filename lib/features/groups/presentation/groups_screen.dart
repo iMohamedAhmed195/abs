@@ -33,8 +33,8 @@ class _ArchiveScreenState extends State<ArchiveScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomBackground(
-      child: Container(child: TextWidget(text: "Archive", fontSizeText: 20.sp, colorText: AppColors.primaryColor,),),
+      child: Container(child:  Image.asset(AppAssets.workingOnIt,),
 
-    );
+    ));
   }
 }

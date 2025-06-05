@@ -33,8 +33,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomBackground(
-        child: Container(child: TextWidget(text: "Archive", fontSizeText: 20.sp, colorText: AppColors.primaryColor,),),
-
+        child: Container(child:  Image.asset(AppAssets.workingOnIt,),)
       );
 
   }

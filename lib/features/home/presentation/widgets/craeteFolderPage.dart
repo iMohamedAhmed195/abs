@@ -10,6 +10,7 @@ import 'package:new_ilearn/core/widgets/form_widget.dart';
 import 'package:new_ilearn/core/widgets/imageCash_widget.dart';
 import 'package:new_ilearn/features/folders/data/models/folders_model.dart';
 import 'package:new_ilearn/features/folders/presentation/managers/add_folders_cubit.dart';
+import 'package:new_ilearn/features/folders/presentation/managers/update_folders_cubit.dart';
 
 import '../../../../exports.dart';
 
@@ -29,16 +30,23 @@ class BottomSheetAddFolder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return MultiBlocProvider(
+  providers: [
+    BlocProvider(
       create: (context) =>
           AddFoldersCubit(useCase: ServiceLocator.instance.getIt()),
-      child: _BottomSheetAddFolderBody(
+),
+    BlocProvider(
+      create: (context) =>    UpdateFoldersCubit(useCase: ServiceLocator.instance.getIt()),
+    ),
+  ],
+  child: _BottomSheetAddFolderBody(
         folderImage: folderImage,
         folderName: folderName,
         update: update,
         idFolder: idFolder,
       ),
-    );
+);
   }
 }
 
@@ -204,7 +212,7 @@ class _BottomSheetAddFolderBodyState
             title: widget.update
                 ? AppStrings.updateFolder.trans
                 : AppStrings.create.trans,
-            onClick: _createFolder,
+            onClick: widget.update ? _updateFolder : _createFolder,
           ),
         ],
       ),
@@ -226,6 +234,16 @@ class _BottomSheetAddFolderBodyState
   void _createFolder() {
     if (_checkForms()) {
       context.read<AddFoldersCubit>().addFolders(
+        newFoldersModel: NewFoldersModel(
+          name: _nameFolder.text,
+          image: _imageFolder,
+        ),
+      );
+      pop();
+    }
+  }  void _updateFolder() {
+    if (_checkForms()) {
+      context.read<UpdateFoldersCubit>().updateFolders(id: widget.idFolder,
         newFoldersModel: NewFoldersModel(
           name: _nameFolder.text,
           image: _imageFolder,

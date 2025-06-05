@@ -14,9 +14,9 @@ class UpdateFoldersRemoteDateSourceImpl extends RemoteExecuteImpl
   @override
   Future<ResponseModel> updateFolder({
     required NewFoldersModel newFoldersModel,required String id
-  }) => updateData(
+  }) => updateData(isFormData: true,
     endPoint: "${EndPoints.folders}/$id",
-    getFromJsonFunction: FoldersResponseModel.fromJson,
+    getFromJsonFunction: ResponseModel.fromJson,
     data: newFoldersModel.toJson(),
   );
 }

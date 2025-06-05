@@ -88,7 +88,7 @@ class RouteGenerator {
         );
       case Routes.enterOtpRoute:
         return buildPageRoute<T>(
-          child: EnterOtpScreen(
+          child: EnterOtpScreen(isFromForgetPassword:   (routeSettings.arguments as Map<String, dynamic>)["isFromForgetPassword"],
             email: (routeSettings.arguments as Map<String, dynamic>)["email"],
           ),
           routeSettings: routeSettings,
@@ -114,12 +114,10 @@ class RouteGenerator {
       case Routes.aboutAppScreen:
         return buildPageRoute<T>(
           child: AboutAppScreen(),
-          child: EnterOtpScreen(
-              email: (routeSettings.arguments as Map<String, dynamic>)["email"],
-            isFromForgetPassword: (routeSettings.arguments as Map<String, dynamic>)["isFromForgetPassword"],
-          ),
+
           routeSettings: routeSettings,
         );
+
       case Routes.privacyPolicyScreen:
         return buildPageRoute<T>(
           child: PrivacyPolicyScreen(),

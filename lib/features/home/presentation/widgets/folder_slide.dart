@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:new_ilearn/core/utils/app_assets.dart';
 import 'package:new_ilearn/core/utils/app_strings.dart';
 import 'package:new_ilearn/core/widgets/viewAll_widget.dart';
+import 'package:new_ilearn/features/folders/presentation/managers/delete_folder_by_id_cubit.dart';
 import 'package:new_ilearn/features/home/data/models/home_folders_model.dart';
 import 'package:new_ilearn/features/home/presentation/widgets/foldersAndBooks_widgets.dart';
 
@@ -42,7 +43,11 @@ class FolderSlide extends StatelessWidget {
                 idFolder: "${folders[index].id}",
                 isBook: false,
                 isShowDeleteButton: false,
-                delete: () {},
+                delete: () {
+                  print(folders[index].id);
+                  // context.read<DeleteFolderByIdCubit>().deleteFolder(id: folders[index].id!);
+
+                },
                 onClick: () {
                   show  =! show;
                 },

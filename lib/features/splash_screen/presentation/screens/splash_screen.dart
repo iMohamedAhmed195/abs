@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:lottie/lottie.dart';
+import 'package:new_ilearn/config/constants/app_prefs.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/manager/get_configration_cubit.dart';
 
 import '../../../../exports.dart';
@@ -37,8 +38,9 @@ class _SplashScreenState extends State<SplashScreen> {
       // ConfigData? configData = await getBlocData<ConfigurationCubit>().getConfig();
       // print(user?.token);
       // print(user?.devToken);
-      // print("the token is" + AppPrefs.token.toString());
-      route = Routes.onBoardingRoute;
+      print("the token is" + AppPrefs.token.toString());
+
+      route = AppPrefs.token.isNotNull ? Routes.bottomNavigationRoute : Routes.onBoardingRoute;
       // print("new install ${isNew}");
       // if (isLanguageSaved.isFalse) {
       //   route = Routes.selectLanguageRoute;

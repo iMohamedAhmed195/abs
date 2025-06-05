@@ -5,16 +5,16 @@ abstract class EndPoints {
   static const String profile = '${api}profile/';
   static const String user = '${api}user';
   static const String estate = '${api}estate';
-  static const String image = baseUrl;
+  static const String image = "${baseUrl}+${api}";
 
 ///////////////////////////// authentication ////////////////////////////
   static const String login = '${api}auth/signin';
   static const String loginWithGoogle = '${api}auth/google';
   static const String loginWithFacebook = '${api}auth/facebook';
   static const String logout = '${api}auth/signout';
-  static const String register = '${api}register';
-  static const String verify = '${api}auth/verifyResetCode';
-  static const String reSend = '${api}resend-code';
+  static const String register = '${api}/auth/signup';
+  static const String verify = '${api}auth/verify-email';
+  static const String reSend = '${api}auth/resend-verification-email';
   static const String changePhone = '${api}change-phone';
   static const String getBrokers = '${api}users';
   static const String brokers = '${api}select/roles';
@@ -32,7 +32,7 @@ abstract class EndPoints {
   static const String statistics = '${api}statistics/home';
   static const String groupsChat = '${api}groupschat';
 
-  static const String config = '${api}select/configuration';
+  static const String config = '${api}country';
   static const String home = '${api}home';
 
   static const String estateAd = '${api}estate/ad';

@@ -19,6 +19,7 @@ class _EnterOtpScreenState extends State<EnterOtpScreen> {
   void initState() {
     otp='';
     super.initState();
+    print(widget.isFromForgetPassword ? 'Forget Password' : 'Verify Email');
 
   }
 dispose() {
@@ -98,12 +99,21 @@ dispose() {
                         onClick: (){
                           checkStringError(context, otp, Errors.OTP_ERROR);
                           if(dontHaveErrors(context)){
-                          widget.isFromForgetPassword?  context.read<AuthCubit>().verifyForgetPassword(verifyRequestModel: VerifyForgetPasswordRequestModel(
-                                    email: widget.email,
-                                    verifyCode: otp,), email: widget.email):
-                          context.read<AuthCubit>().verifyEmail(verifyRequestModel: VerifyEmailRequestModel(
-                            email: widget.email,
-                            verifyCode: otp,), email: widget.email);
+                            if(widget.isFromForgetPassword){
+                              context.read<AuthCubit>().verifyForgetPassword(verifyRequestModel: VerifyForgetPasswordRequestModel(
+                                email: widget.email,
+                                verifyCode: otp,), email: widget.email);
+                            }else{
+                              context.read<AuthCubit>().verifyEmail(verifyRequestModel: VerifyEmailRequestModel(
+                                email: widget.email,
+                                verifyCode: otp,), email: widget.email);
+                            }
+                          // widget.isFromForgetPassword?  context.read<AuthCubit>().verifyForgetPassword(verifyRequestModel: VerifyForgetPasswordRequestModel(
+                          //           email: widget.email,
+                          //           verifyCode: otp,), email: widget.email):
+                          // context.read<AuthCubit>().verifyEmail(verifyRequestModel: VerifyEmailRequestModel(
+                          //   email: widget.email,
+                          //   verifyCode: otp,), email: widget.email);
                           }
                         },
                       ),

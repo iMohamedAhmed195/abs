@@ -13,12 +13,12 @@ class DeleteFolderByIdCubit extends Cubit<CubitStates> {
 
 
   deleteFolder({required String id}) =>
-      managerExecute<HomeFoldersDataModel>(
+      executeWithDialog(either:
 
    useCase.deleteFoldersById(id: id),
 
           onSuccess: (data) {
              emit(LoadedState(data: data));
-          },
-          onFail: (message) => emit(FailedState(message: message)));
+          },startingMessage:  'loading'.tr(),
+          onError: (message) => emit(FailedState(message: message)));
 }

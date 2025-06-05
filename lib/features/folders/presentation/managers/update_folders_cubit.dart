@@ -13,13 +13,13 @@ class UpdateFoldersCubit extends Cubit<CubitStates> {
 
 
   updateFolders({required NewFoldersModel newFoldersModel,required String? id}) =>
-      managerExecute<FoldersDataModel>(
+      executeWithDialog(either:
 
-   useCase.updateFolders(newFoldersModel: newFoldersModel, id: id),
+   useCase.updateFolders(newFoldersModel: newFoldersModel, id: id),startingMessage: "Updating folder...",
 
           onSuccess: (data) {
             print("getGroups");
             emit(LoadedState(data: data));
           },
-          onFail: (message) => emit(FailedState(message: message)));
+          onError: (message) => emit(FailedState(message: message)));
 }

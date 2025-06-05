@@ -18,6 +18,7 @@ class AppAssets {
 
   //! PNGs
   static String logoWhite = "${PngImages.imagesPath}/logo_white.png";
+  static String workingOnIt = "${PngImages.imagesPath}/working_on_it.jpg";
   static String logo = "${PngImages.imagesPath}/logo.png";
   static String bubbleWelcomeScreen = '${PngImages.imagesPath}/bubble_wellcomScreen.png';
   static String bubbleWelcomeScreenLight = '${PngImages.imagesPath}/bubble_wellcomeScreen_light.png';

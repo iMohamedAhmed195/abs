@@ -29,7 +29,11 @@ class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
 
   // تخزين الصفحات في ذاكرة التخزين المؤقت
   final List<Widget> _pages = navBarItems.map((item) => item.screens).toList();
-
+@override
+  void initState() {
+    super.initState();
+    context.read<BottomNavOperationCubit>().changIndex(2);
+  }
   @override
   Widget build(BuildContext context) {
     return PopScope(

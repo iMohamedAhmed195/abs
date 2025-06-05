@@ -4,6 +4,7 @@
 import 'package:new_ilearn/config/widgets/status_message.dart';
 import 'package:new_ilearn/core/widgets/imageUser_widget.dart';
 import 'package:new_ilearn/core/widgets/openContainerAnimation_widget.dart';
+import 'package:new_ilearn/core/widgets/shimmerVerticalGroups.dart';
 import 'package:new_ilearn/core/widgets/viewAll_widget.dart';
 import 'package:new_ilearn/features/home/presentation/managers/groups_chat_cubit.dart';
 
@@ -56,7 +57,7 @@ class ActiveGroups extends StatelessWidget {
                                 OpenContainerAnimation(
 
                                   closedWidget: ImageUser(
-                                    image: "${EndPoints.image}${activeGroups.items?[index].fullImageUrl}" ??'',
+                                    image: activeGroups.items?[index].imageUrl ??'',
                                     height: 65.h,
                                     width: 65.w,
                                     margin: 9,
@@ -114,7 +115,7 @@ class GroupsBlocBuilder extends StatelessWidget {
   child: BlocBuilder<GroupsChatCubit, CubitStates>(
   builder: (context, state) {
 
-    return state is LoadedState ? ActiveGroups(activeGroups:state.data,active: state.data.items!.isNotEmpty?true:false,):state is FailedState? Center(child: StatusMessage(text: state.message, padding: EdgeInsetsDirectional.only(bottom: 60.h), iconData: Icons.error)):const Center(child: CircularProgressIndicator(),);
+    return state is LoadedState ? ActiveGroups(activeGroups:state.data,active: state.data.items!.isNotEmpty?true:false,):state is FailedState? Center(child: StatusMessage(text: state.message, padding: EdgeInsetsDirectional.only(bottom: 60.h), iconData: Icons.error)):const Center(child: ShimmerVerticalGroups(),);
   },
 ),
 );
