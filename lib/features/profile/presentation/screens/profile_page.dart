@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   create: (context) => StatisticsCubit(useCase: ServiceLocator.instance.getIt())..getStatistics(),
   child: BlocBuilder<StatisticsCubit, CubitStates >(
   builder: (context, state) {
-    return state is LoadedState<StatisticsDataModel > ? StatisticsPage(isScroled: _isCollapsed,statisticsData:state.data):state is LoadingState?const Center(child: StatisticReportShimmer()):state is FailedState?Center(child: Text(state.message)):const SizedBox();
+    return state is LoadedState? StatisticsPage(isScroled: _isCollapsed,statisticsData:state.data):state is LoadingState?const Center(child: StatisticReportShimmer()):state is FailedState?Center(child: Text(state.message)):const SizedBox();
   },
 ),
 ),

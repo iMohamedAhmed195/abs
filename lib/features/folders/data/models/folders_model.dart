@@ -142,7 +142,7 @@ Folders copyWith({  String? fullImageUrl,
 
 class NewFoldersModel  {
   String? name;
-  File? image;
+  String? image;
   NewFoldersModel({
       this.name,
       this.image,});

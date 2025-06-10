@@ -236,7 +236,7 @@ class _BottomSheetAddFolderBodyState
       context.read<AddFoldersCubit>().addFolders(
         newFoldersModel: NewFoldersModel(
           name: _nameFolder.text,
-          image: _imageFolder,
+          image: _imageFolder?.path,
         ),
       );
       pop();
@@ -246,7 +246,7 @@ class _BottomSheetAddFolderBodyState
       context.read<UpdateFoldersCubit>().updateFolders(id: widget.idFolder,
         newFoldersModel: NewFoldersModel(
           name: _nameFolder.text,
-          image: _imageFolder,
+          image: _imageFolder?.path,
         ),
       );
       pop();

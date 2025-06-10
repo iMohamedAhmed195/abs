@@ -152,20 +152,3 @@ Future<void> loadingSystem(BuildContext context) async {
     ),
   );
 }
-void showSnackBar({
-  required BuildContext context,
-  required String message,
-  required visibleMessage,
-  ToastGravity gravity = ToastGravity.BOTTOM,
-  int durationSeconds = 3,
-}) {
-  Fluttertoast.showToast(
-    msg: message,
-    toastLength: Toast.LENGTH_SHORT,
-    gravity: gravity,
-    backgroundColor: visibleMessage ? Colors.green : Colors.red,
-    textColor: Colors.white,
-    fontSize: 14.0,
-    timeInSecForIosWeb: durationSeconds,
-  );
-}

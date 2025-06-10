@@ -1,9 +1,27 @@
 import 'dart:async';
 
+import 'package:fluttertoast/fluttertoast.dart';
+
 import '../constants/localization_constants.dart';
 import '../../exports.dart';
 import '../widgets/custom_dialog.dart';
-
+void showToast({
+  required BuildContext context,
+  required String message,
+  required visibleMessage,
+  ToastGravity gravity = ToastGravity.BOTTOM,
+  int durationSeconds = 3,
+}) {
+  Fluttertoast.showToast(
+    msg: message,
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: gravity,
+    backgroundColor: visibleMessage ? Colors.green : Colors.red,
+    textColor: Colors.white,
+    fontSize: 14.0,
+    timeInSecForIosWeb: durationSeconds,
+  );
+}
 showSnackBar({required String message, required AlertTypes alertType, Duration? duration}) {
   Color backgroundColor = AppColors.white;
   if (alertType == AlertTypes.success) {
