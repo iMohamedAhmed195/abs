@@ -64,6 +64,7 @@ class AppAssets {
   static String addFolderIcon = '${PngImages.imagesPath}/addFoldreIcon.png';
   static String folderImage = '${PngImages.imagesPath}/folderImage.png';
   static String bookImage = '${PngImages.imagesPath}/bookImage.png';
+   static String empty = '${PngImages.imagesPath}/empty.png';
   static String bookImage2 = '${PngImages.imagesPath}/bookImage2.png';
   static String galleryAdd = '${SvgImages.svgPath}/galleryAdd.svg';
   static String editeIcon = '${SvgImages.svgPath}/editeIcon.svg';

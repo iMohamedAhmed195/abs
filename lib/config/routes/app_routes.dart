@@ -10,7 +10,7 @@ import 'package:new_ilearn/features/home/presentation/managers/groups_chat_cubit
 import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
 import 'package:new_ilearn/features/notification/presentation/notification_screen.dart';
 import 'package:new_ilearn/features/on_boarding/presentation/on_boarding_screen.dart';
-import 'package:new_ilearn/features/profile/presentation/screens/profile_page.dart';
+import 'package:new_ilearn/features/profile/presentation/screens/profile_screen.dart';
 import 'package:new_ilearn/features/settings/presentation/screens/setting_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/splash_screen.dart';
 import 'package:new_ilearn/features/splash_screen/presentation/screens/start_screen.dart';

@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:new_ilearn/config/constants/app_prefs.dart';
 import 'package:new_ilearn/core/models/user_model.dart';
 import 'package:new_ilearn/core/utils/app_assets.dart';
 import 'package:new_ilearn/core/widgets/imageUser_widget.dart';
 import 'package:new_ilearn/features/home/data/models/statistics_model.dart';
 import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
-import 'package:new_ilearn/features/profile/presentation/screens/information_page.dart';
-import 'package:new_ilearn/features/profile/presentation/screens/statistics_page.dart';
+import 'package:new_ilearn/features/profile/presentation/screens/information_screen .dart';
+import 'package:new_ilearn/features/profile/presentation/screens/statistics_screen.dart';
 import 'package:new_ilearn/features/profile/presentation/widgets/statisticReport_shimmer.dart';
 import '../../../../exports.dart';
 
@@ -27,8 +28,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   bool _isLoadingImage = false;
 
   // بيانات ثابتة بدل الباكند
-  final String _username = "أحمد سعيد";
-  final String _imageUrl = "https://via.placeholder.com/150";
+  final String _username = AppPrefs.user?.user?.username ?? '';
+  final String _imageUrl = AppPrefs.user?.user?.imageUrl ?? '';
 
   @override
   void initState() {
@@ -93,7 +94,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               AnimatedAlign(
                 duration: const Duration(milliseconds: 300),
                 alignment: _isCollapsed
-                    ? Alignment.topLeft
+                    ? Alignment.topRight
                     : Alignment.topCenter,
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 300),

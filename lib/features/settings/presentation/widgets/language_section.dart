@@ -5,7 +5,7 @@ import 'package:new_ilearn/features/settings/presentation/widgets/tile_widget.da
 import '../../../../exports.dart';
 
 class LanguageSection extends StatelessWidget {
-  final SettingsState settings;
+  final SettingsState  settings;
   final Function(String?) onLanguageChanged;
 
   const LanguageSection({

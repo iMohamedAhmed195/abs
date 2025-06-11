@@ -4,7 +4,7 @@ import 'package:new_ilearn/features/splash_screen/domain/use_cases/get_config_us
 
 import '../../data/models/config_response_model.dart';
 
-class ConfigurationCubit extends Cubit<CubitStates> {
+class   ConfigurationCubit extends Cubit<CubitStates> {
   final GetConfigUseCase getConfigUseCase;
   ConfigurationCubit({required this.getConfigUseCase}) : super(LoadingState());
   ConfigData? configData;

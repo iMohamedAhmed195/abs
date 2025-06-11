@@ -54,21 +54,21 @@ class _StatisticsPageState extends State<StatisticsPage>   {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   StatisticsTap(
-                    title: AppStrings.points.trans,
+                    title: AppStrings.points,
                     icon: AppAssets.pointStatistics.trans,
                     numberOfStatistic: formatNumber.format(double.parse( widget.statisticsData.getExcitementPoin
                         .toString()
                        )),
                   ),
                   StatisticsTap(
-                    title: AppStrings.uploadedBooks.trans,
+                    title: AppStrings.uploadedBooks,
                     icon: AppAssets.bookStatistics,
                     numberOfStatistic: widget.statisticsData
                         .booksPercentage!.booksCount
                         .toString(),
                   ),
                   StatisticsTap(
-                    title: AppStrings.recordSuccess.trans,
+                    title: AppStrings.recordSuccess,
                     icon: AppAssets.testStatistics,
                       numberOfStatistic: widget.statisticsData
                           .examsPercentage!.examsCount
@@ -218,31 +218,31 @@ class _StatisticsPageState extends State<StatisticsPage>   {
         StatisticReport(
           percent:
            widget.statisticsData.examsPercentage!.percentage!,
-          title: AppStrings.performanceRate,
+          title: AppStrings.performanceRate.trans,
           colorCircle: Colors.green,
           onClick: () {},
-          subTitle: AppStrings.completedTests,
+          subTitle: AppStrings.completedTests.trans,
           titlePercent:
           '${ widget.statisticsData.examsPercentage!.percentage.toString()}%',
         ),
         StatisticReport(
           percent:
-           widget.statisticsData.booksPercentage!.percentage!,
-          title: AppStrings.uploadedBooks,
+          ((widget. statisticsData.weekPercentageData!.percentage)! /(1000.0) ),
+          title: AppStrings.uploadedBooks.trans,
           colorCircle: Colors.orange,
           onClick: () {},
           subTitle:
-          AppStrings.booksUploadedToApplication,
+          AppStrings.booksUploadedToApplication.trans,
           titlePercent:
-          '${ widget.statisticsData.booksPercentage!.percentage.toString()}%',
+          '${  double.parse(widget.statisticsData.booksPercentage!.booksCount.toString())}',
         ),
         StatisticReport(
-          percent:  double.parse(widget.statisticsData.getExcitementPoin.toString()),
-          title: AppStrings.points,
+          percent:  double.parse(widget.statisticsData.getExcitementPoin.toString())/100,
+          title: AppStrings.points.trans,
           colorCircle: AppColors.primaryColor,
           onClick: () {},
           subTitle:
-          AppStrings.enthusiasmPointsEarned,
+          AppStrings.enthusiasmPointsEarned.trans,
           titlePercent:
           '${formatNumber.format(double.parse( widget.statisticsData.getExcitementPoin.toString()))}%',
         ),

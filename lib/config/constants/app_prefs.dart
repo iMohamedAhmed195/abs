@@ -28,6 +28,7 @@ class AppPrefs {
   static const String prefsNewInstallKey = 'NEW_INSTALLATION';
   static const String guestKey = 'GuestKey';
   static const String deviceTokenKey = 'FCM_TOKEN';
+  static const String darkModeKey = 'darkMode';
 
   static String adsKey = "ADS";
 
@@ -41,10 +42,13 @@ class AppPrefs {
   static Future<bool> get getStartedPressed async => _preferences.getBool(prefsGetStatedKey) ?? false;
 
   static Future<void> get setGuest async => _preferences.setBool(guestKey, true);
+  static Future<void>    setDarkMode(bool value) async => _preferences.setBool(darkModeKey, value);
   static Future<bool> get getGuest async => _preferences.getBool(guestKey) ?? false;
 
   /*  used in splash screens to check if user is new or not to handle which screens to go */
   static bool get getIsNewUser => _preferences.getBool(_newUserKey) ?? true;
   static Future<bool> get setNewUser async => await _preferences.setBool(_newUserKey, false);
   static Future<bool> get removeToken async => await _preferences.remove(AppPrefs.prefsUsersKey);
+
+  static Future<bool> get getDarkMode async => await _preferences.getBool(darkModeKey) ?? false;
 }

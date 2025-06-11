@@ -30,7 +30,7 @@ class AppColors {
   static const Color searchLightGray = Color(0xFF3C3C43AD);
   static const Color green = Color(0xFF17CE4E);
   static const Color primaryColorLighterThan = const Color(0xffDCF8FF);
-
+  static const Color colorNavigationGray = const Color(0xffF5F6F7);
 
 
 

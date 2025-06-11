@@ -37,7 +37,7 @@ class StatisticsTap extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             TextWidget(
-              text: title,
+              text: title.trans,
               fontSizeText: 9,
             ),
           ],

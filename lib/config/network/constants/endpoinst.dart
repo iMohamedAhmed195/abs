@@ -34,6 +34,7 @@ abstract class EndPoints {
 
   static const String config = '${api}country';
   static const String home = '${api}home';
+  static const String reports = '${api}statistics/reports';
 
   static const String estateAd = '${api}estate/ad';
   static const String estateRequest = '${api}estate/request';

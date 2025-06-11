@@ -87,7 +87,6 @@ class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
                         point: 10,
                       ),
                     Expanded(
-                      // استبدال IndexedStack بـ PageView مع حفظ الحالة
                       child: PageView.builder(
                         physics: const NeverScrollableScrollPhysics(), // لمنع التمرير الجانبي
                         itemCount: _pages.length,
@@ -132,7 +131,7 @@ class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
                   color: AppColors.white,
                   background: AppColors.primaryColor,
                 ),
-                color: AppColors.grey,
+                color: AppColors.grey,titleStyle: getRegularTextStyle(fontSize: 10, color: AppColors.black),
                 colorSelected: AppColors.white,
                 indexSelected: currentIndex,
               ),
@@ -144,7 +143,6 @@ class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
   }
 
   void _onItemTapped(int index) {
-    // التأكد من أننا لا نعيد تحميل الصفحة الحالية
     if (context.read<BottomNavOperationCubit>().state != index) {
       context.read<BottomNavOperationCubit>().changIndex(index);
 

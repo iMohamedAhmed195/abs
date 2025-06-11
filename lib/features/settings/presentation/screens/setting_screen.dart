@@ -1,5 +1,7 @@
 // settings_screen.dart
 import 'package:flutter/material.dart';
+import 'package:new_ilearn/core/utils/theme/app_theme.dart';
+import 'package:new_ilearn/core/utils/theme/theme_cubit.dart';
 import 'package:new_ilearn/features/bottom_navigation/presentation/widget/custom_appbar_widget.dart';
 import 'package:new_ilearn/features/settings/data/statics/settings_service.dart';
 import 'package:new_ilearn/features/settings/data/statics/settings_state.dart';
@@ -34,7 +36,8 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomBackground(appBar: CustomAppBar(title: AppStrings.settings.trans),
+    return CustomBackground(backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      appBar: CustomAppBar(title: AppStrings.settings.trans),
       child: ListView(
         padding: SettingsConstants.listPadding,
         children: [
@@ -43,7 +46,7 @@ class _SettingScreenState extends State<SettingScreen> {
             onLanguageChanged: _handleLanguageChange,
           ),
           AppearanceSection(
-            settings: _settings,
+            value: context.read<ThemeCubit>().isDark,
             onThemeChanged: _handleThemeChange,
           ),
           NotificationSection(
@@ -75,12 +78,12 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   void _handleThemeChange(bool isDarkMode) {
-    if (isDarkMode != _settings.nightMode) {
-      setState(() {
-        _settings = _settings.copyWith(nightMode: isDarkMode);
-      });
-      _settingsService.updateTheme(isDarkMode);
-    }
+ context.read<ThemeCubit>().changeThemeMode(); // Add this line to toggle the theme>
+  isDarkMode =  context.read<ThemeCubit>().isDark;
+  setState(() {
+      _settings = _settings.copyWith(nightMode: isDarkMode);
+    });
+    _settingsService.updateTheme(isDarkMode);
   }
 
   void _handleNotificationChange(bool isMuted) {

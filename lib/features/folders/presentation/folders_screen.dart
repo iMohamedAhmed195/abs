@@ -1,4 +1,6 @@
+import 'package:new_ilearn/config/widgets/empty_widget.dart';
 import 'package:new_ilearn/features/books/presentation/Widgets/listBook_shimmer.dart';
+import 'package:new_ilearn/features/folders/data/models/folders_model.dart';
 import 'package:new_ilearn/features/folders/presentation/managers/get_folders_cubit.dart';
 import 'package:new_ilearn/features/folders/presentation/widgets/folders_grid.dart';
 import 'package:new_ilearn/features/folders/presentation/widgets/folders_header.dart';
@@ -38,16 +40,28 @@ class _FoldersScreenState extends State<FoldersScreen> {
           FoldersHeader(shrinkPercent: shrinkPercent),
 
           Flexible(
-            child: ListView(shrinkWrap: true,
+            child: ListView(
+              shrinkWrap: true,
               controller: _scrollController,
               children: [
                 10.vs,
 
                 BlocBuilder<GetFoldersCubit, CubitStates>(
                   builder: (context, state) {
-                    return state is LoadedState ? FoldersGrid(folders: state.data.items,) : ListBookShimmer();
+                    return state is LoadedState
+                        ? Builder(
+                          builder: (context) {
+                            final FoldersDataModel folders = state.data;
+                            return folders.items!.isNotEmpty
+                                ? FoldersGrid(
+                                  folders: folders.items!,
+                                )
+                                : EmptyWidget(message: AppStrings.noFolders);
+                          },
+                        )
+                        : ListBookShimmer();
                   },
-                ), // يمكنك استبداله بـ EmptyFoldersView()
+                ),
               ],
             ),
           ),
@@ -56,3 +70,4 @@ class _FoldersScreenState extends State<FoldersScreen> {
     );
   }
 }
+

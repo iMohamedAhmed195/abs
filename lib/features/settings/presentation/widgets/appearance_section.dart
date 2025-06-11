@@ -1,3 +1,4 @@
+import 'package:new_ilearn/core/utils/theme/theme_cubit.dart';
 import 'package:new_ilearn/features/settings/data/statics/settings_state.dart';
 import 'package:new_ilearn/features/settings/presentation/widgets/switch_widget.dart';
 import 'package:new_ilearn/features/settings/presentation/widgets/tile_widget.dart';
@@ -5,12 +6,12 @@ import 'package:new_ilearn/features/settings/presentation/widgets/tile_widget.da
 import '../../../../exports.dart';
 
 class AppearanceSection extends StatelessWidget {
-  final SettingsState settings;
+  final bool value  ;
   final Function(bool) onThemeChanged;
 
   const AppearanceSection({
     super.key,
-    required this.settings,
+    required this.value,
     required this.onThemeChanged,
   });
 
@@ -20,7 +21,7 @@ class AppearanceSection extends StatelessWidget {
       icon: AppAssets.themicon,
       title: AppStrings.nightMode.trans,
       trailing: CustomSwitch(
-        value: settings.nightMode,
+        value: value,
         onChanged: onThemeChanged,
       ),
     );

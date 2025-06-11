@@ -8,7 +8,7 @@ import 'package:new_ilearn/features/groups/presentation/groups_screen.dart';
 import 'package:new_ilearn/features/home/presentation/managers/groups_chat_cubit.dart';
 import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
 import 'package:new_ilearn/features/home/presentation/screens/home_screen.dart';
-import 'package:new_ilearn/features/profile/presentation/screens/profile_page.dart';
+import 'package:new_ilearn/features/profile/presentation/screens/profile_screen.dart';
 
 import '../../../home/presentation/managers/folders_cubit.dart';
 

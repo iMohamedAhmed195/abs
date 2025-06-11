@@ -1,6 +1,9 @@
 import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:device_preview/device_preview.dart';
+import 'package:new_ilearn/config/constants/app_prefs.dart';
+import 'package:new_ilearn/core/utils/theme/app_theme.dart';
+import 'package:new_ilearn/core/utils/theme/theme_cubit.dart';
 import 'exports.dart';
 
 class ILearnApp extends StatefulWidget {
@@ -9,14 +12,19 @@ class ILearnApp extends StatefulWidget {
   @override
   State<ILearnApp> createState() => _ILearnAppState();
 }
-
+late ThemeCubit _themeCubit;
 class _ILearnAppState extends State<ILearnApp> {
   // late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
   // bool _hasInternet = true;
+  bool isDark = false;
+
 
   @override
   void initState() {
+
     super.initState();
+
+
     // _connectivitySubscription =
     //     Connectivity().onConnectivityChanged.listen(_updateConnectionStatus);
     // _checkInitialConnection();
@@ -71,9 +79,12 @@ class _ILearnAppState extends State<ILearnApp> {
   }
 
   Widget _buildApp(BuildContext context) {
+
     return GestureDetector(
       onTap: hideKeyboard, // call the function
       child: MaterialApp(
+        themeMode:  ThemeMode.light,
+        theme: AppTheme.lightTheme,
         locale: context.locale,
         builder: (context, child) {
           return Directionality(
@@ -96,12 +107,7 @@ class _ILearnAppState extends State<ILearnApp> {
         },
         navigatorKey: navigatorKey,
         color: AppColors.primaryColor,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          scaffoldBackgroundColor: AppColors.white,
-          useMaterial3: true,
-        ),
-        onGenerateRoute: RouteGenerator.generateRoute,
+         onGenerateRoute: RouteGenerator.generateRoute,
       ),
     );
   }

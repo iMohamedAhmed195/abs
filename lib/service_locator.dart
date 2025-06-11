@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:new_ilearn/core/utils/theme/theme_cubit.dart';
 import 'package:new_ilearn/features/auth/data/data_source/local_auth_data_source.dart';
 import 'package:new_ilearn/features/auth/data/data_source/remote_auth_data_source.dart';
 import 'package:new_ilearn/features/auth/data/repositories/auth_repo_impl.dart';
@@ -50,10 +51,12 @@ class ServiceLocator {
 
   /// Factory method that reuse same instance automatically
 
-  static ServiceLocator instance = ServiceLocator._internal(); // named constructor
+  static ServiceLocator instance = ServiceLocator
+      ._internal(); // named constructor
 
   /// Private constructor
   ServiceLocator._internal();
+
   factory ServiceLocator() => instance; // singleton
   Future<void> get init async {
     await registerPrefs;
@@ -69,85 +72,140 @@ class ServiceLocator {
     registerGetFolderByIdFeatures;
     registerGetFoldersFeatures;
     registerAddFoldersFeatures;
+    registerTheme;
   }
 
   get registerNetwork {
     getIt.registerLazySingleton<Dio>(() => Dio());
     getIt.registerLazySingleton<DioInterceptor>(() => DioInterceptor());
-    getIt.registerLazySingleton<LogInterceptor>(() => LogInterceptor(
-        request: true, requestBody: true, requestHeader: true, responseBody: true, responseHeader: true, error: true));
+    getIt.registerLazySingleton<LogInterceptor>(() =>
+        LogInterceptor(
+            request: true,
+            requestBody: true,
+            requestHeader: true,
+            responseBody: true,
+            responseHeader: true,
+            error: true));
     getIt.registerLazySingleton<DioConsumer>(
-        () => DioConsumer(client: getIt(), dioInterceptor: getIt(), logInterceptor: getIt())..dioInit());
+            () =>
+        DioConsumer(
+            client: getIt(), dioInterceptor: getIt(), logInterceptor: getIt())
+          ..dioInit());
     /*********************************** end of network  ****************************************/
   }
+
   get registerPrefs async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     getIt.registerLazySingleton<SharedPreferences>(() => preferences);
-    getIt.registerLazySingleton<CacheAbstract>(() => CacheImpl(sharedPreferences: getIt<SharedPreferences>()));
-
+    getIt.registerLazySingleton<CacheAbstract>(() =>
+        CacheImpl(sharedPreferences: getIt<SharedPreferences>()));
   }
-  get registerPermission => getIt.registerLazySingleton(() => PermissionManager());
+
+  get registerPermission =>
+      getIt.registerLazySingleton(() => PermissionManager());
 
   get registerAuthDependencies {
-    getIt.registerLazySingleton<AuthLocalDataSource>(() => AuthLocalDataSourceImpl(cache: getIt()));
-    getIt.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(dioConsumer: getIt()));
-    getIt.registerLazySingleton<AuthRepo>(() => AuthRepoImpl(authLocalDataSource: getIt(), authRemoteDataSource: getIt()));
-    getIt.registerLazySingleton<AuthUseCase>(() => AuthUseCase(authRepo: getIt()));
-    getIt.registerLazySingleton<AuthCubit>(() => AuthCubit(authUseCase: getIt()));
+    getIt.registerLazySingleton<AuthLocalDataSource>(() =>
+        AuthLocalDataSourceImpl(cache: getIt()));
+    getIt.registerLazySingleton<AuthRemoteDataSource>(() =>
+        AuthRemoteDataSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<AuthRepo>(() =>
+        AuthRepoImpl(
+        authLocalDataSource: getIt(), authRemoteDataSource: getIt()));
+    getIt.registerLazySingleton<AuthUseCase>(() =>
+        AuthUseCase(authRepo: getIt()));
+    getIt.registerLazySingleton<AuthCubit>(() =>
+        AuthCubit(authUseCase: getIt()));
   }
+
   get registerConfig {
-    getIt.registerLazySingleton<GetConfigurationLocalDataSource>(() => GetConfigurationLocalDataSourceImpl(cache: getIt()));
-    getIt.registerLazySingleton<GetConfigRemoteDataSource>(() => GetConfigRemoteDataSourceImpl(dioConsumer: getIt()));
-    getIt.registerLazySingleton<GetConfigRepo>(() =>GetConfigRepoImpl(getConfigLocalDataSource: getIt(), getConfigRemoteDataSource: getIt()));
-    getIt.registerLazySingleton<GetConfigUseCase>(() => GetConfigUseCase(getConfigRepo: getIt()));
-    getIt.registerLazySingleton<ConfigurationCubit>(() => ConfigurationCubit(getConfigUseCase: getIt()));
+    getIt.registerLazySingleton<GetConfigurationLocalDataSource>(() =>
+        GetConfigurationLocalDataSourceImpl(cache: getIt()));
+    getIt.registerLazySingleton<GetConfigRemoteDataSource>(() =>
+        GetConfigRemoteDataSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<GetConfigRepo>(() =>
+        GetConfigRepoImpl(
+        getConfigLocalDataSource: getIt(),
+        getConfigRemoteDataSource: getIt()));
+    getIt.registerLazySingleton<GetConfigUseCase>(() =>
+        GetConfigUseCase(getConfigRepo: getIt()));
+    getIt.registerLazySingleton<ConfigurationCubit>(() =>
+        ConfigurationCubit(getConfigUseCase: getIt()));
   }
 
   get registerHomeStatistics {
-    getIt.registerLazySingleton<StatisticsRemoteDateSource>(() => StatisticsRemoteDateSourceImpl(dioConsumer: getIt()));
-     getIt.registerLazySingleton<StatisticsRepo>(
-            () => StatisticsRepoImp(remoteDataSource: getIt(),  ));
-    getIt.registerLazySingleton<GetStatisticsUseCase>(() => GetStatisticsUseCase(repo: getIt()));
-   }
+    getIt.registerLazySingleton<StatisticsRemoteDateSource>(() =>
+        StatisticsRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<StatisticsRepo>(
+            () => StatisticsRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<GetStatisticsUseCase>(() =>
+        GetStatisticsUseCase(repo: getIt()));
+  }
+
   get registerHomeGroupChats {
-    getIt.registerLazySingleton<GroupsChatRemoteDateSource>(() => GroupsChatRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<GroupsChatRemoteDateSource>(() =>
+        GroupsChatRemoteDateSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<GroupsChatRepo>(
-            () => GroupsChatRepoImp(remoteDataSource: getIt(),  ));
-    getIt.registerLazySingleton<GetGroupsChatUseCase>(() => GetGroupsChatUseCase(repo: getIt()));
+            () => GroupsChatRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<GetGroupsChatUseCase>(() =>
+        GetGroupsChatUseCase(repo: getIt()));
   }
-  get registerHomeFolders{
-    getIt.registerLazySingleton<FoldersRemoteDataSource>(() => FoldersRemoteDataSourceImpl(dioConsumer: getIt()));
+
+  get registerHomeFolders {
+    getIt.registerLazySingleton<FoldersRemoteDataSource>(() =>
+        FoldersRemoteDataSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<FoldersRepo>(
-            () => FoldersRepoImp(remoteDataSource: getIt(),  ));
-    getIt.registerLazySingleton<GetHomeFoldersUseCase>(() => GetHomeFoldersUseCase(repo: getIt()));
+            () => FoldersRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<GetHomeFoldersUseCase>(() =>
+        GetHomeFoldersUseCase(repo: getIt()));
   }
+
   get registerAddFoldersFeatures {
-    getIt.registerLazySingleton<AddFoldersRemoteDateSource>(() => AddFoldersRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<AddFoldersRemoteDateSource>(() =>
+        AddFoldersRemoteDateSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<AddFoldersRepo>(
-            () => AddFoldersRepoImp(remoteDataSource: getIt(),  ));
-    getIt.registerLazySingleton<AddFoldersUseCase>(() => AddFoldersUseCase(repo: getIt()));
+            () => AddFoldersRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<AddFoldersUseCase>(() =>
+        AddFoldersUseCase(repo: getIt()));
   }
+
   get registerGetFoldersFeatures {
-    getIt.registerLazySingleton<GetFoldersRemoteDataSource>(() => GetFoldersRemoteDataSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<GetFoldersRemoteDataSource>(() =>
+        GetFoldersRemoteDataSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<GetFoldersRepo>(
-            () => GetFoldersRepoImp(remoteDataSource: getIt(),  ));
-    getIt.registerLazySingleton<GetFoldersUseCase>(() => GetFoldersUseCase(repo: getIt()));
-  }  get registerGetFolderByIdFeatures {
-    getIt.registerLazySingleton<GetFolderByIdRemoteDateSource>(() => GetFolderByIdRemoteDateSourceImpl(dioConsumer: getIt()));
+            () => GetFoldersRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<GetFoldersUseCase>(() =>
+        GetFoldersUseCase(repo: getIt()));
+  }
+
+  get registerGetFolderByIdFeatures {
+    getIt.registerLazySingleton<GetFolderByIdRemoteDateSource>(() =>
+        GetFolderByIdRemoteDateSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<GetFoldersByIdRepo>(
-            () =>GetFolderByIdRepoImp(remoteDataSource: getIt(),  ));
-    getIt.registerLazySingleton<GetFolderByIdUseCase>(() => GetFolderByIdUseCase(repo: getIt()));
+            () => GetFolderByIdRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<GetFolderByIdUseCase>(() =>
+        GetFolderByIdUseCase(repo: getIt()));
   }
+
   get registerUpdateFolderFeatures {
-    getIt.registerLazySingleton<UpdateFoldersRemoteDateSource>(() => UpdateFoldersRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<UpdateFoldersRemoteDateSource>(() =>
+        UpdateFoldersRemoteDateSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<UpdateFoldersRepo>(
-            () =>UpdateFoldersRepoImp(remoteDataSource: getIt(),  ));
-    getIt.registerLazySingleton<UpdateFoldersUseCase>(() => UpdateFoldersUseCase(repo: getIt()));
+            () => UpdateFoldersRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<UpdateFoldersUseCase>(() =>
+        UpdateFoldersUseCase(repo: getIt()));
   }
+
   get registerDeleteFolderFeatures {
-    getIt.registerLazySingleton<DeleteFolderByIdRemoteDateSource>(() => DeleteFolderByIdRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<DeleteFolderByIdRemoteDateSource>(() =>
+        DeleteFolderByIdRemoteDateSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<DeleteFoldersByIdRepo>(
-            () =>DeleteFolderByIdRepoImp(remoteDataSource: getIt(),  ));
-    getIt.registerLazySingleton<DeleteFolderByIdUseCase>(() => DeleteFolderByIdUseCase(repo: getIt()));
+            () => DeleteFolderByIdRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<DeleteFolderByIdUseCase>(() =>
+        DeleteFolderByIdUseCase(repo: getIt()));
   }
+
+  get registerTheme {
+    getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
+   }
 }

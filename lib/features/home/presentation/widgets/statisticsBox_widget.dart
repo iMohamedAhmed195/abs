@@ -1,17 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:new_ilearn/config/widgets/status_message.dart';
- import 'package:new_ilearn/core/utils/app_assets.dart';
-import 'package:new_ilearn/core/utils/app_strings.dart';
-import 'package:new_ilearn/features/home/data/models/statistics_model.dart';
+
+import 'package:new_ilearn/config/widgets/notInternet_page.dart';
+import 'package:new_ilearn/config/widgets/somthingError_page.dart';
+
 import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
+import 'package:new_ilearn/features/home/presentation/widgets/statistics_section.dart';
 import 'package:new_ilearn/features/profile/presentation/widgets/statisticReport_shimmer.dart';
 
 import '../../../../exports.dart';
-import 'circleStatistics.dart';
 
 class StatisticsBox extends StatelessWidget {
   const StatisticsBox({
@@ -29,110 +27,12 @@ class StatisticsBox extends StatelessWidget {
     // TODO: implement listener
   },
   builder: (context, state) {
-    return state is LoadedState ?StatisticsSection(statisticsData: state.data,):state is FailedState? Builder(
-      builder: (context) {
-        print('Error: ${state.message}');
-        return Center(child: StatusMessage(text: state.message, padding: EdgeInsetsDirectional.only(bottom: 60.h), iconData: Icons.error));
-      }
-    ): Center(child: StatisticReportShimmer(),);
+    return state is LoadedState ?StatisticsSection(statisticsData: state.data,):state is FailedState? ErrorPage(error: state.message, tryAgain: () => reloadPage(context),):state is LoadingState?  Center(child: StatisticReportShimmer(),):NotInternetPage(tryAgain: () => reloadPage(context),);
   },
 );
   }
-}
-class StatisticsSection extends StatefulWidget {
-  const StatisticsSection({super.key, this.statisticsData});
-final StatisticsDataModel? statisticsData;
-  @override
-  State<StatisticsSection> createState() => _StatisticsSectionState();
-}
 
-class _StatisticsSectionState extends State<StatisticsSection> {
-  final list = [
-    AppStrings.satr.trans,
-    AppStrings.sun.trans,
-    AppStrings.mon.trans,
-    AppStrings.tus.trans,
-    AppStrings.wedn.trans,
-    AppStrings.ther.trans,
-    AppStrings.fri.trans
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-
-    return  Container(
-      padding: const EdgeInsetsDirectional.symmetric(
-          horizontal: 21, vertical: 13),
-      margin: const EdgeInsetsDirectional.only(top: 29, bottom: 16),
-      width: double.infinity,
-      decoration: BoxDecoration(
-          color: Theme.of(context).cardColor, //lightSplashColor,
-          borderRadius: BorderRadius.circular(10)),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  CircleStatistics(
-                    animation: true,
-                    radius: 26,
-                    percent:widget. statisticsData!.weekPercentageData!.percentage!,
-                    //5 / 100.0,
-                    title:
-                    '${0.6}%',
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextWidget(
-                          text: AppStrings.today.trans,
-                          fontSizeText: 13),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      TextWidget(
-                        text:
-                        '${DateTime.now().day.toString()}/${DateTime.now().month.toString()}',
-                        fontSizeText: 14,
-                        colorText: AppColors.primaryColor,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-              SvgPicture.asset(AppAssets.statisticsIcon)
-            ],
-          ),
-          const Padding(
-              padding: EdgeInsetsDirectional.symmetric(vertical: 8),
-              child: Divider(
-                endIndent: 20,
-                indent: 20,
-              )),
-          Align(
-            child: SizedBox(
-              height: 50.h,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return CircleStatistics(
-                    lineWidth: 3,
-                    animation: true,
-                    title: list[index],
-                    percent: 0.5,
-                  );
-                },
-              ),
-            ),
-          )
-        ],
-      ),
-    );
+    reloadPage(BuildContext context) {
+      BlocProvider.of<StatisticsCubit>(context).getStatistics();
   }
 }
