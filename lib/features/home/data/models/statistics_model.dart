@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import '../../../../exports.dart';
 
 class StatisticsResponseModel extends ResponseModel {
@@ -21,6 +22,7 @@ class StatisticsDataModel {
     this.booksPercentage,
     this.examsPercentage,
     this.getExcitementPoin,
+    this.getExcitementPoinPercent,
   });
 
   StatisticsDataModel.fromJson(dynamic json) {
@@ -39,21 +41,27 @@ class StatisticsDataModel {
     examsPercentage = json['examsPercentage'] != null
         ? ExamsPercentage.fromJson(json['examsPercentage'])
         : null;
-    getExcitementPoin = json['getExcitementPoin']?.toDouble();
+    getExcitementPoin = json['getExcitementPoin'].toString();
+    getExcitementPoinPercent =
+        (double.parse(getExcitementPoin ?? '0') / 100).toDouble();
+    getExcitementPoinPercent =
+        (getExcitementPoinPercent! > 1.0 ? 1.0 : getExcitementPoinPercent)?.toDouble();
   }
 
   WeekPercentageData? weekPercentageData;
   List<DailyData>? dailyData;
   BooksPercentage? booksPercentage;
   ExamsPercentage? examsPercentage;
-  double? getExcitementPoin;
+  String? getExcitementPoin;
+  double? getExcitementPoinPercent;
 
   StatisticsDataModel copyWith({
     WeekPercentageData? weekPercentageData,
     List<DailyData>? dailyData,
     BooksPercentage? booksPercentage,
     ExamsPercentage? examsPercentage,
-    double? getExcitementPoin,
+    String? getExcitementPoin,
+    double? getExcitementPoinPercent,
   }) =>
       StatisticsDataModel(
         weekPercentageData: weekPercentageData ?? this.weekPercentageData,
@@ -61,6 +69,7 @@ class StatisticsDataModel {
         booksPercentage: booksPercentage ?? this.booksPercentage,
         examsPercentage: examsPercentage ?? this.examsPercentage,
         getExcitementPoin: getExcitementPoin ?? this.getExcitementPoin,
+        getExcitementPoinPercent: getExcitementPoinPercent ?? this.getExcitementPoinPercent,
       );
 
   Map<String, dynamic> toJson() {
@@ -87,17 +96,36 @@ class ExamsPercentage {
     this.examsGoal,
     this.examsCount,
     this.percentage,
+    this.percentageText,
   });
 
   ExamsPercentage.fromJson(dynamic json) {
+    var formatNumber = NumberFormat("##.##", "en_US");
+
     examsGoal = json['examsGoal']?.toDouble();
-    examsCount = json['examsCount']?.toDouble();
-    percentage = json['percentage']?.toDouble();
+    examsCount = json['examsCount']?.toDouble() ?? 0;
+    percentageText = formatNumber.format(json['percentage']).toString();
+    percentage =
+        double.parse(formatNumber.format((json['percentage'] * 0.01) ?? '0'));
+    percentage = percentage! > 1.0 ? 1.0 : percentage;
   }
 
   double? examsGoal;
   double? examsCount;
   double? percentage;
+  String? percentageText;
+
+  ExamsPercentage copyWith({
+    double? examsGoal,
+    double? examsCount,
+    double? percentage,
+    String? percentageText,
+  }) => ExamsPercentage(
+    examsGoal: examsGoal ?? this.examsGoal,
+    examsCount: examsCount ?? this.examsCount,
+    percentage: percentage ?? this.percentage,
+    percentageText: percentageText ?? this.percentageText,
+  );
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -113,17 +141,36 @@ class BooksPercentage {
     this.booksGoal,
     this.booksCount,
     this.percentage,
+    this.percentageText,
   });
 
   BooksPercentage.fromJson(dynamic json) {
+    var formatNumber = NumberFormat("##.##", "en_US");
+
     booksGoal = json['booksGoal']?.toDouble();
     booksCount = json['booksCount']?.toDouble();
-    percentage = json['percentage']?.toDouble();
+    percentageText = formatNumber.format(json['percentage']).toString();
+    percentage =
+        double.parse(formatNumber.format((json['percentage'] * 0.01) ?? '0'));
+    percentage = percentage! > 1.0 ? 1.0 : percentage;
   }
 
   double? booksGoal;
   double? booksCount;
   double? percentage;
+  String? percentageText;
+
+  BooksPercentage copyWith({
+    double? booksGoal,
+    double? booksCount,
+    double? percentage,
+    String? percentageText,
+  }) => BooksPercentage(
+    booksGoal: booksGoal ?? this.booksGoal,
+    booksCount: booksCount ?? this.booksCount,
+    percentage: percentage ?? this.percentage,
+    percentageText: percentageText ?? this.percentageText,
+  );
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -150,6 +197,14 @@ class DailyData {
   int? index;
   TodayPercentage? todayPercentage;
 
+  DailyData copyWith({
+    int? index,
+    TodayPercentage? todayPercentage,
+  }) => DailyData(
+    index: index ?? this.index,
+    todayPercentage: todayPercentage ?? this.todayPercentage,
+  );
+
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['index'] = index;
@@ -165,17 +220,36 @@ class TodayPercentage {
     this.booksGoal,
     this.booksCount,
     this.percentage,
+    this.percentageText,
   });
 
   TodayPercentage.fromJson(dynamic json) {
+    var formatNumber = NumberFormat("##.##", "en_US");
+
     booksGoal = json['booksGoal'];
     booksCount = json['booksCount']?.toDouble();
-    percentage = json['percentage']?.toDouble();
-  }
+    percentageText = formatNumber.format(json['percentage']).toString();
+    percentage =
+        double.parse(formatNumber.format((json['percentage'] * 0.01) ?? '0'));
+        percentage = percentage! > 1.0 ? 1.0 : percentage;
+    }
 
   int? booksGoal;
   double? booksCount;
   double? percentage;
+  String? percentageText;
+
+  TodayPercentage copyWith({
+    int? booksGoal,
+    double? booksCount,
+    double? percentage,
+    String? percentageText,
+  }) => TodayPercentage(
+    booksGoal: booksGoal ?? this.booksGoal,
+    booksCount: booksCount ?? this.booksCount,
+    percentage: percentage ?? this.percentage,
+    percentageText: percentageText ?? this.percentageText,
+  );
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -191,28 +265,36 @@ class WeekPercentageData {
     this.booksGoal,
     this.booksCount,
     this.percentage,
+    this.percentageText,
   });
 
   WeekPercentageData.fromJson(dynamic json) {
+    var formatNumber = NumberFormat("##.##", "en_US");
+
     booksGoal = json['booksGoal']?.toDouble();
     booksCount = json['booksCount']?.toDouble();
-    percentage = json['percentage']?.toDouble();
-  }
+    percentageText = formatNumber.format(json['percentage']).toString();
+    percentage =
+        double.parse(formatNumber.format((json['percentage'] * 0.01) ?? '0'));
+        percentage = percentage! > 1.0 ? 1.0 : percentage;
+    }
 
   double? booksGoal;
   double? booksCount;
   double? percentage;
+  String? percentageText;
 
   WeekPercentageData copyWith({
     double? booksGoal,
     double? booksCount,
     double? percentage,
-  }) =>
-      WeekPercentageData(
-        booksGoal: booksGoal ?? this.booksGoal,
-        booksCount: booksCount ?? this.booksCount,
-        percentage: percentage ?? this.percentage,
-      );
+    String? percentageText,
+  }) => WeekPercentageData(
+    booksGoal: booksGoal ?? this.booksGoal,
+    booksCount: booksCount ?? this.booksCount,
+    percentage: percentage ?? this.percentage,
+    percentageText: percentageText ?? this.percentageText,
+  );
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

@@ -2,7 +2,7 @@ abstract class EndPoints {
    // static const String baseUrl = 'https://new_ilearn.seniorcode.co'; //base url
   static const String baseUrl = 'http://179.61.219.156:3000'; //base url
   static const String api = '/api/v1/';
-  static const String profile = '${api}profile/';
+  static const String profile = '${api}profile';
   static const String user = '${api}user';
   static const String estate = '${api}estate';
   static const String image = "${baseUrl}+${api}";
@@ -31,6 +31,9 @@ abstract class EndPoints {
   static const String folders = '${api}categories';
   static const String statistics = '${api}statistics/home';
   static const String groupsChat = '${api}groupschat';
+  static const String terms = '${api}terms';
+  static const String policy = '${api}policy';
+  static const String appVersions = '${api}app-versions';
 
   static const String config = '${api}country';
   static const String home = '${api}home';

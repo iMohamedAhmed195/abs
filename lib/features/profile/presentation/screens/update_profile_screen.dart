@@ -1,14 +1,18 @@
-import 'dart:developer';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:country_code_picker/country_code_picker.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
 
-import '../../../../exports.dart';
+
+import 'dart:developer';
+
+import 'package:country_code_picker/country_code_picker.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:new_ilearn/config/constants/app_prefs.dart';
 import 'package:new_ilearn/core/widgets/dialog.dart';
 import 'package:new_ilearn/core/widgets/errorBox_widget.dart';
 import 'package:new_ilearn/core/widgets/form_widget.dart';
+import 'package:new_ilearn/features/profile/data/models/profile_model.dart';
+import 'package:new_ilearn/features/profile/presentation/managers/update_profile_cubit.dart';
+
+import '../../../../exports.dart';
+import '../../../auth/data/model/response_model/auth_response_model.dart';
 
 class UpdateProfilePage extends StatefulWidget {
   const UpdateProfilePage({super.key});
@@ -20,25 +24,30 @@ class UpdateProfilePage extends StatefulWidget {
 class _UpdateProfilePageState extends State<UpdateProfilePage> {
   late TextEditingController _userName;
   late TextEditingController _userPhone;
+   String? _genderType;
   late TextEditingController _userEmail;
   late TextEditingController _dateOfBirth;
+   final  UserModel? userData=AppPrefs.user!.user;
 
-  String? _genderType;
   String? _errorName;
   String? _errorEmail;
   String? _errorUpdate;
   String? _errorPhoneNumber;
   bool _loading = false;
+ _loadUserData()  {
 
+    setState(() {});
+  }
   @override
   void initState() {
     super.initState();
-    // بيانات ثابتة بدل البيانات القادمة من السيرفر
-    _userName = TextEditingController(text: 'أحمد سعيد');
-    _userPhone = TextEditingController(text: '592345678');
-    _userEmail = TextEditingController(text: 'ahmed@example.com');
-    _dateOfBirth = TextEditingController(text: '1998-05-20');
-    _genderType = 'male';
+    _userName = TextEditingController(text: userData!.username?? '');
+    _userPhone = TextEditingController(text: userData!.phoneNumber?? '');
+    _userEmail = TextEditingController(text: userData!.email?? '');
+    _dateOfBirth = TextEditingController(text:  formatDate(userData!.birthDate?? ''));
+    _genderType = userData!.gender;
+    _loadUserData();
+
   }
 
   @override
@@ -47,6 +56,7 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
     _userName.dispose();
     _userPhone.dispose();
     _dateOfBirth.dispose();
+
     super.dispose();
   }
 
@@ -246,6 +256,14 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
   }
 
   void updateProfile() {
+
+   context.read<UpdateProfileCubit>().updateProfile(profileModel: ProfileModel(
+     name: _userName.text,
+     email: _userEmail.text,
+     gender: _genderType,
+     birthDate: _dateOfBirth.text,
+     phone: _userPhone.text,
+   ));
     errorForm();
     if (checkForm()) {
       setState(() {

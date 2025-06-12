@@ -7,5 +7,5 @@ class GetStatisticsUseCase {
   final StatisticsRepo repo;
   GetStatisticsUseCase({required this.repo});
 
-  Future<Either<Failure, ResponseModel>> getStatistics() => repo.getStatistics();
+  Future<Either<Failure, ResponseModel>> getStatistics({String? reportType}) => repo.getStatistics(reportType: reportType);
 }

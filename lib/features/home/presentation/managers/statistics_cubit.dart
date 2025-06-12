@@ -11,9 +11,9 @@ class StatisticsCubit extends Cubit<CubitStates> {
       : super(LoadingState());
 
 
-  getStatistics() =>
+  getStatistics({String? reportType}) =>
       managerExecute<StatisticsDataModel>(
-           useCase.getStatistics(),
+           useCase.getStatistics( reportType: reportType),
            onSuccess: (data) {
             emit(LoadedState(data: data));
           },

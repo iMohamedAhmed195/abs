@@ -11,6 +11,7 @@ import 'package:new_ilearn/features/home/data/models/statistics_model.dart';
 import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
 import 'package:new_ilearn/features/profile/presentation/screens/information_screen .dart';
 import 'package:new_ilearn/features/profile/presentation/screens/statistics_screen.dart';
+import 'package:new_ilearn/features/profile/presentation/managers/update_profile_cubit.dart';
 import 'package:new_ilearn/features/profile/presentation/widgets/statisticReport_shimmer.dart';
 import '../../../../exports.dart';
 
@@ -65,7 +66,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               controller: _scrollController,
               children: [
                 selectedTabIndex == 0
-                    ?   InformationPage( ) // غير مرتبط ببيانات backend
+                    ?   InformationPage( )
                     : BlocProvider(
   create: (context) => StatisticsCubit(useCase: ServiceLocator.instance.getIt())..getStatistics(),
   child: BlocBuilder<StatisticsCubit, CubitStates >(

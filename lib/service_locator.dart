@@ -38,6 +38,10 @@ import 'package:new_ilearn/features/home/domain/repos/statistics_repo.dart';
 import 'package:new_ilearn/features/home/domain/use_cases/get_folders_use_case.dart';
 import 'package:new_ilearn/features/home/domain/use_cases/get_groups_chat_use_case.dart';
 import 'package:new_ilearn/features/home/domain/use_cases/get_statistics_use_case.dart';
+import 'package:new_ilearn/features/profile/data/data_sources/update_profile_remote_data_source.dart';
+import 'package:new_ilearn/features/profile/data/repo_imp/update_profile_repo_imp.dart';
+import 'package:new_ilearn/features/profile/domain/repos/update_profile_repo.dart';
+import 'package:new_ilearn/features/profile/domain/use_cases/update_profile_use_case.dart';
 import 'package:new_ilearn/features/splash_screen/data/data_sources/get_config_local_data_source.dart';
 import 'package:new_ilearn/features/splash_screen/data/data_sources/get_config_remote_data_source.dart';
 import 'package:new_ilearn/features/splash_screen/data/repositories/get_config_repo_impl.dart';
@@ -73,6 +77,7 @@ class ServiceLocator {
     registerGetFoldersFeatures;
     registerAddFoldersFeatures;
     registerTheme;
+    registerUpdateProfile;
   }
 
   get registerNetwork {
@@ -207,5 +212,13 @@ class ServiceLocator {
 
   get registerTheme {
     getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
+   }
+   get registerUpdateProfile {
+    getIt.registerLazySingleton<UpdateProfileRemoteDataSource>(() =>
+         UpdateProfileRemoteDataSourceImp(dioConsumer: getIt()));
+    getIt.registerLazySingleton<UpdateProfileRepo>(
+            () => UpdateProfileRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<UpdateProfileUseCase>(() =>
+        UpdateProfileUseCase(repo: getIt()));
    }
 }

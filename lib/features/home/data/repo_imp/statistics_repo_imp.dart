@@ -11,6 +11,6 @@ class StatisticsRepoImp extends StatisticsRepo {
 
   StatisticsRepoImp({required this.remoteDataSource});
   @override
-  Future<Either<Failure, ResponseModel>> getStatistics () =>
-      (executeImpl(() => remoteDataSource.getStatistics()));
+  Future<Either<Failure, ResponseModel>> getStatistics ({String? reportType}) =>
+      (executeImpl(() => remoteDataSource.getStatistics(reportType: reportType)));
 }

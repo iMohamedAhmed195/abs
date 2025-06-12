@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
  
 import 'package:intl/intl.dart';
 import 'package:new_ilearn/features/home/data/models/statistics_model.dart';
+import 'package:new_ilearn/features/home/presentation/managers/statistics_cubit.dart';
 import 'package:new_ilearn/features/home/presentation/widgets/statisticsBox_widget.dart';
 import 'package:new_ilearn/features/profile/presentation/widgets/goalWidget.dart';
 import 'package:new_ilearn/features/profile/presentation/widgets/statisticReport_widget.dart';
@@ -54,7 +55,7 @@ class _StatisticsPageState extends State<StatisticsPage>   {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   StatisticsTap(
-                    title: AppStrings.points,
+                    title: AppStrings.points.trans,
                     icon: AppAssets.pointStatistics.trans,
                     numberOfStatistic: formatNumber.format(double.parse( widget.statisticsData.getExcitementPoin
                         .toString()
@@ -259,6 +260,11 @@ class _StatisticsPageState extends State<StatisticsPage>   {
   }
 
   void selectFiltterType(int type) {
+    String repoType = reportType(type);
+    context.read<StatisticsCubit>().getStatistics(reportType: repoType);
+   print("repoType: $repoType");
+
+
     setState(() {
       _typeFilterStatistic = type;
     });

@@ -42,10 +42,10 @@ class _StatisticsSectionState extends State<StatisticsSection> {
                   CircleStatistics(
                     animation: true,
                     radius: 26,
-                    percent: widget.statisticsData!.weekPercentageData!.percentage!/1000.0,
+                    percent: widget.statisticsData!.weekPercentageData!.percentage!,
                     //5 / 100.0,
                     title:
-                    '${(widget. statisticsData!.weekPercentageData!.percentage)! /(1000.0)}%',
+                    '${(widget. statisticsData!.weekPercentageData!.percentage)! }%',
                   ),
                   const SizedBox(
                     width: 5,
@@ -83,13 +83,13 @@ class _StatisticsSectionState extends State<StatisticsSection> {
               height: 50.h,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: 3,
+                itemCount: list.length,
                 itemBuilder: (context, index) {
                   return CircleStatistics(
-                    lineWidth: 3,
+                    lineWidth: 2,
                     animation: true,
                     title: list[index],
-                    percent: 0.5,
+                    percent: widget.statisticsData!.dailyData![index].todayPercentage!.percentage!,
                   );
                 },
               ),

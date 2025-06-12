@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:new_ilearn/config/constants/app_prefs.dart';
 import 'package:new_ilearn/core/widgets/dialog.dart';
+import 'package:new_ilearn/features/profile/presentation/managers/update_profile_cubit.dart';
 import 'package:new_ilearn/features/profile/presentation/screens/update_profile_screen.dart';
 import 'package:new_ilearn/features/profile/presentation/widgets/profileInformation_widget.dart';
 
@@ -11,15 +12,12 @@ class InformationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // بيانات ثابتة للعرض
-
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ProfileInformation(
           onTap: () => _updateProfile(context),
-          valueOfTitle:AppPrefs.user!.user?.phoneNumber ?? '',
+          valueOfTitle: AppPrefs.user!.user?.phoneNumber ?? '',
           title: AppStrings.phone.trans,
         ),
         ProfileInformation(
@@ -37,7 +35,7 @@ class InformationPage extends StatelessWidget {
           title: AppStrings.email.trans,
         ),
         ProfileInformation(
-          valueOfTitle:   AppPrefs.user!.user?.inviteCode.toString() ?? '',
+          valueOfTitle: AppPrefs.user!.user?.inviteCode.toString() ?? '',
           title: AppStrings.memberId.trans,
         ),
         const SizedBox(height: 32),
@@ -73,9 +71,12 @@ class InformationPage extends StatelessWidget {
   void _updateProfile(BuildContext context) {
     showModelSheetWidget(
       context,
-        UpdateProfilePage(
-        // لما يتوفر باكند ضيف بيانات المستخدم هنا
-        // user: user,
+      BlocProvider(
+        create: (context) => UpdateProfileCubit(cache : ServiceLocator.instance.getIt(),useCase: ServiceLocator.instance.getIt()),
+        child: UpdateProfilePage(
+          // لما يتوفر باكند ضيف بيانات المستخدم هنا
+          // user: user,
+        ),
       ),
     );
   }
