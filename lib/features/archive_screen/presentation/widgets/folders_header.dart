@@ -2,7 +2,7 @@
 
 import 'dart:ui';
 
-import 'package:new_ilearn/features/home/presentation/widgets/craeteFolderPage.dart';
+import 'package:new_ilearn/features/home/presentation/widgets/create_folder_page.dart';
 
 import '../../../../exports.dart';
 

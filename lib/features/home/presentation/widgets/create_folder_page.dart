@@ -190,7 +190,7 @@ class _BottomSheetAddFolderBodyState
               ),
               child: Center(
                 child: _imageFolder != null
-                    ? Image.file(_imageFolder!)
+                    ? Image.file(_imageFolder! , fit: BoxFit.fill,width: 250.w,)
                     : (widget.folderImage != null && widget.update)
                     ? ImageCached(
                   height: double.infinity,
@@ -241,7 +241,8 @@ class _BottomSheetAddFolderBodyState
       );
       pop();
     }
-  }  void _updateFolder() {
+  }
+  void _updateFolder() {
     if (_checkForms()) {
       context.read<UpdateFoldersCubit>().updateFolders(id: widget.idFolder,
         newFoldersModel: NewFoldersModel(

@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:new_ilearn/features/folders/data/models/folders_model.dart';
 import 'package:new_ilearn/features/folders/presentation/managers/delete_folder_by_id_cubit.dart';
-import 'package:new_ilearn/features/folders/presentation/managers/get_folders_cubit.dart';
-import 'package:new_ilearn/features/home/data/models/home_folders_model.dart';
-import 'package:new_ilearn/features/home/presentation/widgets/foldersAndBooks_widgets.dart';
-
+import 'package:new_ilearn/features/home/presentation/widgets/folders_and_books_widgets.dart';
 import '../../../../exports.dart';
 
 class FoldersGrid extends StatelessWidget {
@@ -41,7 +37,6 @@ class FoldersGrid extends StatelessWidget {
               final folder = folders[index];
               return AnimationConfiguration.staggeredGrid(
                 position: index,
-
                 columnCount: folders.length,
                 child: ScaleAnimation(
                   child: FadeInAnimation(
@@ -52,15 +47,14 @@ class FoldersGrid extends StatelessWidget {
                       image: folder.fullImageUrl!,
                       title: folder.name!,
                       delete: () {
-                        context.read<DeleteFolderByIdCubit>().deleteFolder(
-                            id: folder.id!);
-
-
-
-
+                        context.read<DeleteFolderByIdCubit>().deleteFolder(id: folder.id!);
                       },
                       onClick: () {
-                        // Routes.bookRoute.moveTo();
+                       Routes.bookRoute.moveToWithArgs({
+                         "idFolder" : folder.id,
+                         "titleHeader" :folder.name!,
+                         "isArchive" :false
+                       });
                       },
                     ),
                   ),

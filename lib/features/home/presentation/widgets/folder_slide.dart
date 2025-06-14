@@ -7,7 +7,7 @@ import 'package:new_ilearn/core/utils/app_strings.dart';
 import 'package:new_ilearn/core/widgets/viewAll_widget.dart';
 import 'package:new_ilearn/features/folders/presentation/managers/delete_folder_by_id_cubit.dart';
 import 'package:new_ilearn/features/home/data/models/home_folders_model.dart';
-import 'package:new_ilearn/features/home/presentation/widgets/foldersAndBooks_widgets.dart';
+import 'package:new_ilearn/features/home/presentation/widgets/folders_and_books_widgets.dart';
 
 import '../../../../exports.dart';
 

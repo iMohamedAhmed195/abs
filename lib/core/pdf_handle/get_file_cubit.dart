@@ -9,21 +9,26 @@ class GetFileCubit extends Cubit<CubitStates> {
   String? fileName;
   File? pickedFile;
   String? fileExtension;
+  String? uploadFileUrl;
 
 
   Future pickFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['jpg', 'jpeg', 'png', 'pdf'], // Restrict to images and PDFs
+      allowedExtensions: [
+        'jpg', 'jpeg', 'png', 'pdf', 'zip', 'docx', 'txt' // Added zip, docx, txt
+      ],
     );
 
     if (result != null && result.files.isNotEmpty) {
-        fileName = result.files.single.name;
-        pickedFile = File(result.files.single.path!);
-        fileExtension = result.files.single.extension;
+      fileName = result.files.single.name;
+      pickedFile = File(result.files.single.path!);
+      fileExtension = result.files.single.extension;
+      uploadFileUrl = result.files.single.path;
       emit(ChangeState());
     }
   }
+
   void removeIndexOrRemoveAllImages() async {
 
     fileName= null;

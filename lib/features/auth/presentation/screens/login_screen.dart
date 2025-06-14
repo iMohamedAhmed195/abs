@@ -48,10 +48,15 @@ class _LoginScreenState extends State<LoginScreen> {
           status = 'success';
           setState(() {
           });
-          Routes.bottomNavigationRoute.moveToCurrrentRouteAndRemoveAll;
+          showToast(context: context, message: AppStrings.loginSuccessfully.trans, visibleMessage: true);
+          Future.delayed(Duration(milliseconds:700 ), () {
+            Routes.bottomNavigationRoute.moveToCurrrentRouteAndRemoveAll;
+          });
+
         }
         else if (state is FailedState){
           status = 'failed';
+          showToast(context: context, message: state.message, visibleMessage: false);
           Future.delayed(Duration(seconds: 1), () {
             status = 'unClicked';
             setState(() {

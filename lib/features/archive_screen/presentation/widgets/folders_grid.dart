@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:new_ilearn/features/folders/presentation/managers/delete_folder_by_id_cubit.dart';
-import 'package:new_ilearn/features/home/presentation/widgets/foldersAndBooks_widgets.dart';
+import 'package:new_ilearn/features/home/presentation/widgets/folders_and_books_widgets.dart';
 
 import '../../../../exports.dart';
 

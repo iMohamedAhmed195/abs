@@ -31,7 +31,6 @@ class _FoldersScreenState extends State<FoldersScreen> {
       }
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return CustomBackground(

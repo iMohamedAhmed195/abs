@@ -29,6 +29,7 @@ abstract class EndPoints {
 ///////////////////////////// home ////////////////////////////
   static const String homeFolders = '${api}home';
   static const String folders = '${api}categories';
+  static const String books = '${api}books';
   static const String statistics = '${api}statistics/home';
   static const String groupsChat = '${api}groupschat';
   static const String terms = '${api}terms';

@@ -35,6 +35,9 @@ class AuthCubit extends Cubit<CubitStates> {
         emit(LoadedState<UserData>(data: data));
         // Routes.bottomNavRoute.moveToCurrrentRouteAndRemoveAll;
       },
+      onFail: (message) {
+        emit(FailedState(message: message));
+      },
     );
   }
 
@@ -51,9 +54,6 @@ class AuthCubit extends Cubit<CubitStates> {
       },
       onFail: (message) {
         emit(FailedState(message: message));
-      },
-      onStart: () {
-        emit(LoadingState());
       },
     );
   }
@@ -72,9 +72,7 @@ class AuthCubit extends Cubit<CubitStates> {
       onFail: (message) {
         emit(FailedState(message: message));
       },
-      onStart: () {
-        emit(LoadingState());
-      },
+
     );
   }
 

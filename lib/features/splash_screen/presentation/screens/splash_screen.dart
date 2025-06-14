@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin{
   // Counter to track timer ticks
   int counter = 0;
 
@@ -20,7 +20,49 @@ class _SplashScreenState extends State<SplashScreen> {
   String? route;
 
   Timer? timer;
+  // Animation controller
+  late AnimationController _animationController;
+  late Animation<double> _fadeAnimation;
+  late Animation<double> _scaleAnimation;
+
   // bool? isNotificationEnabled;
+
+
+  @override
+  void initState() {
+    // Initialize animation controller
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+
+    // Fade animation from 0 to 1
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeIn,
+      ),
+    );
+
+    // Scale animation from 0.5 to 1.0
+    _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.elasticOut,
+      ),
+    );
+
+    // Start the animation
+    _animationController.forward();
+    nextScreen();
+    super.initState();
+  }
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
   nextScreen() {
     timer = Timer.periodic(1.seconds, (timer) {
       counter++;
@@ -40,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // print(user?.devToken);
       print("the token is" + AppPrefs.token.toString());
 
-      route = AppPrefs.token.isNotNull ? Routes.bottomNavigationRoute : Routes.onBoardingRoute;
+       route = AppPrefs.token.isNotNull ? Routes.bottomNavigationRoute : Routes.onBoardingRoute;
       // print("new install ${isNew}");
       // if (isLanguageSaved.isFalse) {
       //   route = Routes.selectLanguageRoute;
@@ -67,13 +109,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
     });
   }
-
-  @override
-  void initState() {
-    nextScreen();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ConfigurationCubit, CubitStates>(
@@ -88,9 +123,24 @@ class _SplashScreenState extends State<SplashScreen> {
                       end: AlignmentDirectional.topStart,
                       begin: AlignmentDirectional.bottomEnd,
                       colors: [Color(0xff00167D), Color(0xff0075E7)])),
-              // child: Center(
-              //   child: Image.asset(AppAssets.splashLogo,),
-              // ),
+              child: Center(
+                child: AnimatedBuilder(
+                  animation: _animationController,
+                  builder: (context, child) {
+                    return Opacity(
+                      opacity: _fadeAnimation.value,
+                      child: Transform.scale(
+                        scale: _scaleAnimation.value,
+                        child: SizedBox(
+                          width: 180.w,
+                          height: 200.h,
+                          child: Image.asset(AppAssets.logoWhite),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             )
         );
       },

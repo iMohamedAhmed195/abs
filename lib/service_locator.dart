@@ -6,24 +6,28 @@ import 'package:new_ilearn/features/auth/data/repositories/auth_repo_impl.dart';
 import 'package:new_ilearn/features/auth/domain/repositories/auth_repo.dart';
 import 'package:new_ilearn/features/auth/domain/usecase/auth_use_case.dart';
 import 'package:new_ilearn/features/auth/presentation/managers/auth_cubit.dart';
+import 'package:new_ilearn/features/books/data/data_sources/add_books_remote_date_source.dart';
+import 'package:new_ilearn/features/books/data/data_sources/get_books_remote_date_source.dart';
+import 'package:new_ilearn/features/books/data/repo_imp/add_books_repo_imp.dart';
+import 'package:new_ilearn/features/books/data/repo_imp/get_books_repo_imp.dart';
+import 'package:new_ilearn/features/books/domain/repos/add_books_repo.dart';
+import 'package:new_ilearn/features/books/domain/repos/get_books_repo.dart';
+import 'package:new_ilearn/features/books/domain/use_cases/add_books_use_case.dart';
+import 'package:new_ilearn/features/books/domain/use_cases/get_books_use_case.dart';
+import 'package:new_ilearn/features/books/presentation/managers/get_books_cubit.dart';
 import 'package:new_ilearn/features/folders/data/data_sources/add_folders_remote_date_source.dart';
 import 'package:new_ilearn/features/folders/data/data_sources/delete_folder_by_id_remote_date_source.dart';
 import 'package:new_ilearn/features/folders/data/data_sources/get_folder_by_id_remote_date_source.dart';
 import 'package:new_ilearn/features/folders/data/data_sources/get_folders_remote_date_source.dart';
 import 'package:new_ilearn/features/folders/data/data_sources/update_folders_remote_date_source.dart';
-import 'package:new_ilearn/features/folders/data/repo_imp/add_folders_repo_imp.dart';
 import 'package:new_ilearn/features/folders/data/repo_imp/delete_folder_by_id_repo_imp.dart';
-import 'package:new_ilearn/features/folders/data/repo_imp/get_folder_by_id_repo_imp.dart';
 import 'package:new_ilearn/features/folders/data/repo_imp/get_folders_repo_imp.dart';
 import 'package:new_ilearn/features/folders/data/repo_imp/update_folders_repo_imp.dart';
 import 'package:new_ilearn/features/folders/domain/repos/add_folders_repo.dart';
 import 'package:new_ilearn/features/folders/domain/repos/delete_folders_by_id_repo.dart';
-import 'package:new_ilearn/features/folders/domain/repos/get_folders_by_id_repo.dart';
 import 'package:new_ilearn/features/folders/domain/repos/get_folders_repo.dart';
 import 'package:new_ilearn/features/folders/domain/repos/update_folders_repo.dart';
-import 'package:new_ilearn/features/folders/domain/use_cases/add_folders_use_case.dart';
 import 'package:new_ilearn/features/folders/domain/use_cases/delete_folder_by_id_use_case.dart';
-import 'package:new_ilearn/features/folders/domain/use_cases/get_folder_by_id_use_case.dart';
 import 'package:new_ilearn/features/folders/domain/use_cases/get_folders_use_case.dart';
 import 'package:new_ilearn/features/folders/domain/use_cases/update_folders_use_case.dart';
 import 'package:new_ilearn/features/home/data/date_sources/folders_remote_date_source.dart';
@@ -50,6 +54,8 @@ import 'package:new_ilearn/features/splash_screen/domain/use_cases/get_config_us
 import 'package:new_ilearn/features/splash_screen/presentation/manager/get_configration_cubit.dart';
 
 import 'exports.dart';
+import 'features/folders/data/repo_imp/add_folders_repo_imp.dart';
+import 'features/folders/domain/use_cases/add_folders_use_case.dart';
 class ServiceLocator {
   GetIt getIt = GetIt.instance;
 
@@ -76,6 +82,8 @@ class ServiceLocator {
     registerGetFolderByIdFeatures;
     registerGetFoldersFeatures;
     registerAddFoldersFeatures;
+    registerGetBooksFeatures;
+    registerAddBooksFeatures;
     registerTheme;
     registerUpdateProfile;
   }
@@ -150,8 +158,7 @@ class ServiceLocator {
   get registerHomeGroupChats {
     getIt.registerLazySingleton<GroupsChatRemoteDateSource>(() =>
         GroupsChatRemoteDateSourceImpl(dioConsumer: getIt()));
-    getIt.registerLazySingleton<GroupsChatRepo>(
-            () => GroupsChatRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<GroupsChatRepo>(() => GroupsChatRepoImp(remoteDataSource: getIt(),));
     getIt.registerLazySingleton<GetGroupsChatUseCase>(() =>
         GetGroupsChatUseCase(repo: getIt()));
   }
@@ -159,8 +166,12 @@ class ServiceLocator {
   get registerHomeFolders {
     getIt.registerLazySingleton<FoldersRemoteDataSource>(() =>
         FoldersRemoteDataSourceImpl(dioConsumer: getIt()));
-    getIt.registerLazySingleton<FoldersRepo>(
-            () => FoldersRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<FoldersRepo>(() => FoldersRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<GetHomeFoldersUseCase>(() => GetHomeFoldersUseCase(repo: getIt()));
+  }
+  get registerGetBooks{
+    getIt.registerLazySingleton<FoldersRemoteDataSource>(() => FoldersRemoteDataSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<FoldersRepo>(() => FoldersRepoImp(remoteDataSource: getIt(),));
     getIt.registerLazySingleton<GetHomeFoldersUseCase>(() =>
         GetHomeFoldersUseCase(repo: getIt()));
   }
@@ -168,28 +179,34 @@ class ServiceLocator {
   get registerAddFoldersFeatures {
     getIt.registerLazySingleton<AddFoldersRemoteDateSource>(() =>
         AddFoldersRemoteDateSourceImpl(dioConsumer: getIt()));
-    getIt.registerLazySingleton<AddFoldersRepo>(
-            () => AddFoldersRepoImp(remoteDataSource: getIt(),));
+    getIt.registerLazySingleton<AddFoldersRepo>(() => AddFoldersRepoImp(remoteDataSource: getIt(),));
     getIt.registerLazySingleton<AddFoldersUseCase>(() =>
         AddFoldersUseCase(repo: getIt()));
   }
+  get registerAddBooksFeatures {
+    getIt.registerLazySingleton<AddBooksRemoteDateSource>(() => AddBooksRemoteDateSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<AddBooksRepo>(() => AddBooksRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<AddBooksUseCase>(() => AddBooksUseCase(repo: getIt()));
+  }
 
   get registerGetFoldersFeatures {
+    getIt.registerLazySingleton<GetFoldersRemoteDataSource>(() => GetFoldersRemoteDataSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<GetFoldersRepo>(() => GetFoldersRepoImp(remoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<GetFoldersUseCase>(() => GetFoldersUseCase(repo: getIt()));
+  }
+  get registerGetBooksFeatures {
+    getIt.registerLazySingleton<GetBooksRemoteDataSource>(() => GetBooksRemoteDataSourceImpl(dioConsumer: getIt()));
+    getIt.registerLazySingleton<GetBooksRepo>(() => GetBooksRepoImp(getBooksRemoteDataSource: getIt(),  ));
+    getIt.registerLazySingleton<GetBooksUseCase>(() => GetBooksUseCase(repo: getIt()));
+    getIt.registerLazySingleton<GetBooksCubit>(() => GetBooksCubit(useCase: getIt()));
+  }  get registerGetFolderByIdFeatures {
+    getIt.registerLazySingleton<GetFolderByIdRemoteDateSource>(() => GetFolderByIdRemoteDateSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<GetFoldersRemoteDataSource>(() =>
         GetFoldersRemoteDataSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<GetFoldersRepo>(
             () => GetFoldersRepoImp(remoteDataSource: getIt(),));
     getIt.registerLazySingleton<GetFoldersUseCase>(() =>
         GetFoldersUseCase(repo: getIt()));
-  }
-
-  get registerGetFolderByIdFeatures {
-    getIt.registerLazySingleton<GetFolderByIdRemoteDateSource>(() =>
-        GetFolderByIdRemoteDateSourceImpl(dioConsumer: getIt()));
-    getIt.registerLazySingleton<GetFoldersByIdRepo>(
-            () => GetFolderByIdRepoImp(remoteDataSource: getIt(),));
-    getIt.registerLazySingleton<GetFolderByIdUseCase>(() =>
-        GetFolderByIdUseCase(repo: getIt()));
   }
 
   get registerUpdateFolderFeatures {

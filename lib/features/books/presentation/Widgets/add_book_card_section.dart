@@ -3,8 +3,8 @@ import 'package:new_ilearn/features/books/presentation/screens/add_book_bottom_s
 import '../../../../exports.dart';
 
 class AddBookCardSection extends StatelessWidget {
-  const AddBookCardSection({super.key});
-
+  const AddBookCardSection({super.key, required this.idFolder});
+  final String idFolder;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -49,8 +49,11 @@ class AddBookCardSection extends StatelessWidget {
                   builder: (context) =>
                       SingleChildScrollView(
                         physics: const NeverScrollableScrollPhysics(),
-                        child: AddBookPage(
-                          folderId: "5",
+                        child: BlocProvider(
+                          create: (BuildContext context) =>ErrorCubit(),
+                          child: AddBookPage(
+                            folderId:idFolder,
+                          ),
                         ),
                       ),
                 );

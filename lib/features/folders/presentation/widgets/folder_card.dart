@@ -1,6 +1,6 @@
 import 'package:new_ilearn/core/widgets/dialog.dart';
 import 'package:new_ilearn/core/widgets/imageCash_widget.dart';
-import 'package:new_ilearn/features/home/presentation/widgets/craeteFolderPage.dart';
+import 'package:new_ilearn/features/home/presentation/widgets/create_folder_page.dart';
 
 import '../../../../exports.dart';
 class FolderCard extends StatelessWidget {

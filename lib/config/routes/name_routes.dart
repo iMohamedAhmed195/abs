@@ -15,5 +15,6 @@ class Routes {
   static const String termsOfServiceScreen = "/termsOfServiceScreen";
   static const String aboutAppScreen = "/aboutAppScreen";
   static const String privacyPolicyScreen = "/privacyPolicyScreen";
+  static const String openFilePdfRoute = "/openFilePdfRoute";
 
 }

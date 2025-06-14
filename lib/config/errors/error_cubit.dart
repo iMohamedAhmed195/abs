@@ -14,6 +14,7 @@ enum Errors {
   GENDER_ERROR,
   LEARNING_STAGE_ERROR,
   TERMS_AND_CONDITIONS_DATA_ERROR,
+  CHOOSE_IMAGE_OR_FILE_ERROR,
 }
 
 Map<Errors, String> getError = {
@@ -22,6 +23,7 @@ Map<Errors, String> getError = {
   Errors.GENDER_ERROR: AppStrings.pleaseSelectGender.trans,
   Errors.LEARNING_STAGE_ERROR: AppStrings.pleaseSelectLearningStage.trans,
   Errors.TERMS_AND_CONDITIONS_DATA_ERROR: AppStrings.pleaseAcceptTerms.trans,
+  Errors.CHOOSE_IMAGE_OR_FILE_ERROR: AppStrings.errorAddBookValidation.trans,
 };
 
 class ErrorCubit extends Cubit<CubitStates> {

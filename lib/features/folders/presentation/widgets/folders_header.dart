@@ -2,7 +2,7 @@
 
 import 'dart:ui';
 
-import 'package:new_ilearn/features/home/presentation/widgets/craeteFolderPage.dart';
+import 'package:new_ilearn/features/home/presentation/widgets/create_folder_page.dart';
 
 import '../../../../exports.dart';
 
@@ -15,7 +15,7 @@ class FoldersHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 300),
-      margin: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      margin: const EdgeInsets.only(top: 24, left: 16, right: 16,bottom: 12),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       decoration: BoxDecoration(
         color: AppColors.white,
