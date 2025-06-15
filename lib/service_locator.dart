@@ -80,7 +80,7 @@ class ServiceLocator {
     registerDeleteFolderFeatures;
     registerUpdateFolderFeatures;
     registerGetFolderByIdFeatures;
-    registerGetFoldersFeatures;
+
     registerAddFoldersFeatures;
     registerGetBooksFeatures;
     registerAddBooksFeatures;
@@ -188,12 +188,12 @@ class ServiceLocator {
     getIt.registerLazySingleton<AddBooksRepo>(() => AddBooksRepoImp(remoteDataSource: getIt(),  ));
     getIt.registerLazySingleton<AddBooksUseCase>(() => AddBooksUseCase(repo: getIt()));
   }
-
+/*
   get registerGetFoldersFeatures {
     getIt.registerLazySingleton<GetFoldersRemoteDataSource>(() => GetFoldersRemoteDataSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<GetFoldersRepo>(() => GetFoldersRepoImp(remoteDataSource: getIt(),  ));
     getIt.registerLazySingleton<GetFoldersUseCase>(() => GetFoldersUseCase(repo: getIt()));
-  }
+  }*/
   get registerGetBooksFeatures {
     getIt.registerLazySingleton<GetBooksRemoteDataSource>(() => GetBooksRemoteDataSourceImpl(dioConsumer: getIt()));
     getIt.registerLazySingleton<GetBooksRepo>(() => GetBooksRepoImp(getBooksRemoteDataSource: getIt(),  ));
