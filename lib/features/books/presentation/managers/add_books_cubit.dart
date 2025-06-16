@@ -7,7 +7,7 @@ class AddBooksCubit extends Cubit<CubitStates> {
   AddBooksCubit({required this.useCase}) : super(LoadingState());
 
   addBook({required AddBooksRequestModel addBooksRequestModel}) => managerExecute(
-     useCase.getBooks(addBooksRequestModel: addBooksRequestModel),
+     useCase.addBook(addBooksRequestModel: addBooksRequestModel),
     onSuccess: (data) {
       emit(LoadedState(data: data));
     },

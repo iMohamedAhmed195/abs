@@ -3,25 +3,24 @@ class AddBooksRequestModel  {
   String? image;
   String? categoryId;
   String? content;
+  String? link;
   String? file;
   AddBooksRequestModel({
     this.name,
     this.image,
     this.categoryId,
     this.content,
+    this.link,
     this.file,
   });
-  AddBooksRequestModel.fromJson(dynamic json) {
-    name = json['name'];
-    image = json['image'];
-    categoryId = json['categoryId'];
-    content = json['content'];
-    file = json['file'];
-  }
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['name'] = name;
+    map['categoryId'] = categoryId;
     map['image'] = image;
+    map['link'] = link;
+    map['content'] = content;
+    map['file'] = file;
     return map;
   }
 

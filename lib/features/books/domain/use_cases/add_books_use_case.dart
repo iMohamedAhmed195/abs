@@ -6,5 +6,5 @@ class AddBooksUseCase {
   final AddBooksRepo repo;
   AddBooksUseCase({required this.repo});
 
-  Future<Either<Failure, ResponseModel>> getBooks({required AddBooksRequestModel addBooksRequestModel})  => repo.addBook(addBooksRequestModel: addBooksRequestModel);
+  Future<Either<Failure, ResponseModel>> addBook({required AddBooksRequestModel addBooksRequestModel})  => repo.addBook(addBooksRequestModel: addBooksRequestModel);
 }

@@ -13,16 +13,22 @@ import 'package:new_ilearn/features/profile/presentation/screens/profile_screen.
 import '../../../home/presentation/managers/folders_cubit.dart';
 
 final List<TitleIconModel> navBarItems = [
-
   TitleIconModel(
     screens: BlocProvider(
       create: (context) => GetFoldersCubit(useCase: ServiceLocator.instance.getIt())..getFolders(),
       child: FoldersScreen(),
     ),
+    name: AppStrings.folder.trans,
+    coloredIcon: AppAssets.coloredFolder,
+    icon: AppAssets.folder,
   ),
   TitleIconModel(
     screens: GroupsScreen(),
-  ), TitleIconModel(
+    name: AppStrings.groups.trans,
+    coloredIcon: AppAssets.coloredGroup,
+    icon: AppAssets.group,
+  ),
+  TitleIconModel(
     screens: MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -46,14 +52,17 @@ final List<TitleIconModel> navBarItems = [
       ],
       child: HomeScreen(),
     ),
+    name: AppStrings.home.trans,
+    coloredIcon: AppAssets.homeItemIcon,
+    icon: AppAssets.homeItemIcon,
   ),
 
   TitleIconModel(
     screens: ArchiveScreen(),
+    name: AppStrings.archives.trans,
+    coloredIcon: AppAssets.coloredArchive,
+    icon: AppAssets.archive,
   ),
 
-  TitleIconModel(
-    screens: ProfileScreen(),
-  ),
 ];
 

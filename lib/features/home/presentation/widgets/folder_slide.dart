@@ -38,6 +38,7 @@ class FolderSlide extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             itemCount: folders.length,
             itemBuilder: (context, index) {
+              // return CustomSVGImage(asset: AppAssets.folderItem , color: AppColors.primaryColor,);
               return FoldersAndBooks(
                 width: MediaQuery.of(context).size.width * 0.32.w,
                 idFolder: "${folders[index].id}",
@@ -46,7 +47,6 @@ class FolderSlide extends StatelessWidget {
                 delete: () {
                   print(folders[index].id);
                   // context.read<DeleteFolderByIdCubit>().deleteFolder(id: folders[index].id!);
-
                 },
                 onClick: () {
                   show  =! show;

@@ -1,10 +1,5 @@
-import 'package:awesome_bottom_bar/widgets/inspired/inspired.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:new_ilearn/core/models/title_icon_model.dart';
 import 'package:new_ilearn/features/bottom_navigation/presentation/managers/bottom_nav_operation_cubit.dart';
+import 'package:new_ilearn/features/bottom_navigation/presentation/widget/bottom_navigation_widget.dart';
 import 'package:new_ilearn/features/bottom_navigation/presentation/widget/custom_appbar_widget.dart';
 import 'package:new_ilearn/features/home/presentation/widgets/appBar_widget.dart';
 import '../../../../exports.dart';
@@ -19,32 +14,25 @@ class BottomNavigationScreens extends StatefulWidget {
 }
 
 class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
-  final List<TabItem> items = [
-    TabItem(icon: Icons.folder, title: AppStrings.folder.trans),
-    TabItem(icon: Icons.group, title: AppStrings.groups.trans),
-    TabItem(icon: Icons.home, title: AppStrings.home.trans),
-    TabItem(icon: Icons.archive, title: AppStrings.archivedBooks.trans),
-    TabItem(icon: Icons.person, title: AppStrings.profile.trans),
-  ];
 
   // تخزين الصفحات في ذاكرة التخزين المؤقت
-  final List<Widget> _pages = navBarItems.map((item) => item.screens).toList();
+  final List<Widget?> _pages = navBarItems.map((item) => item.screens).toList();
 @override
   void initState() {
     super.initState();
-    context.read<BottomNavOperationCubit>().changIndex(2);
+    context.read<BottomNavOperationCubit>().changeIndex(2);
   }
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvokedWithResult: (didPop, result) =>
-          context.read<BottomNavOperationCubit>().changIndex(0),
+      onPopInvokedWithResult: (didPop, result) {
+        context.read<BottomNavOperationCubit>().closeDrawer();
+      },
       child: BlocBuilder<BottomNavOperationCubit, int>(
         builder: (context, currentIndex) {
           return CustomBackground(
-            appBar: currentIndex == 1
-                ? CustomAppBar(
+            appBar: currentIndex == 1 ? CustomAppBar(
               title: AppStrings.groups.trans,
               leading: false,
               actions: [
@@ -62,8 +50,7 @@ class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
                 ),
                 const SizedBox(width: 5),
               ],
-            )
-                : null,
+            ) : null,
             showSafeArea: false,
             scaffoldKey: context.read<BottomNavOperationCubit>().getNewScaffoldKey(),
             backgroundColor: AppColors.white,
@@ -103,72 +90,44 @@ class _BottomNavigationScreensState extends State<BottomNavigationScreens> {
                 ),
               ],
             ),
-            bottomNavRoute: Container(
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: AppColors.grey.withAlpha(50), // تقليل شدة اللون
-                    blurRadius: 30, // زيادة نصف قطر التموج
-                    spreadRadius: 10, // زيادة انتشار الظل
-                    offset: Offset(0, -2), // رفع الظل قليلاً لأعلى
+            floatingActionButton: FloatingActionButton(
+              onPressed: () => context.read<BottomNavOperationCubit>().changeIndex(2),
+              backgroundColor: AppColors.primaryColor,
+              child: CustomSVGImage(asset: AppAssets.homeItemIcon),
+              elevation: 0,
+              shape: CircleBorder(),
+            ),
+            floatingDirection: FloatingActionButtonLocation.centerDocked,
+            drawer: Drawer(
+              width: 250.w,
+              backgroundColor: AppColors.white,
+              child:Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: AlignmentDirectional.topStart,
+                    end: AlignmentDirectional.bottomEnd,
+                      colors: [Color(0xff00167D), Color(0xff0075E7)]
                   ),
-                ],
-              ),
-              child: BottomBarInspiredInside(
-                chipStyle: ChipStyle(
-                  convexBridge: true,
-                  color: AppColors.primaryColor,
-                  background: AppColors.primaryColor,
-                  notchSmoothness: NotchSmoothness.softEdge,
                 ),
-                sizeInside: 40,
-                itemStyle: ItemStyle.circle,
-                onTap: _onItemTapped,
-                items: items,
-                elevation: 0, // إبقاء هذا 0 لأننا نستخدم BoxShadow الخاص بنا
-                backgroundColor: AppColors.white,
-                countStyle: CountStyle(
-                  color: AppColors.white,
-                  background: AppColors.primaryColor,
+                child: Column(
+                  children: [
+                    90.vs,
+                    SizedBox(
+                      width: 120.w,
+                        height: 120.h,
+                        child: CustomPngImage(image: AppAssets.logoWhite,isAsset: true,)
+                    )
+                  ],
                 ),
-                color: AppColors.grey,titleStyle: getRegularTextStyle(fontSize: 10, color: AppColors.black),
-                colorSelected: AppColors.white,
-                indexSelected: currentIndex,
               ),
             ),
+            bottomNavRoute:BottomNavigationWidget(navBar: navBarItems,),
           );
         },
       ),
     );
   }
 
-  void _onItemTapped(int index) {
-    if (context.read<BottomNavOperationCubit>().state != index) {
-      context.read<BottomNavOperationCubit>().changIndex(index);
-
-      // Handle specific navigation logic for different tabs
-      switch (index) {
-        case 1:
-        // Folder tab logic
-          break;
-        case 2:
-        // Groups tab logic
-        // BlocProvider.of<GroupBloc>(context).add(GetListGroupsEvent());
-          break;
-        case 3:
-        // Archive tab logic
-        // BlocProvider.of<FolderBloc>(context).add(
-        //     GetFolderEvent(page: 1, isArchive: true, type: 'archive'));
-          break;
-        case 4:
-        // Account tab logic
-          break;
-        default:
-        // Home tab logic
-          break;
-      }
-    }
-  }
 
   @override
   void dispose() {

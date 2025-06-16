@@ -2,11 +2,13 @@ import '../../../../exports.dart';
 
 class BottomNavOperationCubit extends Cubit<int> {
   BottomNavOperationCubit() : super(0);
-  GlobalKey<ScaffoldState>? scaffoldKey;
+  GlobalKey<ScaffoldState>? scaffoldKey= GlobalKey<ScaffoldState>();
 
   closeDrawer() {
-    scaffoldKey = GlobalKey();
     scaffoldKey?.currentState?.closeDrawer();
+  }
+  openDrawer() {
+    scaffoldKey?.currentState?.openDrawer();
   }
 
   getNewScaffoldKey() {
@@ -15,9 +17,8 @@ class BottomNavOperationCubit extends Cubit<int> {
   }
 
   int index = 0;
-  changIndex(int index) {
+  changeIndex(int index) {
     this.index = index;
-
     emit(index);
   }
 

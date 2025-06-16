@@ -31,7 +31,7 @@ class AuthCubit extends Cubit<CubitStates> {
       authUseCase.login(loginRequestModel: loginRequestModel),
       onSuccess: (UserData? data) async {
         userData = data!;
-        getBlocData<BottomNavOperationCubit>().changIndex(0);
+        getBlocData<BottomNavOperationCubit>().changeIndex(0);
         emit(LoadedState<UserData>(data: data));
         // Routes.bottomNavRoute.moveToCurrrentRouteAndRemoveAll;
       },
@@ -48,7 +48,7 @@ class AuthCubit extends Cubit<CubitStates> {
       onSuccess: (UserData? data) async {
         userData = data!;
         log('userData.token.toString()${userData!.token.toString()}');
-        getBlocData<BottomNavOperationCubit>().changIndex(0);
+        getBlocData<BottomNavOperationCubit>().changeIndex(0);
         emit(LoadedState<UserData>(data: data));
         Routes.bottomNavigationRoute.moveToCurrrentRouteAndRemoveAll;
       },
@@ -65,7 +65,7 @@ class AuthCubit extends Cubit<CubitStates> {
       onSuccess: (UserData? data) async {
         userData = data!;
         log('userData.token.toString()${userData!.token.toString()}');
-        getBlocData<BottomNavOperationCubit>().changIndex(0);
+        getBlocData<BottomNavOperationCubit>().changeIndex(0);
         emit(LoadedState<UserData>(data: data));
         // Routes.bottomNavRoute.moveToCurrrentRouteAndRemoveAll;
       },
@@ -83,9 +83,8 @@ class AuthCubit extends Cubit<CubitStates> {
           userData = null;
           AppPrefs.token = null;
           AppPrefs.user = null;
-          getBlocData<BottomNavOperationCubit>().changIndex(0);
+          // getBlocData<BottomNavOperationCubit>().changeIndex(0);
           // Routes.bottomNavRoute.moveToCurrrentRouteAndRemoveAll;
-          getBlocData<BottomNavOperationCubit>().changIndex(0);
           emit(LoadedState(data: null));
         },
       );

@@ -32,7 +32,7 @@ class AppBarDashBord extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      context.read<BottomNavOperationCubit>().changIndex(4) ;
+                      context.read<BottomNavOperationCubit>().changeIndex(4) ;
                       // BlocProvider.of<NavigationBetweenPagesBloc>(context).add(
                       //     AddIndexPages(
                       //         indexPage: 4, typeButtonWithProfile: 0));

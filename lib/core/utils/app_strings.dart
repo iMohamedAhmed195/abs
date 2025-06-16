@@ -13,6 +13,7 @@ class AppStrings {
   static const String uploadQuestions = 'uploadQuestions';
   static const String home = 'home';
   static const String letsGo = 'letsGo';
+  static const String menu = 'menu';
   static const String alreadyHaveAccount = 'alreadyHaveAccount';
   static const String startProject = 'startProject';
   static const String pleaseSelectCountry = 'pleaseSelectCountry';
@@ -118,7 +119,7 @@ class AppStrings {
   static const String or = 'or';
   static const String photoShoot = 'photoShoot';
   static const String photoShootDescription = 'photoShootDescription';
-  static const String addLink = 'addLink';
+  static const String addYoutubeLink = 'addYoutubeLink';
   static const String writeHere = 'writeHere';
   static const String selectTypeQuestions = 'selectTypeQuestions';
   static const String test = 'test';

@@ -13,6 +13,6 @@ class AddBooksRemoteDateSourceImpl extends RemoteExecuteImpl implements AddBooks
     endPoint: EndPoints.books,
     getFromJsonFunction: ResponseModel.fromJson,
     data: addBooksRequestModel.toJson(),
-      isFormData: true
+    isFormData: true,
   );
 }

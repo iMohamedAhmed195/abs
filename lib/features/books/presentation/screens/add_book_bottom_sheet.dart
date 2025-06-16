@@ -12,6 +12,7 @@ import 'package:new_ilearn/core/widgets/textFiled_widget.dart';
 import 'package:new_ilearn/features/books/data/models/add_books_request_model.dart';
 import 'package:new_ilearn/features/books/presentation/Widgets/header_of_add_book_bottom_sheet.dart';
 import 'package:new_ilearn/features/books/presentation/managers/add_books_cubit.dart';
+import 'package:new_ilearn/features/bottom_navigation/presentation/managers/bottom_nav_operation_cubit.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
@@ -98,15 +99,16 @@ class _AddBookPageState extends State<AddBookPage> {
         listener: (context, state) {
           if (state is LoadedState){
             _status = 'success';
-            showToast(context: context, message: AppStrings.loginSuccessfully.trans, visibleMessage: true);
+            // showToast(context: context, message: AppStrings.loginSuccessfully.trans, visibleMessage: true);
             setState(() {
             });
             pop();
-            // Routes.bottomNavigationRoute.moveToCurrrentRouteAndRemoveAll;
+            context.read<BottomNavOperationCubit>().changeIndex(0);
+            Routes.bottomNavigationRoute.moveToCurrrentRouteAndRemoveAll;
           }
           else if (state is FailedState){
             _status = 'failed';
-            showToast(context: context, message: AppStrings.loginFailed.trans, visibleMessage: false);
+            // showToast(context: context, message: AppStrings.loginFailed.trans, visibleMessage: false);
             Future.delayed(Duration(seconds: 1), () {
               _status = 'unClicked';
               setState(() {
@@ -279,6 +281,32 @@ class _AddBookPageState extends State<AddBookPage> {
                               ),
                               //Photo Shoot
                               const OrWidget(),
+                              FormAuthentication(
+                                  onChange: (val) {
+                                    setState(() {
+                                      link = val.isNotEmpty ? true : false;
+                                    });
+                                    removeError(context, Errors.CHOOSE_IMAGE_OR_FILE_ERROR);
+                                  },
+                                  suffixIcon: Visibility(
+                                    visible: link,
+                                    child: IconButton(
+                                      onPressed: () => clearForms(),
+                                      icon: const Icon(
+                                        Icons.close,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ),
+                                  fillColor: enabledForms(type: 'link') ? null : Theme.of(context).textTheme.titleSmall!.color,
+                                  enabled: enabledForms(type: 'link'),
+                                  errorFiled: _errorLink,
+                                  textInputType: TextInputType.text,
+                                  textEditingController: _link,
+                                  hint: 'https://www.youtube.com',
+                                  title: AppStrings.addYoutubeLink.trans),
+                              const OrWidget(),
+
                               const SizedBox(height: 16),
                               TextFiledWidget(
                                 onChange: (val) {
@@ -315,7 +343,7 @@ class _AddBookPageState extends State<AddBookPage> {
                                 status: _status,
                                 onClickButton: () async{
                                   errorForm();
-                                  checkBoolError(context, _boxWriteTheBook.text.isNotEmpty || _path.isNotNull || _bookWithImages.isNotNull, Errors.CHOOSE_IMAGE_OR_FILE_ERROR);
+                                  checkBoolError(context, _boxWriteTheBook.text.isNotEmpty || _link.text.isNotEmpty || _path.isNotNull || _bookWithImages.isNotNull, Errors.CHOOSE_IMAGE_OR_FILE_ERROR);
                                   if (checkForms() && dontHaveErrors(context)) {
                                     if (_boxWriteTheBook.text.isNotEmpty) {
                                       await contentToPdf();
@@ -336,6 +364,7 @@ class _AddBookPageState extends State<AddBookPage> {
                                         categoryId: widget.folderId,
                                         file: _path,
                                         content: _boxWriteTheBook.text,
+                                        link: _link.text,
                                       ),
                                     );
                                   }
@@ -398,25 +427,16 @@ class _AddBookPageState extends State<AddBookPage> {
               ? '${AppStrings.bookName.trans} ${AppStrings.thisFieldRequired.trans}'
               : AppStrings.errorAddBookValidation.trans;
 
-      _errorLink =
-          _link.text.isNotEmpty
-              ? isValidUrl() == true
-                  ? null
-                  : AppStrings.errorLinkWithAddBook.trans
-              : null;
+      _errorLink = _link.text.isNotEmpty ? isValidUrl() == true ? null : AppStrings.errorLinkWithAddBook.trans : null;
     });
   }
 
   bool isValidUrl() {
-    const urlPattern =
-        r'^(https?:\/\/)?' // Protocol (optional)
-        r'([\da-z\.-]+)\.' // Domain name
-        r'([a-z\.]{2,30})' // TLD (now allows longer TLDs like .google)
-        r'([\/\w \.\-%)]*)*' // Path (escaped % and moved - to end)
-        r'(\?[\/\w \.\-=%]*)?$'; // Query string (escaped % and moved - to end)
-
-    final regExp = RegExp(urlPattern, caseSensitive: false);
-    return regExp.hasMatch(_link.text);
+    final regExp = RegExp(
+      r'^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+',
+      caseSensitive: false,
+    );
+    return regExp.hasMatch(_link.text.trim());
   }
 
   addBook() async {

@@ -51,8 +51,16 @@ class AppAssets {
   static String createQuize = '${PngImages.imagesPath}/createQuize.png';
   static String bubbleRegisterLeft = '${PngImages.imagesPath}/bubbleRegister.png';
   static String bubbleRegisterRight = '${PngImages.imagesPath}/bubbleRegisterLight.png';
-   
 
+  static String folder = '${SvgImages.svgPath}/folder.svg';
+  static String coloredFolder = '${SvgImages.svgPath}/colored_folder.svg';
+  static String group = '${SvgImages.svgPath}/group.svg';
+  static String coloredGroup = '${SvgImages.svgPath}/colored_group.svg';
+  static String archive = '${SvgImages.svgPath}/archive.svg';
+  static String coloredArchive = '${SvgImages.svgPath}/colored_archive.svg';
+  static String menu = '${SvgImages.svgPath}/menu.svg';
+  static String coloredMenu = '${SvgImages.svgPath}/colored_menu.svg';
+  static String folderItem = '${SvgImages.svgPath}/folder_item.svg';
 
   static String bubbleDashBord = '${PngImages.imagesPath}/bubbleDashBord.png';
   static String bubbleDashBordLight = '${PngImages.imagesPath}/bubbleDashBordLight.png';
@@ -98,7 +106,6 @@ class AppAssets {
       '${SvgImages.svgPath}/previousConversationsIcon.svg';
   static String folderIconUnFill = '${SvgImages.svgPath}/folderIconUnFill.svg';
   static String folderIconFill = '${SvgImages.svgPath}/folderIconFill.svg';
-  static String group = '${SvgImages.svgPath}/group.svg';
   static String groupFillColor = '${SvgImages.svgPath}/groupFillColor.svg';
   static String archiveItemIconUnFill = '${SvgImages.svgPath}/archiveItemIcon.svg';
   static String archiveItemIconFill = '${SvgImages.svgPath}/archiveItemIconFill.svg';
