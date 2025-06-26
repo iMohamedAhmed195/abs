@@ -74,6 +74,7 @@ Future<T?> showCustomDialog<T>({
     return isAlert ? AlertDialog(content: child) : CustomDialog(message: message, dialogType: dialogType);
   },
 );
+
 Future showCustomDialogWithTimer({
   String? message,
   bool dismissible = true,
@@ -105,6 +106,7 @@ Future showCustomDialogWithTimer({
 bool _isThereCurrentDialogShowing(BuildContext context) => ModalRoute.of(context)?.isCurrent != true;
 /*hide keypad if it is shown*/
 requestFocus(FocusNode focusNode) => FocusScope.of(getContext).requestFocus(focusNode);
+
 showDateTimeDialog({DateTime? initialDate, DateTime? firstDate, DateTime? lastDate}) => showDatePicker(
   context: getContext,
   builder:
@@ -278,16 +280,17 @@ Future<String> convertToPdf({String? path, String? content}) async {
   await file.readAsBytes();
   return file.path;
 }
+
 Future<File?> selectImageFunction({bool isChoseWithGallery = true}) async {
   final ImagePicker picker = ImagePicker();
-  XFile? image = await picker.pickImage(
-      source: isChoseWithGallery ? ImageSource.gallery : ImageSource.camera);
+  XFile? image = await picker.pickImage(source: isChoseWithGallery ? ImageSource.gallery : ImageSource.camera);
   if (image != null) {
     log('image.path${image.path}');
     return File(image.path);
   }
   return null;
 }
+
 Future<File?> photoBook(List<File> images) async {
   var file = await convertImagesToPdf(images);
   if (file != null) {
@@ -305,13 +308,11 @@ Future<File?> convertImagesToPdf(List<File> images) async {
       final imageBytes = imageFile.readAsBytesSync();
       final PdfBitmap pdfImage = PdfBitmap(imageBytes);
       final page = document.pages.add();
-      page.graphics.drawImage(pdfImage,
-          const Rect.fromLTWH(0, 0, 500, 500)); // حجم الصورة في الصفحة
+      page.graphics.drawImage(pdfImage, const Rect.fromLTWH(0, 0, 500, 500)); // حجم الصورة في الصفحة
     }
 
     final outputDirectory = await getApplicationDocumentsDirectory();
-    final outputFile =
-    File('${outputDirectory.path}/${DateTime.now()}_photo_book.pdf');
+    final outputFile = File('${outputDirectory.path}/${DateTime.now()}_photo_book.pdf');
     await outputFile.writeAsBytes(await document.save());
     document.dispose();
 

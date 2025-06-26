@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:new_ilearn/config/extensions/extensions.dart';
+import 'package:abs/config/extensions/extensions.dart';
 
 Map<String, dynamic>? getArguments(BuildContext context) => (ModalRoute.of(context))!.settings.arguments as Map<String, dynamic>?;
 

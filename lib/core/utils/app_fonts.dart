@@ -2,9 +2,9 @@ import 'dart:ui';
 
 class FontFamilies {
   FontFamilies._(); //! Private constructor to prevent instantiation
-  static const String openSans = "OpenSans";
-  static const String cairo = "Cairo";
-  static const String notoSansArabic = "NotoSansArabic";
+  static const String lyonArabicDisplay = "LyonArabicDisplay";
+  static const String ibmPlexSansArabic = "IBMPlexSansArabic";
+  static const String PingARLT = "PingAR+LT";
 }
 
 class FontWeights {

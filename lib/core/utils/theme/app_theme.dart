@@ -18,7 +18,6 @@ class AppTheme{
         //colorNavigationGray
       ),
       splashColor: Colors.white,
-      primaryColorLight: AppColors.primaryColorLight,
       indicatorColor: Colors.black26,
       highlightColor: Colors.black45,
       secondaryHeaderColor: Colors.white,

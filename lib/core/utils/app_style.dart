@@ -3,7 +3,7 @@ import '../../exports.dart';
 TextStyle getBoldTextStyle({
   double fontSize = 24,
   Color? color,
-  String fontFamily = FontFamilies.cairo,
+  String fontFamily = FontFamilies.PingARLT,
   double? letterSpacing,
   FontStyle? fontStyle,
   double? wordSpacing,
@@ -14,6 +14,7 @@ TextStyle getBoldTextStyle({
   Color? backgroundColor,
   double? height,
   List<Shadow>? shadows,
+  List<FontFeature>? fontFeatures,
 }) {
   return TextStyle(
       fontSize: fontSize.sp,
@@ -28,6 +29,7 @@ TextStyle getBoldTextStyle({
       wordSpacing: wordSpacing,
       textBaseline: textBaseline,
       backgroundColor: backgroundColor,
+      fontFeatures: fontFeatures,
       height: height,
       shadows: shadows);
 }
@@ -37,7 +39,7 @@ TextStyle getRegularTextStyle({
   double fontSize = 14,
   Color? color,
   FontWeight? fontWeight,
-  String fontFamily = FontFamilies.cairo,
+  String fontFamily = FontFamilies.PingARLT,
   double? letterSpacing,
   FontStyle? fontStyle,
   double? wordSpacing,
@@ -46,6 +48,7 @@ TextStyle getRegularTextStyle({
   TextBaseline? textBaseline,
   Color? decorationColor,
   Color? backgroundColor,
+  List<FontFeature>? fontFeatures,
   double? height,
 }) {
   return TextStyle(
@@ -61,6 +64,7 @@ TextStyle getRegularTextStyle({
     wordSpacing: wordSpacing,
     textBaseline: textBaseline,
     backgroundColor: backgroundColor,
+    fontFeatures: fontFeatures,
     height: height,
   );
 }
@@ -69,7 +73,7 @@ TextStyle getMediumTextStyle({
   double fontSize = 16,
   Color? color,
   FontWeight? fontWeight,
-  String fontFamily = FontFamilies.cairo,
+  String fontFamily = FontFamilies.PingARLT,
   double? letterSpacing,
   FontStyle? fontStyle,
   double? wordSpacing,
@@ -78,6 +82,7 @@ TextStyle getMediumTextStyle({
   TextBaseline? textBaseline,
   Color? decorationColor,
   Color? backgroundColor,
+  List<FontFeature>? fontFeatures,
   double? height,
 }) {
   return TextStyle(
@@ -93,6 +98,7 @@ TextStyle getMediumTextStyle({
     wordSpacing: wordSpacing,
     textBaseline: textBaseline,
     backgroundColor: backgroundColor,
+    fontFeatures: fontFeatures,
     height: height,
   );
 }
@@ -102,7 +108,7 @@ TextStyle getSemiBoldTextStyle({
   double fontSize = 14,
   Color? color,
   FontWeight? fontWeight,
-  String fontFamily = FontFamilies.cairo,
+  String fontFamily = FontFamilies.PingARLT,
   double? letterSpacing,
   FontStyle? fontStyle,
   double? wordSpacing,
@@ -111,6 +117,7 @@ TextStyle getSemiBoldTextStyle({
   TextBaseline? textBaseline,
   Color? decorationColor,
   Color? backgroundColor,
+  List<FontFeature>? fontFeatures,
   double? height,
 }) {
   return TextStyle(
@@ -125,6 +132,7 @@ TextStyle getSemiBoldTextStyle({
     decorationColor: decorationColor,
     wordSpacing: wordSpacing,
     textBaseline: textBaseline,
+    fontFeatures: fontFeatures,
     backgroundColor: backgroundColor,
     height: height,
   );
