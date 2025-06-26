@@ -9,8 +9,8 @@
 // import 'package:image_picker/image_picker.dart';
 // import 'package:intl/intl.dart';
 // import 'package:lottie/lottie.dart';
-// import 'package:new_ilearn/core/widgets/button_widget.dart';
-// import 'package:new_ilearn/core/widgets/text_widget.dart';
+// import 'package:abs/core/widgets/button_widget.dart';
+// import 'package:abs/core/widgets/text_widget.dart';
 // import 'package:path_provider/path_provider.dart';
 //
 // import 'package:url_launcher/url_launcher.dart';

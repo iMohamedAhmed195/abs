@@ -28,7 +28,7 @@ class SocketService {
     try {
       // Connect to the Socket.IO server at 'https://mnkaf.qa:6001'
       socket = IO.io(
-        'https://backend.new_ilearn-sat.com:6001',
+        'https://backend.abs-sat.com:6001',
         // Disable automatic connection, set reconnection attempts, and set timeout
         IO.OptionBuilder()
             .disableAutoConnect()

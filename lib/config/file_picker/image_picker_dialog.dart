@@ -1,6 +1,6 @@
 
 
-import 'package:new_ilearn/config/widgets/setting_item.dart';
+import 'package:abs/config/widgets/setting_item.dart';
 
 import '../../exports.dart';
 

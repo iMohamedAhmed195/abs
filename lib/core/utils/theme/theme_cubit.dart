@@ -1,4 +1,4 @@
-import 'package:new_ilearn/config/constants/app_prefs.dart';
+import 'package:abs/config/constants/app_prefs.dart';
 import '../../../exports.dart';
 
 class ThemeCubit extends Cubit<CubitStates> {

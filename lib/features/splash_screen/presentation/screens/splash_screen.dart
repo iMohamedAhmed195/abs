@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'package:lottie/lottie.dart';
-import 'package:new_ilearn/config/constants/app_prefs.dart';
-import 'package:new_ilearn/features/splash_screen/presentation/manager/get_configration_cubit.dart';
+import 'package:abs/config/constants/app_prefs.dart';
 
 import '../../../../exports.dart';
 
@@ -72,78 +70,38 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       }
     });
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      // bool isNew = await getBlocData<OnboardingManagerCubit>().isNewInstalled();
-      // bool isLanguageSaved = await getBlocData<LanguageCubit>().getSavedLanguage();
-      // UserData? user = await getBlocData<AuthCubit>().getUser();
-      // // bool isNotificationInit = (await NotificationsService().initialize()).orFalse;
-      // UserData? user = await getBlocData<AuthCubit>().getUser();
-      // ConfigData? configData = await getBlocData<ConfigurationCubit>().getConfig();
-      // print(user?.token);
-      // print(user?.devToken);
-      print("the token is" + AppPrefs.token.toString());
-
-       route = AppPrefs.token.isNotNull ? Routes.bottomNavigationRoute : Routes.onBoardingRoute;
-      // print("new install ${isNew}");
-      // if (isLanguageSaved.isFalse) {
-      //   route = Routes.selectLanguageRoute;
-      // }
-      // else if (isNew.isTrue) {
-      //   await checkNotificationPermissionAndDoOperation(
-      //     context,
-      //     onSuccess: () {
-      //       NotificationsService().showSimpleNotification(
-      //         title: 'أهلا بك في ايزي',
-      //         description: "نرحب بك في منصة ايزي للقروض",
-      //       );
-      //     },
-      //   );
-      //   route = Routes.onBoardingRoute;
-      // }
-      // else if (user.isNotNull) {
-      //     route = Routes.bottomNavigationRoute;
-      // }
-      // else {
-      //   route = Routes.loginRoute;
-      // }
-
-
+       route =  Routes.bottomNavigationRoute ;
     });
   }
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ConfigurationCubit, CubitStates>(
-      builder: (BuildContext context, state) {
-        return CustomBackground(
-            showSafeArea: false,
-            child: Container(
-              height: double.infinity,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                      end: AlignmentDirectional.topStart,
-                      begin: AlignmentDirectional.bottomEnd,
-                      colors: [Color(0xff00167D), Color(0xff0075E7)])),
-              child: Center(
-                child: AnimatedBuilder(
-                  animation: _animationController,
-                  builder: (context, child) {
-                    return Opacity(
-                      opacity: _fadeAnimation.value,
-                      child: Transform.scale(
-                        scale: _scaleAnimation.value,
-                        child: SizedBox(
-                          width: 180.w,
-                          height: 200.h,
-                          child: Image.asset(AppAssets.logoWhite),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            )
-        );
-      },
+    return CustomBackground(
+        showSafeArea: false,
+        child: Container(
+          height: double.infinity,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+              color: AppColors.white
+          ),
+          child: Center(
+            child: AnimatedBuilder(
+              animation: _animationController,
+              builder: (context, child) {
+                return Opacity(
+                  opacity: _fadeAnimation.value,
+                  child: Transform.scale(
+                    scale: _scaleAnimation.value,
+                    child: SizedBox(
+                      width: 180.w,
+                      height: 200.h,
+                      child: Image.asset(AppAssets.logo),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        )
     );
   }
 }

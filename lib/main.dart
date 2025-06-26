@@ -1,7 +1,7 @@
-import 'package:new_ilearn/custom_easy_localization.dart';
-import 'package:new_ilearn/i_learn_app.dart';
+import 'package:abs/custom_easy_localization.dart';
+import 'package:abs/abs_app.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:new_ilearn/config/services/firebase_service.dart';
+import 'package:abs/config/services/firebase_service.dart';
 import 'config/shared_pereferences.dart' show ShApp;
 import 'exports.dart';
 import 'firebase_options.dart';
@@ -10,7 +10,7 @@ import 'global_bloc_observer.dart';
 void main() async {
   await init;
 
-  runApp(CustomEasyLocalization(child: ILearnApp()));
+  runApp(CustomEasyLocalization(child: AbsApp()));
 }
 
 Future get init async {
