@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">new_ilearn</string>
+    <string name="app_name">abs</string>
     <string name="facebook_app_id">1227923231580977</string>
     <string name="facebook_client_token">8e3b23de11372d7b98fde088c59dabf2</string>
 </resources>
