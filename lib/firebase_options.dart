@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '51088429759',
     projectId: 'qrar-d5295',
     storageBucket: 'qrar-d5295.firebasestorage.app',
-    iosBundleId: 'com.sat.new_ilearn',
+    iosBundleId: 'com.sat.abs',
   );
 }

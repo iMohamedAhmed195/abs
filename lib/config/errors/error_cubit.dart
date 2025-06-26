@@ -1,6 +1,6 @@
 
 
-import 'package:new_ilearn/exports.dart';
+import 'package:abs/exports.dart';
 
 enum Errors {
   PHONE_ERROR,
@@ -19,11 +19,6 @@ enum Errors {
 
 Map<Errors, String> getError = {
   Errors.OTP_ERROR: AppStrings.otpCodeError.trans,
-  Errors.COUNTRY_ERROR: AppStrings.pleaseSelectCountry.trans,
-  Errors.GENDER_ERROR: AppStrings.pleaseSelectGender.trans,
-  Errors.LEARNING_STAGE_ERROR: AppStrings.pleaseSelectLearningStage.trans,
-  Errors.TERMS_AND_CONDITIONS_DATA_ERROR: AppStrings.pleaseAcceptTerms.trans,
-  Errors.CHOOSE_IMAGE_OR_FILE_ERROR: AppStrings.errorAddBookValidation.trans,
 };
 
 class ErrorCubit extends Cubit<CubitStates> {

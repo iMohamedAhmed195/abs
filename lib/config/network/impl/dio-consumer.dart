@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:new_ilearn/config/extensions/extensions.dart';
+import 'package:abs/config/extensions/extensions.dart';
 
 import '../../constants/app_constants.dart';
 import '../abstract/api_consumer.dart';

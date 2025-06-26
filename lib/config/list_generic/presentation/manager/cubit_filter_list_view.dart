@@ -1,4 +1,4 @@
-import 'package:new_ilearn/config/extensions/extensions.dart';
+import 'package:abs/config/extensions/extensions.dart';
 
 import '../../data/models/filter_abstract.dart';
 import '../../data/models/state_model.dart';

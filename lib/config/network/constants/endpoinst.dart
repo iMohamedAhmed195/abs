@@ -1,6 +1,6 @@
 abstract class EndPoints {
-   // static const String baseUrl = 'https://new_ilearn.seniorcode.co'; //base url
-  static const String baseUrl = 'http://179.61.219.156:3000'; //base url
+   // static const String baseUrl = 'https://abs.seniorcode.co'; //base url
+  static const String baseUrl = 'http://145.14.157.242:3000'; //base url
   static const String api = '/api/v1/';
   static const String profile = '${api}profile';
   static const String user = '${api}user';
@@ -26,18 +26,18 @@ abstract class EndPoints {
   static const String unReadNotification = '${api}user/notification/unread-count';
   static const String readNotifications = '${api}user/notification/read';
   static const String confirmationCode = '${api}send_sms';
-///////////////////////////// home ////////////////////////////
-  static const String homeFolders = '${api}home';
+///////////////////////////// dashboard ////////////////////////////
+  static const String homeFolders = '${api}dashboard';
   static const String folders = '${api}categories';
   static const String books = '${api}books';
-  static const String statistics = '${api}statistics/home';
+  static const String statistics = '${api}statistics/dashboard';
   static const String groupsChat = '${api}groupschat';
   static const String terms = '${api}terms';
   static const String policy = '${api}policy';
   static const String appVersions = '${api}app-versions';
 
   static const String config = '${api}country';
-  static const String home = '${api}home';
+  static const String home = '${api}dashboard';
   static const String reports = '${api}statistics/reports';
 
   static const String estateAd = '${api}estate/ad';
@@ -47,8 +47,8 @@ abstract class EndPoints {
   static const String cities = '${api}select/cities/';
   static const String communicationTool = '${api}select/communication-tool';
   static const String termsAndCondition = '${api}terms-and-conditions';
-  static const String aboutnew_ilearn = '${api}about-us';
-  static const String new_ilearnValLicense = '${api}val-license';
+  static const String aboutabs = '${api}about-us';
+  static const String absValLicense = '${api}val-license';
   static const String areas = '${api}select/areas';
   static const String rooms = '${api}select/rooms';
   static const String estateType = '${api}select/estate-types';
@@ -101,7 +101,7 @@ abstract class EndPoints {
   static var removeAdMedia = "$estateAd/delete/media";
   static var removeRequestMedia = "$estateRequest/delete/media";
 
-  static var estateMarketAll = '$estateMarket/all/home';
+  static var estateMarketAll = '$estateMarket/all/dashboard';
 
   static var brokerCompletedDeals = '$api/user/complete/deals/';
   static var repostOrderRequest = '$estateRequest/repost';

@@ -1,6 +1,6 @@
 import 'package:image_picker/image_picker.dart';
 
-import 'package:new_ilearn/exports.dart';
+import 'package:abs/exports.dart';
 
 class SelectImageCubit extends Cubit<CubitStates> {
   SelectImageCubit() : super(LoadedState(data: []));

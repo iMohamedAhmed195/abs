@@ -1,6 +1,6 @@
 import 'package:permission_handler/permission_handler.dart';
-import 'package:new_ilearn/config/local_notification/local_notification.dart';
-import 'package:new_ilearn/config/permission/permission_dialog.dart';
+import 'package:abs/config/local_notification/local_notification.dart';
+import 'package:abs/config/permission/permission_dialog.dart';
 
 import '../../exports.dart';
 

@@ -1,5 +1,5 @@
-import 'package:new_ilearn/config/extensions/extensions.dart';
-import 'package:new_ilearn/core/utils/app_strings.dart';
+import 'package:abs/config/extensions/extensions.dart';
+import 'package:abs/core/utils/app_strings.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 

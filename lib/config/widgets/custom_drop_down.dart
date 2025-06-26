@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
-import 'package:new_ilearn/core/utils/app_colors.dart';
+import 'package:abs/core/utils/app_colors.dart';
 
 class CustomDropDown<T> extends StatefulWidget {
   final List<CustDropdownMenuItem> items;

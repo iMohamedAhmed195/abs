@@ -2,8 +2,8 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:new_ilearn/config/local_notification/local_notification.dart';
-import 'package:new_ilearn/config/extensions/extensions.dart';
+import 'package:abs/config/local_notification/local_notification.dart';
+import 'package:abs/config/extensions/extensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../service_locator.dart';

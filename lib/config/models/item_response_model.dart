@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:new_ilearn/config/extensions/extensions.dart';
+import 'package:abs/config/extensions/extensions.dart';
 
 import '../list_generic/data/models/list_model.dart';
 

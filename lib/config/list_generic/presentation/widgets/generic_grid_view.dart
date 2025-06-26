@@ -1,4 +1,4 @@
-import 'package:new_ilearn/config/widgets/status_message.dart';
+import 'package:abs/config/widgets/status_message.dart';
 import '../../../../exports.dart';
 
 class GenericGridListView<CubitType extends CubitListView<T>, T> extends StatelessWidget {

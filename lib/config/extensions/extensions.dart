@@ -107,7 +107,7 @@ extension StringExtension on String? {
   popScreen([Object? object]) => pop(object);
   popScreenWithArgument([Object? object]) => pop(object);
 
-  //get moveToCurrrentRouteAndRemoveAllExceptHome => pushRoute(this, isNewTask: true, exceptRoute: Routes.home);
+  //get moveToCurrrentRouteAndRemoveAllExceptHome => pushRoute(this, isNewTask: true, exceptRoute: Routes.dashboard);
   moveToCurrrentRouteAndRemoveAllExceptThisRoute(String exceptRoute) =>
       pushRoute(validate, isNewTask: true, exceptRoute: exceptRoute);
   get moveToCurrrentRouteAndRemoveAll => pushRoute(validate, isNewTask: true);

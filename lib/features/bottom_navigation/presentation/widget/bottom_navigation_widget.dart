@@ -1,4 +1,4 @@
-import 'package:new_ilearn/core/models/title_icon_model.dart';
+import 'package:abs/core/models/title_icon_model.dart';
 import '../../../../exports.dart';
 import '../managers/bottom_nav_operation_cubit.dart';
 
@@ -11,20 +11,18 @@ class BottomNavigationWidget extends StatefulWidget {
 }
 
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
-  bool isDrawerOpen = false;
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
-        setState(() {
-          isDrawerOpen = !isDrawerOpen;
-        });
+        setState(() {});
       },
       child: Stack(
         children: [
           Container(
-            height: 76.h,
+            height: 65.h,
             decoration: BoxDecoration(
               color: AppColors.white.withOpacity(0.7), // Container background color
               borderRadius: BorderRadius.only(
@@ -46,130 +44,81 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
               children: [
                 ...List.generate(
                   widget.navBar.length,
-                  (index) =>
-                      index == 2
-                          ? const SizedBox.shrink()
-                          : GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            onTap: () {
-                              context.read<BottomNavOperationCubit>().changeIndex(index);
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.only(top: 5.h),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SizedBox(
-                                    height: 24,
-                                    width: 24,
-                                    child: CustomSVGImage(
-                                      asset:
-                                          context.read<BottomNavOperationCubit>().index == index
-                                              ? widget.navBar[index].coloredIcon
-                                              : widget.navBar[index].icon,
-                                      fit: BoxFit.fill,
-                                      matchTextDirection: false,
+                  (index) => GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      context.read<BottomNavOperationCubit>().changeIndex(index);
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 3.h),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Stack(
+                            alignment: AlignmentDirectional.topStart,
+                            children: [
+                              Container(
+                                height: 35.w,
+                                width: 30.h,
+                                padding: EdgeInsets.all(6),
+                                decoration: BoxDecoration(
+                                  color:
+                                      context.read<BottomNavOperationCubit>().index == index
+                                          ? AppColors.primaryColor.withOpacity(0.1)
+                                          : AppColors.transparent,
+                                  borderRadius: BorderRadius.circular(9.r),
+                                ),
+                                child: CustomSVGImage(
+                                  asset: widget.navBar[index].icon,
+                                  fit: BoxFit.fill,
+                                  matchTextDirection: false,
+                                  color:
+                                      context.read<BottomNavOperationCubit>().index == index
+                                          ? AppColors.primaryColor
+                                          : AppColors.grey,
+                                ),
+                              ),
+                           index==1 || index ==2 ?  Positioned(
+                             right: -1,
+                             top: 3,
+                             child: Container(
+                                  width: 19.w,
+                                  height: 12.h,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.primaryColor,
+                                    border: Border.all(color: AppColors.white, width: 1),
+                                    borderRadius: BorderRadius.circular(8.r),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      '12',
+                                      style: getBoldTextStyle(color: AppColors.white, fontSize: 8),
                                     ),
                                   ),
-                                  5.vs,
+                                ),
+                           ) : SizedBox.shrink(),
+                            ],
+                          ),
+                          Text(
+                            widget.navBar[index].name.trans,
+                            style: getBoldTextStyle(
+                              fontSize: 14,
+                              color:
                                   context.read<BottomNavOperationCubit>().index == index
-                                      ? Text(
-                                        widget.navBar[index].name.trans,
-                                        style: getBoldTextStyle(
-                                          fontSize: 14,
-                                          color:
-                                              context.read<BottomNavOperationCubit>().index == index
-                                                  ? AppColors.primaryColor
-                                                  : AppColors.grey,
-                                        ),
-                                      )
-                                      : Container(),
-                                ],
-                              ),
+                                      ? AppColors.primaryColor
+                                      : AppColors.grey,
                             ),
                           ),
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    context.read<BottomNavOperationCubit>().openDrawer();
-                    print('open drawer ${isDrawerOpen}');
-                    isDrawerOpen = !isDrawerOpen;
-                    setState(() {
-
-                    });
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(top: 5.h),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          height: 24,
-                          width: 24,
-                          child: CustomSVGImage(
-                            asset:
-                                isDrawerOpen
-                                    ? AppAssets.coloredMenu
-                                    :AppAssets.menu,
-                            fit: BoxFit.fill,
-                            matchTextDirection: false,
-                          ),
-                        ),
-                        5.vs,
-                        isDrawerOpen
-                            ? Text(
-                              AppStrings.menu.trans,
-                              style: getBoldTextStyle(
-                                fontSize: 14,
-                                color:
-                                isDrawerOpen
-                                    ? AppColors.primaryColor
-                                        : AppColors.grey,
-                              ),
-                            )
-                            : Container(),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
           ),
-          Positioned.fill(child: IgnorePointer(child: CustomPaint(painter: NotchPainter()))),
         ],
       ),
     );
   }
-}
-
-class NotchPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    // final Paint paint = Paint()..color = AppColors.red; // notch color
-    final Paint paint = Paint()..color = AppColors.white; // notch color
-
-    final double notchRadius = 50;
-    final double notchWidth = 75;
-    final double notchDepth = 38;
-    final double centerX = size.width / 2;
-
-    final Path notchPath = Path();
-
-    // Define the bump shape same as in clipper but just the notch itself
-    notchPath.moveTo(centerX + notchWidth / 2 + 10, 0);
-    notchPath.quadraticBezierTo(centerX + notchWidth / 2, 0, centerX + notchWidth / 2 - 10, -notchDepth + 10);
-    notchPath.arcToPoint(
-      Offset(centerX - notchWidth / 2 + 10, -notchDepth + 10),
-      radius: Radius.circular(notchRadius),
-      clockwise: false,
-    );
-    notchPath.quadraticBezierTo(centerX - notchWidth / 2, 0, centerX - notchWidth / 2 - 10, 0);
-    notchPath.close();
-
-    canvas.drawPath(notchPath, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }

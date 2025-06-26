@@ -1,4 +1,4 @@
-import 'package:new_ilearn/config/widgets/custom_icon.dart';
+import 'package:abs/config/widgets/custom_icon.dart';
 import '../../exports.dart';
 
 class CustomCircleImage extends StatelessWidget {

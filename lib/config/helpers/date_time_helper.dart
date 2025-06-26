@@ -1,6 +1,6 @@
-import 'package:new_ilearn/config/constants/localization_constants.dart';
+import 'package:abs/config/constants/localization_constants.dart';
 
-import 'package:new_ilearn/exports.dart';
+import 'package:abs/exports.dart';
 String getTimeString(int? time) {
   if (time.isNotNull) {
     // Calculate the number of hours.

@@ -1,6 +1,6 @@
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:new_ilearn/exports.dart';
+import 'package:abs/exports.dart';
 
 
 Future<bool> checkConnection() async {

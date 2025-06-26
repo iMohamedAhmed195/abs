@@ -1,5 +1,5 @@
 
-import 'package:new_ilearn/config/widgets/status_message.dart';
+import 'package:abs/config/widgets/status_message.dart';
 
 import '../../../../exports.dart';
 

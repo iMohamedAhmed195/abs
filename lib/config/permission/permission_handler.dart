@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:new_ilearn/config/extensions/extensions.dart';
+import 'package:abs/config/extensions/extensions.dart';
 
 class PermissionContext {
   late BuildContext context;
